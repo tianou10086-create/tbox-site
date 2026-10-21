@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="T-Box">
+  <title>T-Box</title>
+  <!--
+    T-Box 站点 favicon / 应用图标。
+    与 brand/tbox-mark.svg 同源几何；站点只允许引用自身目录下的静态资源，
+    所以这里单独放一份，改动请两边同步。
+  -->
+  <rect x="24" y="24" width="464" height="464" rx="104" fill="#0C8F68"/>
+  <rect x="120" y="104" width="272" height="104" rx="52" fill="#F3F1E9"/>
+  <rect x="204" y="104" width="104" height="200" rx="52" fill="#F3F1E9"/>
+  <rect x="148" y="352" width="216" height="64" rx="32" fill="#71D9B4"/>
+</svg>
