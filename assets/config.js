@@ -29,10 +29,15 @@ window.TBOX_CONFIG = {
   // 0.1.30 的包只有 TishiBox/、没有任何授权门，已撤下，不要再引用。
   // 安装版 TBox-Setup.exe 停在 0.1.29；要出安装版需先更新 commercial/TBox-Setup.iss。
   // 便携包 247MB 进不了 Pages 仓库（单文件上限 100MB），只能挂 Release。
-  MIRROR_2: "https://github.com/POP-YU/tbox-site-preview/releases/download/v0.1.31/TBox-Setup-0.1.31.exe",
-  VERSION: "0.1.31",
-  SIZE: "107,771,642 bytes (102.78 MB)",
-  SHA256: "5430CF006FCF6D0A91E07EEEA52FE4D795CAE548402543C71B141A5A06AF6D7F",
+  MIRROR_2: "https://github.com/POP-YU/tbox-site-preview/releases/download/v0.1.32/TBox-Setup-0.1.32.exe",
+  VERSION: "0.1.32",
+  // 2026-10-22 14:5x 修正：上一轮的数字是 13:3x 那次构建的，14:18-14:20 用
+  //   卡密双公钥 + spec 四工具排除重新构建并上传后，字节数与 SHA256 全部变了。
+  //   现在这四个值取自本地实跑 + GitHub Release 资产 digest，两边一致：
+  //   TBox-Setup-0.1.32.exe      107,790,515 B  4C8BDD95…
+  //   TBox-0.1.32-portable.zip   159,377,119 B  BDB1265D…
+  SIZE: "107,790,515 bytes (102.80 MB)",
+  SHA256: "4C8BDD952EE261873A9BD7EE8CA3A545C17E00C1091D7DEFE16948BFBB375181",
   RELEASE_DATE: "2026-10-22",
   // 183MB 安装包不进 Pages 仓库（GitHub 单文件上限 100MB），走 Release 发布。
   // 主线路必须**直连文件**：原来指向 tianou10086-create/tbox-site/releases，
@@ -48,11 +53,11 @@ window.TBOX_CONFIG = {
   // 0.1.21 → 0.1.22 变的是什么：激活。
   //   0.1.21 的启动器把卡密发往 license.tbox.example.com（IANA 保留占位域名），
   //   必然失败；0.1.22 改成离线签名卡密，旧启动器 TB1. 卡为 RSA-SHA256；当前产品 TB-…#签名 卡为 Ed25519，本机验签。
-  PRIMARY_DOWNLOAD: "https://github.com/POP-YU/tbox-site-preview/releases/download/v0.1.31/TBox-Setup-0.1.31.exe",
+  PRIMARY_DOWNLOAD: "https://github.com/POP-YU/tbox-site-preview/releases/download/v0.1.32/TBox-Setup-0.1.32.exe",
   // 0.1.31 起主下载是安装版（用户级安装，不需要管理员）；便携版作为备选。
-  PORTABLE_URL: "https://github.com/POP-YU/tbox-site-preview/releases/download/v0.1.31/TBox-0.1.31-portable.zip",
-  PORTABLE_SIZE: "159,377,365 bytes (151.99 MB)",
-  PORTABLE_SHA256: "0F94510E8799F8C15151329AF0D8C9425CAE527BDD7FA76968CC71296861230E"
+  PORTABLE_URL: "https://github.com/POP-YU/tbox-site-preview/releases/download/v0.1.32/TBox-0.1.32-portable.zip",
+  PORTABLE_SIZE: "159,377,119 bytes (151.99 MB)",
+  PORTABLE_SHA256: "BDB1265D6BDFEACE861904A8B5EC3D6A77A4F79479C485117BEF916633A64BC3"
 };
 
 
