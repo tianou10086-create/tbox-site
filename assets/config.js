@@ -29,11 +29,11 @@ window.TBOX_CONFIG = {
   // 0.1.30 的包只有 TishiBox/、没有任何授权门，已撤下，不要再引用。
   // 安装版 TBox-Setup.exe 停在 0.1.29；要出安装版需先更新 commercial/TBox-Setup.iss。
   // 便携包 247MB 进不了 Pages 仓库（单文件上限 100MB），只能挂 Release。
-  MIRROR_2: "https://github.com/POP-YU/tbox-site-preview/releases/download/v0.1.31/TBox-Setup-0.1.31.exe",
-  VERSION: "0.1.31",
-  SIZE: "107,771,642 bytes (102.78 MB)",
-  SHA256: "5430CF006FCF6D0A91E07EEEA52FE4D795CAE548402543C71B141A5A06AF6D7F",
-  RELEASE_DATE: "2026-10-22",
+  MIRROR_2: "https://github.com/POP-YU/tbox-site-preview/releases/download/v0.1.33/TBox-Setup-0.1.33.exe",
+  VERSION: "0.1.33",
+  SIZE: "106,637,315 bytes (101.70 MB)",
+  SHA256: "2D63A7A035E3D81B7DEF5B5AB280CD018B2E99245E8D27AFC66B1E1974DC42B5",
+  RELEASE_DATE: "2026-10-23",
   // 183MB 安装包不进 Pages 仓库（GitHub 单文件上限 100MB），走 Release 发布。
   // 主线路必须**直连文件**：原来指向 tianou10086-create/tbox-site/releases，
   // 而那个仓库还没有 Release，点主线路等于走进「暂无发布版本」的死胡同
@@ -48,11 +48,11 @@ window.TBOX_CONFIG = {
   // 0.1.21 → 0.1.22 变的是什么：激活。
   //   0.1.21 的启动器把卡密发往 license.tbox.example.com（IANA 保留占位域名），
   //   必然失败；0.1.22 改成离线签名卡密，旧启动器 TB1. 卡为 RSA-SHA256；当前产品 TB-…#签名 卡为 Ed25519，本机验签。
-  PRIMARY_DOWNLOAD: "https://github.com/POP-YU/tbox-site-preview/releases/download/v0.1.31/TBox-Setup-0.1.31.exe",
+  PRIMARY_DOWNLOAD: "https://github.com/POP-YU/tbox-site-preview/releases/download/v0.1.33/TBox-Setup-0.1.33.exe",
   // 0.1.31 起主下载是安装版（用户级安装，不需要管理员）；便携版作为备选。
-  PORTABLE_URL: "https://github.com/POP-YU/tbox-site-preview/releases/download/v0.1.31/TBox-0.1.31-portable.zip",
-  PORTABLE_SIZE: "159,377,365 bytes (151.99 MB)",
-  PORTABLE_SHA256: "0F94510E8799F8C15151329AF0D8C9425CAE527BDD7FA76968CC71296861230E"
+  PORTABLE_URL: "https://github.com/POP-YU/tbox-site-preview/releases/download/v0.1.33/TBox-0.1.33-portable.zip",
+  PORTABLE_SIZE: "157,875,938 bytes (150.56 MB)",
+  PORTABLE_SHA256: "B74CBF3A156AD13B0E462E4C3E95EE7AFC3C8E5C5B21B625B620DF6F8C47FB21"
 };
 
 
