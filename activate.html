@@ -15,15 +15,15 @@
 <link rel="canonical" href="https://tbox.du4s.com/activate.html">
 <meta name="theme-color" content="#0A0B10">
 <link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="assets/design.css"><script src="assets/config.js?v=77666a2221"></script><script defer src="assets/app.js"></script>
+<link rel="stylesheet" href="assets/design.css"><script src="assets/config.js?v=48186cc2a2"></script><script defer src="assets/app.js"></script>
 <script defer src="assets/design.js"></script><script defer src="assets/card-verify.js"></script><link rel="icon" href="assets/img/logo.svg" type="image/svg+xml"></head><body class="design-upgrade"><nav class="nav" aria-label="主导航">
   <a class="brand" href="index.html">T-<span>Box</span></a>
   <div class="navlinks"><a href="download.html">下载</a><a href="activate.html" aria-current="page">卡密教程</a><a href="faq.html">常见问题</a><span class="nav-status" role="status">购买与售后</span></div>
-</nav><main class="wrap page-content"><header class="page-header"><span class="eyebrow">开始使用 / 激活指南</span><h1>解压就用，兑换即激活。</h1><p class="lead">0.1.31 是便携包：解压后直接运行，不安装、不写注册表、不需要管理员权限。卡密格式为 <code>TB-…#签名</code>，在软件「会员」页粘贴兑换，本机离线验签。没有注册表单。</p></header><p class="muted">下面每一格是<b>界面示意</b>：文字逐个取自产品源码，不是截图。</p><p><a class="btn primary" data-buy href="#buy-pending">立即购买</a></p><section class="section">
+</nav><main class="wrap page-content"><header class="page-header"><span class="eyebrow">开始使用 / 激活指南</span><h1>解压就用，兑换即激活。</h1><p class="lead">0.1.32 提供两种装法：安装版（推荐，装到当前用户目录、桌面与开始菜单有快捷方式、可正常卸载）与免安装便携版（解压即用、不写注册表）。两者都不需要管理员权限。卡密格式为 <code>TB-…#签名</code>，在软件「会员」页粘贴兑换，本机离线验签。没有注册表单。</p></header><p class="muted">下面每一格是<b>界面示意</b>：文字逐个取自产品源码，不是截图。</p><p><a class="btn primary" data-buy href="#buy-pending">立即购买</a></p><section class="section">
   <div class="panel">
     <h2>最新版本：卡密是离线签名，本机验，不联网</h2>
     <!-- 旧版启动器兼容断言：请输入 TB1. 开头的卡密；新版正文已改为 card_no#sig。 --><p class="muted">新卡密格式为 <code>TB-YYYYMMDD-PLAN-SEQ4-CHK4#签名</code>，例如 <code>TB-20261021-MONTH-0001-D277#tgcFG5Ohpo4O…</code>。这类产品卡签名使用 Ed25519，由产品端内置公钥离线验签；旧启动器 TB1. 卡采用 RSA-SHA256，不是同一格式。签名通过不代表跨设备唯一兑换或订单交付已确认。</p>
-    <p class="muted">当前产品卡兑换后在数据目录写入 <code>entitlement.dat</code>（设备密钥加密，内含卡密签名）、<code>used-cards.dat</code>（加密台账）与 <code>card-license.dat</code>（明文兼容副本，仅给旧启动器读到期时间）。旧 TB1. 启动器卡才使用 DPAPI 保护的 <code>%LOCALAPPDATA%\TBox\license.bin</code>。</p>
+    <p class="muted">当前产品卡兑换后在数据目录写入 <code>entitlement.dat</code>（设备密钥加密，内含卡密签名）与 <code>used-cards.dat</code>（加密台账），判定只认这两份。0.1.32 起<strong>不再无条件写明文 <code>card-license.dat</code></strong>：只有同目录还留着旧启动器 <code>TBoxLauncher.exe</code> 时才写（给旧启动器读到期时间），没有启动器就不写，并会清掉旧版留下的那份。旧 TB1. 启动器卡才使用 DPAPI 保护的 <code>%LOCALAPPDATA%\TBox\license.bin</code>。</p>
     <p class="muted"><b>旧版不支持当前离线卡密</b>：那时启动器把卡密发往 <code>https://license.tbox.example.com</code>（<code>example.com</code> 是 IANA 保留域名），点「激活」只会失败。要用卡密，请用 <b>最新版便携包</b>。未激活仍可免费试用 3 小时（只在实际运行时累计）。</p>
     <p class="muted">请粘贴完整的 <code>卡密#签名</code>。格式不正确会显示 <code>CARD_FORMAT</code>，缺少签名会显示 <code>CARD_NEED_SIG</code>；同一数据目录记录过的卡密再次兑换会提示；离线机制不能保证跨设备防重兑。错误码为 <code>CARD_ALREADY_USED</code>。</p>
   </div>
@@ -39,7 +39,7 @@
   <article class="step panel">
     <div>
       <h3>解压，双击就开</h3>
-      <p>把 <code>TBox-0.1.31-portable.zip</code> 解压到任意目录，双击其中的 <b>TishiBox.exe</b>。便携包不写注册表、不建快捷方式、不装根证书，也不需要管理员权限。</p>
+      <p>把 <code>TBox-Setup-0.1.32.exe</code> 或 <code>TBox-0.1.32-portable.zip</code> 解压到任意目录，双击其中的 <b>TishiBox.exe</b>。便携包不写注册表、不建快捷方式、不装根证书，也不需要管理员权限。</p>
       <div class="mock"><div class="bar"><i></i><i></i><i></i><em>解压后的目录</em></div><div class="body">
         <div class="row"><b>TishiBox\\TishiBox.exe</b><span class="pill">双击运行</span></div>
         <div class="row col"><span class="muted">同目录另有 _internal\\（依赖与资源，不要改动）</span></div>
@@ -61,7 +61,7 @@
       <h3>试用 3 小时，关掉就停表</h3>
       <p>未激活可免费试用 <b>3 小时</b>，只在实际运行程序时累计——关掉软件就停表，不按自然时间扣。窗口标题会实时写出剩余时间。</p>
       <div class="mock"><div class="bar"><i></i><i></i><i></i><em>TishiBox</em></div><div class="body">
-        <div class="row"><span class="muted">提示盒 0.1.31 · 试用中 · 剩余 2 小时 41 分</span></div>
+        <div class="row"><span class="muted">提示盒 0.1.32 · 试用中 · 剩余 2 小时 41 分</span></div>
       </div><div class="cap">标题格式取自产品源码 · 示意非截图</div></div>
     </div>
   </article>
@@ -80,8 +80,8 @@
       <h3>试用用完之后不会被锁死</h3>
       <p>试用结束时导航会被收进<b>「会员」</b>页，兑换成功后其余页面立即恢复。到期同理：标题写「已激活 · 剩余 N 天」，过期后回到兑换页。</p>
       <div class="mock"><div class="bar"><i></i><i></i><i></i><em>TishiBox</em></div><div class="body">
-        <div class="row"><span class="ok">✓ 提示盒 0.1.31 · 已激活 · 剩余 30 天</span></div>
-        <div class="row col"><span class="muted">提示盒 0.1.31 · 试用已结束 · 需要在会员页兑换卡密后继续使用</span></div>
+        <div class="row"><span class="ok">✓ 提示盒 0.1.32 · 已激活 · 剩余 30 天</span></div>
+        <div class="row col"><span class="muted">提示盒 0.1.32 · 试用已结束 · 需要在会员页兑换卡密后继续使用</span></div>
       </div><div class="cap">提示文字取自产品源码 · 示意非截图</div></div>
     </div>
   </article>

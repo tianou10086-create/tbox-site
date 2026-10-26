@@ -47,7 +47,7 @@
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" href="assets/design.css">
 <link rel="stylesheet" href="assets/design-tokens.css">
-<script src="assets/config.js?v=77666a2221"></script>
+<script src="assets/config.js?v=48186cc2a2"></script>
 <script defer src="assets/app.js"></script>
 <script defer src="assets/design.js"></script>
 <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml"></head>
@@ -82,7 +82,7 @@
 
 <section class="section compact-section"><div class="section-head"><div><span class="section-kicker">01 / 不打断你的节奏</span><h2>答案在旁，操作照常。</h2></div><p>透明字幕留在桌面，复杂判断留给你。不同设备与第三方软件表现，请先实测。</p></div>
 <div class="cards"><article class="card"><span class="card-number">01 — 显示</span><h3>文字清楚，背景留白</h3><p class="muted">纯白 70% 字幕，背景全透明。固定 820×150 显示区域，点击穿透、不抢焦点。</p></article><article class="card"><span class="card-number">02 — 内容保护</span><h3>共享表现，可以自己验</h3><p class="muted">浮窗采用 <strong>DisplayAffinity=0x11</strong> 内容保护与逐像素分层渲染。<a href="faq.html">会议、录屏与独占全屏表现以现场实测为准</a>。</p></article><article class="card"><span class="card-number">03 — 答案</span><h3>短题给结论，口述给段落</h3><p class="muted">选择题、图形题、英文题给短答案；口述模式显示完整段落。答案仅作建议，不替代你的判断。</p></article></div></section>
-<section class="section"><div class="section-head"><div><span class="section-kicker">02 / 把事实摆出来</span><h2>先核对，再信任。</h2></div><p>不靠销量或评价说服你。下面四件事，都有可复核的依据。</p></div><div class="trust-grid capability-bento"><article class="panel"><span class="badge">SHA256 可核验</span><h3>用哈希核对文件，不靠签名名头</h3><p class="muted">0.1.31 便携包不提供 Authenticode 签名，也不安装本地根证书——文件属性里看不到「数字签名」。完整性请只用发布页上的 SHA256 核对，校验不过就不要运行。历史上签名过的安装版停在 0.1.29。</p></article><article class="panel"><span class="badge">离线验签</span><h3>当前产品卡密采用 Ed25519 签名</h3><p class="muted">当前 TB-…#签名 卡由产品端用内置公钥本机验签；旧 TB1. 卡是另一套协议。授权校验与模型联网是两回事。答题所需网络与模型服务是另一条链路。</p></article><article class="panel"><span class="badge">本机保存</span><h3>本地数据分项保护</h3><p class="muted">设置、草稿与面试历史使用 Windows 当前用户 DPAPI；产品卡授权记录已改为设备密钥加密的 <code>entitlement.dat</code>，只保留一份明文兼容副本 <code>card-license.dat</code> 给旧启动器读到期时间。部分答题记录仍是明文，不能宣称全部数据已加密。详见数据与隐私说明。</p></article><article class="panel"><span class="badge">3 小时试用门</span><h3>到期有明确状态</h3><p class="muted">未激活可免费试用 3 小时，只在实际运行软件时累计——关掉就停表，不按自然时间扣。试用用量记在本机数据目录（设备密钥加密），不写注册表。期满后导航会收进「会员」页而不是把程序锁死，兑换成功后其余页面立即恢复。</p></article></div></section>
+<section class="section"><div class="section-head"><div><span class="section-kicker">02 / 把事实摆出来</span><h2>先核对，再信任。</h2></div><p>不靠销量或评价说服你。下面四件事，都有可复核的依据。</p></div><div class="trust-grid capability-bento"><article class="panel"><span class="badge">SHA256 可核验</span><h3>用哈希核对文件，不靠签名名头</h3><p class="muted">安装包与便携包都不提供 Authenticode 签名，也不安装本地根证书——文件属性里看不到「数字签名」。完整性请只用发布页上的 SHA256 核对，校验不过就不要运行。历史上签名过的安装版停在 0.1.29。</p></article><article class="panel"><span class="badge">离线验签</span><h3>当前产品卡密采用 Ed25519 签名</h3><p class="muted">当前 TB-…#签名 卡由产品端用内置公钥本机验签；旧 TB1. 卡是另一套协议。授权校验与模型联网是两回事。答题所需网络与模型服务是另一条链路。</p></article><article class="panel"><span class="badge">本机保存</span><h3>本地数据分项保护</h3><p class="muted">设置、草稿与面试历史使用 Windows 当前用户 DPAPI；产品卡授权记录已改为设备密钥加密的 <code>entitlement.dat</code>，只保留一份明文兼容副本 <code>card-license.dat</code> 给旧启动器读到期时间。部分答题记录仍是明文，不能宣称全部数据已加密。详见数据与隐私说明。</p></article><article class="panel"><span class="badge">3 小时试用门</span><h3>到期有明确状态</h3><p class="muted">未激活可免费试用 3 小时，只在实际运行软件时累计——关掉就停表，不按自然时间扣。试用用量记在本机数据目录（设备密钥加密），不写注册表。期满后导航会收进「会员」页而不是把程序锁死，兑换成功后其余页面立即恢复。</p></article></div></section>
 
   <!-- 照搬竞品最强的一招：把「看不见」拆成四个具体场景 -->
   <section class="section">
@@ -115,7 +115,7 @@
     </table>
     <p class="muted"><strong>在 PowerShell 中运行只读显示自检</strong>，保留完整输出或系统错误：</p>
     <pre class="code">&amp; "$env:ProgramFiles\TBoxTopMost\TBoxTopMost.exe" checkall</pre>
-    <p class="muted">这是带 <code>uiAccess="true"</code> 清单的浮窗，受 Windows 启动约束影响。若出现“请求的操作需要提升”（740），请保留原始错误；不能把简单提权视为必然解决办法。启动器的正常启动与这条独立探针应分别核验。</p>
+    <p class="muted">这是带 <code>uiAccess="true"</code> 清单的浮窗，受 Windows 启动约束影响。若出现“请求的操作需要提升”（740），请保留原始错误；不能把简单提权视为必然解决办法。产品本体的正常启动与这条独立探针应分别核验。</p>
     <p class="muted">它输出的是<b>一行 key=value</b>，而且不管你在哪个目录运行，都会顺手把同一行写进 <code>%TEMP%\TBoxTopMost-checkall.txt</code>（用 <code>--report-file 路径</code> 可以指定别处）。找不到控制台文字时，就去这个文件里拿。</p>
     <p class="muted">这一行里该看到什么（字段名与期望值取自程序本身）：</p>
     <table class="table">
@@ -173,8 +173,8 @@
       </article>
       <article class="card">
         <h3>首次安装会被 Windows 拦一次</h3>
-        <p class="muted">测试版用的是<strong>本地根证书</strong>签名：公开可信的代码签名证书需要企业资质与年费，现阶段没有。所以下载后双击，Windows 大概率弹「已保护你的电脑」，要点<strong>更多信息 → 仍要运行</strong>；安装器才会把根证书装进本机信任库，此后产品内部组件的签名校验才是通过状态。卸载时安装器会弹窗问「是否同时删除根证书」，<strong>建议选「是」</strong>——选「否」的话，这张自建根证书会一直留在你的信任库里。</p>
-        <p class="muted"><strong>自签证书不证明"这是官方包"</strong>，任何人都能用同名的自建根签名一个包。真正能防调包的是下载页上的 SHA256——装之前先对一遍。</p>
+        <p class="muted">0.1.32 的安装包<strong>不做 Authenticode 数字签名</strong>：公开可信的代码签名证书需要企业资质与年费，现阶段没有。所以双击后 Windows 大概率弹「已保护你的电脑」或「未知发布者」，要点<strong>更多信息 → 仍要运行</strong>。安装包<strong>不装任何根证书、不写系统信任库、不需要管理员权限</strong>，只装到当前用户目录，卸载时也不会问你要不要删证书（0.1.30 及更早的旧安装器才会装根证书，那套做法已经废弃）。</p>
+        <p class="muted"><strong>没有签名就意味着任何人都能重新打包</strong>。真正能防调包的是下载页上的 SHA256——装之前先对一遍，对不上就不要运行。</p>
       </article>
     </div>
   </section>
