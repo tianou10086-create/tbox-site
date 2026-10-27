@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>T-Box · 把经历讲清楚</title>
+<style>
+:root{color-scheme:dark;--bg:#10191F;--surface:#18252C;--raised:#203139;--text:#F3F1E9;--muted:#BDCAC7;--mint:#71D9B4;--line:#476259;--ease:cubic-bezier(.16,1,.3,1)}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:system-ui,"Microsoft YaHei",sans-serif}body{position:relative;container-type:inline-size}
+body::before{content:"";position:absolute;inset:-20%;background:radial-gradient(ellipse at 25% 40%,#0c8f6838,transparent 48%),radial-gradient(ellipse at 75% 70%,#71d9b420,transparent 45%);animation:ambient 22.5s linear infinite;pointer-events:none}
+.film{position:absolute;inset:0;isolation:isolate;overflow:hidden;container-type:inline-size}.film::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 2px var(--bg),inset 0 0 7cqw 3cqw var(--bg);pointer-events:none;z-index:4}
+.parallax{position:absolute;inset:0;transform:translate3d(var(--px,0px),var(--py,0px),0)}
+.grid{position:absolute;inset:0;background-image:linear-gradient(#bdcac70a 1px,transparent 1px),linear-gradient(90deg,#bdcac70a 1px,transparent 1px);background-size:4cqw 4cqw;animation:pulse 7.5s linear infinite}
+.scan{position:absolute;inset:-100% -15%;background:repeating-linear-gradient(0deg,transparent 0 calc(18cqw - 2px),#71d9b438 18cqw,transparent calc(18cqw + 2px) 36cqw);animation:scan 7.5s linear infinite;pointer-events:none}
+.orbit{position:absolute;right:9%;top:18%;width:34cqw;aspect-ratio:1;border:1px solid #71d9b429;border-radius:50%;animation:orbit 22.5s linear infinite}.orbit::after{content:"";position:absolute;inset:12%;border:1px dashed #71d9b43d;border-radius:50%}
+.hud{position:absolute;inset:0;z-index:5;pointer-events:none;font:500 clamp(6px,.88cqw,16px)/1.4 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.08em;color:var(--muted)}
+.topbar{position:absolute;left:6%;right:6%;top:6%;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:.8em}.brand strong{font-size:1.2em;letter-spacing:.14em;color:var(--text)}.badge{width:2em;height:2em;display:grid;place-items:center;border:1px solid var(--mint);border-radius:.4em;color:var(--mint);background:var(--surface)}.top-meta{display:flex;gap:2em}
+.rule{position:absolute;left:6%;right:6%;top:14%;height:1px;background:#47625980}.rule::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--mint),transparent);transform-origin:left;animation:rule 7.5s linear infinite}
+.footer{position:absolute;left:6%;right:6%;bottom:5%;display:flex;justify-content:space-between;align-items:center}.footer-note{display:flex;gap:1.6em}.live{display:flex;gap:.7em;align-items:center}.dot{display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--mint);animation:breathe 1.25s linear infinite}
+.chapters{position:absolute;left:6%;right:6%;bottom:12%;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5cqw}.chapter{border-top:1px solid var(--line);padding-top:.7em;display:flex;gap:1em}.chapter b{color:var(--mint);font-weight:500}.chapter span{color:var(--muted)}
+.scene{position:absolute;inset:0;opacity:0;pointer-events:none}.opening{opacity:1}.copy{position:absolute;left:7%;top:26%;width:47%}.kicker{margin:0 0 1.8cqw;color:var(--mint);font:600 clamp(7px,1.02cqw,18px)/1.4 ui-monospace,Consolas,monospace;letter-spacing:.15em}
+.crop{display:block;overflow:hidden;clip-path:inset(0)}.crop>span{display:block}.headline{margin:0;font-size:clamp(18px,4.25cqw,82px);line-height:1.23;letter-spacing:-.045em;font-weight:650}.headline em{color:var(--mint);font-style:normal}.support{margin:2cqw 0 0;font-size:clamp(8px,1.25cqw,22px);line-height:1.65;color:var(--muted)}
+.type{display:flex;font:600 clamp(8px,1.1cqw,20px)/1.4 ui-monospace,Consolas,monospace;letter-spacing:.16em;color:var(--mint);margin-bottom:2cqw}.type>span{display:inline-block;overflow:hidden;clip-path:inset(0);white-space:pre}.type i{display:block;font-style:normal}
+.cursor{display:inline-block;width:.075em;height:.85em;background:var(--mint);vertical-align:-.02em;margin-left:.14em;animation:breathe 1.25s linear infinite}
+.listen-card{position:absolute;right:7%;top:27%;width:33%;padding:2.2cqw;border:1px solid var(--line);border-radius:1.2cqw;background:linear-gradient(135deg,var(--raised),var(--surface));box-shadow:0 1cqw 3cqw #07101540}.listen-card header{display:flex;justify-content:space-between;font:500 clamp(7px,.95cqw,18px) ui-monospace,monospace}.listen-card p{font-size:clamp(9px,1.35cqw,24px);line-height:1.6;margin:1.8cqw 0 0}.listen-card small{display:block;font-size:clamp(7px,.95cqw,17px);color:var(--muted);margin-top:.7em}
+.wave{display:flex;height:5cqw;gap:.5cqw;align-items:center;margin-top:1.4cqw}.wave i{flex:1;height:45%;border-radius:1px;background:var(--mint);animation:wave 1.25s linear infinite;transform:scaleY(.6)}.wave i:nth-child(3n){height:90%;animation-direction:reverse}.wave i:nth-child(3n+1){height:65%}
+.caption{position:absolute;left:7%;bottom:22%;margin:0;font-size:clamp(8px,1.32cqw,24px);line-height:1.5;color:var(--text)}
+.panel{position:absolute;right:6%;top:24%;width:37%;padding:1.8cqw;border:1px solid var(--line);border-radius:1.1cqw;background:linear-gradient(135deg,var(--raised),var(--surface));box-shadow:0 1.2cqw 3cqw #07101560;transform-origin:top right;opacity:0;z-index:2}.panel header{display:flex;align-items:center;justify-content:space-between;font:600 clamp(7px,.95cqw,17px) ui-monospace,monospace;padding-bottom:1.2cqw;border-bottom:1px solid var(--line)}.panel header b{color:var(--mint)}
+.star-row{position:relative;display:flex;align-items:center;gap:1cqw;margin-top:.8cqw;padding:.8cqw 1cqw;border-radius:.45cqw;border:1px solid var(--line);background:var(--surface)}.star-row>i{position:absolute;inset:-1px;border:1px solid var(--mint);border-radius:inherit;background:#71d9b409;opacity:0;pointer-events:none}.star-row b{display:grid;place-items:center;width:2.2cqw;height:2.2cqw;border:1px solid var(--line);border-radius:.35cqw;color:var(--mint);font:600 clamp(9px,1.15cqw,22px) ui-monospace,monospace}.star-row p{margin:0;font-size:clamp(7px,1cqw,18px);line-height:1.5}.star-row small{display:block;color:var(--muted);font-size:clamp(6px,.8cqw,15px)}.panel-foot{display:flex;justify-content:space-between;margin-top:1.2cqw;color:var(--muted);font:500 clamp(6px,.8cqw,15px) ui-monospace,monospace}
+.structure-title{font-size:clamp(16px,3.7cqw,70px)}.timeline .copy{width:45%;top:25%}.steps{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:1cqw;margin-top:3cqw}.track{position:absolute;left:0;right:0;top:0;height:2px;background:var(--mint);transform-origin:left}.step{padding-top:1.2cqw}.step b{display:block;color:var(--mint);font-size:clamp(10px,1.75cqw,32px)}.step p{margin:.8cqw 0;font-size:clamp(7px,1.05cqw,19px);line-height:1.7;color:var(--muted)}
+.assist .copy{width:65%;top:28%}.assist .headline{font-size:clamp(18px,4.7cqw,90px)}.closing .copy{top:24%;width:80%}.closing .headline{font-size:clamp(34px,8cqw,150px);letter-spacing:-.06em}.closing .support{font-size:clamp(12px,2.4cqw,42px);color:var(--text)}.logo-gem{position:absolute;right:13%;top:29%;width:12cqw;aspect-ratio:1;display:grid;place-items:center;border:1px solid var(--mint);border-radius:2.5cqw;background:radial-gradient(ellipse at 20% 15%,#71d9b43d,transparent 80%),var(--surface);box-shadow:0 0 7cqw #0c8f6830;color:var(--mint);font:600 6cqw system-ui;animation:logo 7.5s linear infinite}
+.logo-gem>i{width:4cqw;height:5cqw;background:linear-gradient(var(--mint),var(--mint)) center top/100% 20% no-repeat,linear-gradient(var(--mint),var(--mint)) center/20% 100% no-repeat}
+.reduced-summary{display:none;position:absolute;left:7%;right:7%;top:23%;bottom:24%}.reduced-summary h1{margin:0 0 1cqw;font-size:4cqw;line-height:1.3}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5cqw}.summary-grid article{padding:1cqw;border:1px solid var(--line);border-radius:.6cqw;background:var(--surface)}.summary-grid h2{margin:0;color:var(--mint);font-size:1.5cqw}.summary-grid p{font-size:1.1cqw;line-height:1.7;margin:.6cqw 0}.reduced-summary>p{font-size:1.25cqw;color:var(--muted)}
+@keyframes ambient{0%{transform:translate3d(-4%,1%,0)}50%{transform:translate3d(4%,-2%,0)}100%{transform:translate3d(-4%,1%,0)}}
+@keyframes scan{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,36cqw,0)}}
+@keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}@keyframes orbit{0%,100%{transform:rotate(-8deg) translate3d(0,0,0)}50%{transform:rotate(8deg) translate3d(1cqw,-1cqw,0)}}
+@keyframes breathe{0%,100%{opacity:1}50%{opacity:.3}}@keyframes wave{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}@keyframes rule{0%,100%{transform:scaleX(.15);opacity:.5}50%{transform:scaleX(1);opacity:1}}@keyframes logo{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-.6cqw,0) scale(1.025)}}
+@container(max-width:480px){.panel header{font-size:.95cqw}.panel .star-row p{font-size:1cqw}.panel .star-row small{font-size:.8cqw}.panel .star-row b{font-size:1.15cqw}.panel-foot{font-size:.8cqw}.timeline .steps{margin-top:2cqw}.timeline .step{padding-top:.8cqw}.timeline .step b{font-size:2cqw}.timeline .step p{font-size:1.6cqw;line-height:1.6;margin:.5cqw 0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.scene,.panel{display:none!important}.reduced-summary{display:block}.parallax{transform:none!important}.grid{opacity:.45}.scan{opacity:.25}}
+</style>
+</head>
+<body>
+<main class="film" aria-label="T-Box 产品故事，45 秒循环；下方提供文字摘要">
+ <div class="parallax" aria-hidden="true"><div class="grid"></div><div class="scan"></div><div class="orbit"></div></div>
+ <div class="hud">
+  <div class="topbar"><div class="brand"><span class="badge">T</span><strong>T-BOX</strong><span>PRODUCT FILM</span></div><div class="top-meta"><span>WINDOWS 10 / 11</span><span>MIC + LOOPBACK</span></div></div>
+  <div class="rule" aria-hidden="true"></div>
+  <div class="chapters"><div class="chapter"><b>01</b><span>LISTEN / 听见</span></div><div class="chapter"><b>02</b><span>STRUCTURE / 理清</span></div><div class="chapter"><b>03</b><span>EXPRESS / 表达</span></div><div class="chapter"><b>04</b><span>T-BOX / 准备</span></div></div>
+  <div class="footer"><div class="footer-note"><span>产品分镜示意 · 非实时结果</span><span>把经历讲清楚</span></div><div class="live"><i class="dot" aria-hidden="true"></i><span>45S / LOOP</span></div></div>
+ </div>
+ <section class="scene opening" aria-hidden="true">
+  <div class="copy"><div class="type" id="type"></div><h2 class="headline"><span class="crop"><span>听见问题。</span></span><span class="crop"><span><em>理清思路。</em><i class="cursor"></i></span></span></h2><p class="support">捕捉声音，也保持你的注意力。</p></div>
+  <div class="listen-card"><header><span>INPUT / AUDIO</span><span>● LISTENING</span></header><div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p>正在听取问题<small>麦克风 + 系统音频</small></p></div>
+ </section>
+ <section class="scene question" aria-hidden="true"><div class="copy"><p class="kicker">02 / QUESTION</p><h1 class="headline"><span class="crop"><span>面试官问了一个</span></span><span class="crop"><span><em>你没准备的问题。</em><i class="cursor"></i></span></span></h1></div><p class="caption">面试官问了一个你没准备的问题。</p></section>
+ <section class="scene answer" aria-hidden="true"><div class="copy"><p class="kicker">03 / ANSWER</p><h2 class="headline"><span class="crop"><span>让经历，变成</span></span><span class="crop"><span><em>有结构的回答。</em></span></span></h2><p class="support">先给结论，再补充背景和行动。</p></div><p class="caption">3 秒后，结构化的答案出现在手边。</p></section>
+ <section class="scene structure" aria-hidden="true"><div class="copy"><p class="kicker">04 / STRUCTURE</p><h2 class="headline structure-title">不是一整段话。<br><em>是四个落点。</em></h2><p class="support">背景、目标、行动、结果。<br>保留你自己的经历和判断。</p></div><p class="caption">STAR 结构 · 关键数据 · 追问预案</p></section>
+ <aside class="panel" aria-hidden="true"><header><span>T-BOX / 回答提示</span><b>● READY</b></header><div class="star-row"><i></i><b>S</b><p>背景<small>先交代当时的问题</small></p></div><div class="star-row"><i></i><b>T</b><p>目标<small>说清自己承担的任务</small></p></div><div class="star-row"><i></i><b>A</b><p>行动<small>讲出关键决策与步骤</small></p></div><div class="star-row"><i></i><b>R</b><p>结果<small>用真实数据回应影响</small></p></div><div class="panel-foot"><span>关键数据</span><span>追问预案 →</span></div></aside>
+ <section class="scene timeline" aria-hidden="true"><div class="copy"><p class="kicker">05 / TIMELINE</p><h2 class="headline structure-title">一步一步，<br><em>讲得更清楚。</em></h2><div class="steps"><i class="track"></i><div class="step"><b>01 背景</b><p>当时遇到了<br>什么问题？</p></div><div class="step"><b>02 动作</b><p>你做了哪些<br>关键决策？</p></div><div class="step"><b>03 结果</b><p>落到真实的<br>结果和影响。</p></div></div></div><p class="caption">先说背景，再说动作，最后落到结果。</p></section>
+ <section class="scene assist" aria-hidden="true"><div class="copy"><p class="kicker">06 / ASSIST</p><h2 class="headline"><span class="crop"><span>它不替你回答，</span></span><span class="crop"><span><em>只帮你想清楚。</em></span></span></h2><p class="support">想清楚，再用自己的话表达。</p></div><p class="caption">它不替你回答，只帮你想清楚。</p></section>
+ <section class="scene closing" aria-hidden="true"><div class="copy"><p class="kicker">07 / READY</p><h2 class="headline">T-Box</h2><p class="support">把经历讲清楚</p></div><div class="logo-gem"><i></i></div><p class="caption">T-Box · 把经历讲清楚</p></section>
+ <section class="reduced-summary" aria-label="产品故事文字摘要"><h1>T-Box · 把经历讲清楚</h1><div class="summary-grid"><article><h2>01 听见问题</h2><p>面试官问了一个你没准备的问题。麦克风与系统音频捕捉声音。</p></article><article><h2>02 理清结构</h2><p>分镜：3 秒后，结构化的答案出现在手边。STAR 结构 · 关键数据 · 追问预案。</p></article><article><h2>03 自己表达</h2><p>先说背景，再说动作，最后落到结果。它不替你回答，只帮你想清楚。</p></article></div><p>已按系统设置关闭循环动效。背景 / 目标 / 行动 / 结果，完整故事保留在此。</p></section>
+</main>
+<script>
+(()=>{
+ const motion=matchMedia('(prefers-reduced-motion: reduce)'),film=document.querySelector('.film');
+ const type=document.getElementById('type');
+ for(const char of '01 / LISTEN'){const crop=document.createElement('span'),letter=document.createElement('i');letter.textContent=char;crop.append(letter);type.append(crop);}
+ let effects=[];
+ const key=(time,opacity,transform='none',easing='linear')=>({offset:time/45,opacity,transform,easing});
+ function run(el,frames){const a=el.animate(frames,{duration:45000,iterations:Infinity});effects.push(a);return a;}
+ function scene(selector,start,end){const el=document.querySelector(selector),dy='translate3d(0,20px,0)';run(el,[key(0,0,dy),key(start,0,dy,'steps(1,start)'),key(start+.02,1,dy,'cubic-bezier(.16,1,.3,1)'),key(start+.65,1),key(end-.35,1,'none','steps(1,end)'),key(end,0,'translate3d(0,-20px,0)'),key(45,0,'translate3d(0,-20px,0)')]);}
+ function build(){
+  effects.forEach(a=>a.cancel());effects=[];if(motion.matches)return;
+  run(document.querySelector('.opening'),[key(0,1),key(3.6,1,'none','steps(1,end)'),key(4,0,'translate3d(0,-20px,0)'),key(43.8,0,'translate3d(0,20px,0)','steps(1,start)'),key(43.82,1,'translate3d(0,20px,0)','cubic-bezier(.16,1,.3,1)'),key(44.65,1),key(45,1)]);
+  run(document.querySelector('.opening .copy'),[key(0,0,'translate3d(0,20px,0)'),key(.3,0,'translate3d(0,20px,0)','steps(1,start)'),key(.32,1,'translate3d(0,0,0)','cubic-bezier(.16,1,.3,1)'),key(3.6,1),key(4,0,'translate3d(0,-20px,0)'),key(45,0,'translate3d(0,-20px,0)')]);
+  [['.question',4,9],['.answer',9,15],['.structure',15,22],['.timeline',22,29],['.assist',29,36],['.closing',36,43.8]].forEach(x=>scene(...x));
+  document.querySelectorAll('.type i').forEach((el,i)=>{const t=.3+i*.045;run(el,[key(0,1,'translateY(110%)'),key(t,1,'translateY(110%)','cubic-bezier(.16,1,.3,1)'),key(t+.4,1),key(44,1),key(45,1,'translateY(110%)')]);});
+  [['.question',4],['.answer',9],['.assist',29]].forEach(([selector,t])=>document.querySelectorAll(selector+' .crop>span').forEach((el,i)=>run(el,[key(0,1,'translateY(110%)'),key(t+i*.13,1,'translateY(110%)','cubic-bezier(.16,1,.3,1)'),key(t+.7+i*.13,1),key(44,1),key(45,1,'translateY(110%)')])));
+  run(document.querySelector('.panel'),[key(0,0,'translate3d(8cqw,0,0)'),key(9,0,'translate3d(8cqw,0,0)','steps(1,start)'),key(9.02,1,'translate3d(8cqw,0,0)','cubic-bezier(.16,1,.3,1)'),key(9.85,1),key(29,1,'none','cubic-bezier(.16,1,.3,1)'),key(30.2,1,'translate3d(0,12cqw,0) scale(.58)'),key(35.6,1,'translate3d(0,12cqw,0) scale(.58)','steps(1,end)'),key(36,0,'translate3d(5cqw,12cqw,0) scale(.58)'),key(45,0)]);
+  document.querySelectorAll('.star-row>i').forEach((el,i)=>{const t=15+i*1.3;run(el,[{offset:0,opacity:0},{offset:t/45,opacity:0},{offset:(t+.5)/45,opacity:1},{offset:36/45,opacity:1},{offset:37/45,opacity:0},{offset:1,opacity:0}]);});
+  run(document.querySelector('.track'),[{offset:0,transform:'scaleX(0)'},{offset:22/45,transform:'scaleX(0)'},{offset:26/45,transform:'scaleX(1)'},{offset:1,transform:'scaleX(1)'}]);
+  document.querySelectorAll('.step').forEach((el,i)=>{const t=22+i*.65;run(el,[key(0,1,'translateY(20px)'),key(t,1,'translateY(20px)','cubic-bezier(.16,1,.3,1)'),key(t+.7,1),key(45,1)]);});
+  run(document.querySelector('.logo-gem'),[{offset:0,opacity:1},{offset:42/45,opacity:1},{offset:43.8/45,opacity:0},{offset:1,opacity:0}]);
+  const epoch=document.timeline.currentTime;effects.forEach(a=>a.startTime=epoch);
+ }
+ function reset(){document.body.style.removeProperty('--px');document.body.style.removeProperty('--py');}
+ film.addEventListener('pointermove',e=>{if(motion.matches)return;const r=film.getBoundingClientRect();document.body.style.setProperty('--px',((e.clientX-r.left)/r.width-.5)*8+'px');document.body.style.setProperty('--py',((e.clientY-r.top)/r.height-.5)*8+'px');},{passive:true});
+ film.addEventListener('pointerleave',reset);motion.addEventListener('change',()=>{reset();build();});build();
+})();
+</script>
+</body>
+</html>
