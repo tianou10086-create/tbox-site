@@ -41,69 +41,17 @@
     });
   }
 
-  // 三档各自直链（2026-10-19 加）
-  // 原因：只有一个全局 BUY_URL 时，点「先试 7 天」和点「买永久卡」会落到同一个商品页，
-  // 价格对不上就是纠纷。现在按 data-buy 的档位名取对应链接，未单独配置时回落到 BUY_URL。
-  var BUY_TIER_KEY = { trial: 'BUY_URL_TRIAL', month: 'BUY_URL_MONTH', season: 'BUY_URL_SEASON' };
-  function buyUrlFor(a) {
-    var tier = a.getAttribute('data-buy');
-    if (tier && BUY_TIER_KEY[tier] && configured(c[BUY_TIER_KEY[tier]])) return c[BUY_TIER_KEY[tier]];
-    return configured(c.BUY_URL) ? c.BUY_URL : '';
-  }
-  function anyBuyConfigured() {
-    if (configured(c.BUY_URL)) return true;
-    for (var k in BUY_TIER_KEY) {
-      if (configured(c[BUY_TIER_KEY[k]])) return true;
-    }
-    return false;
-  }
-
-  // Navigation shows status only; purchasing remains in page content.
+  // 已配置购买渠道时直接进入 16688 店铺；未配置时保留本站购买页兜底。
   document.querySelectorAll('.nav-status').forEach(function (el) {
-    el.hidden = anyBuyConfigured();
+    el.hidden = true;
     el.removeAttribute('title');
   });
-
-  // 购买 CTA
-  //
-  // 2026-10-19 改：BUY_URL 没填时，原来只把 href 设成 '#'，点击时在旁边冒一行灰字。
-  // 这是个死链 —— 卖货站最贵的位置放一个点了不动的「立即购买」，比不放按钮还糟：
-  // 用户以为按钮坏了，直接走人。现在改成把它变成一个**真的能走**的动作：
-  //   1) 主按钮降级（去掉 primary 高亮，让「先下载体验版」成为主行动）；
-  //   2) 文案变成「购买通道开通中」，点它跳到页内那段解释；
-  //   3) 那段解释默认 hidden，只有 BUY_URL 为空时才显示 ——
-  //      开通后填上 BUY_URL，一切自动恢复正常，不需要回来删区块。
-  var PENDING_ID = 'buy-pending';
-  function showBuyPending() {
-    var box = document.getElementById(PENDING_ID);
-    if (!box) return false;
-    box.hidden = false;
-    box.removeAttribute('hidden');
-    return true;
-  }
-  // 2026-10-19：三档链接的取用逻辑已提前到文件上部（见 buyUrlFor / anyBuyConfigured）。
   document.querySelectorAll('[data-buy]').forEach(function (a) {
-    var url = buyUrlFor(a);
-    if (url) {
-      bindLink(a, url, '购买通道即将开放');
-      return;
-    }
-    a.classList.remove('primary');
-    a.classList.add('is-pending');
-    a.href = '#' + PENDING_ID;
-    a.textContent = '购买通道开通中';
-    a.removeAttribute('target');
-    showBuyPending();
+    var key = a.getAttribute('data-buy');
+    var url = key === 'trial' ? c.BUY_URL_TRIAL : key === 'month' ? c.BUY_URL_MONTH : key === 'season' ? c.BUY_URL_SEASON : c.BUY_URL;
+    if (configured(url)) bindLink(a, url, '购买入口暂时不可用');
+    else { a.href = 'buy.html'; a.removeAttribute('target'); }
   });
-  // 即使页面上没有 [data-buy]，只要没开通就提示清楚（避免"看不到购买入口在哪"）
-  if (!anyBuyConfigured()) {
-    showBuyPending();
-    // 购买按钮一降级，首屏就一个高亮按钮都不剩了 —— 那等于把用户的下一步也拿走了。
-    // 所以让"下载"接替主行动：这是没开通期间唯一能真的走通的路。
-    document.querySelectorAll('[data-fallback-primary]').forEach(function (el) {
-      el.classList.add('primary');
-    });
-  }
 
   // 下载 CTA（主线路 + 备用线路；备用未配置则复用主线路，避免死链）
   var primary = configured(c.PRIMARY_DOWNLOAD) ? c.PRIMARY_DOWNLOAD : '';
@@ -128,6 +76,25 @@
   fill('data-size', c.SIZE);
   fill('data-sha256', c.SHA256);
   fill('data-release-date', c.RELEASE_DATE);
+  fill('data-qq-group', c.QQ_SUPPORT_GROUP);
+
+  // 售后群入口：复制优先，未安装 QQ 也能手动使用群号。
+  document.querySelectorAll('[data-copy-qq]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var group = c.QQ_SUPPORT_GROUP || button.getAttribute('data-copy-qq') || '';
+      if (!group) return;
+      var done = function () { notify(button, 'QQ群号已复制：' + group); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(group).then(done).catch(done);
+      } else {
+        var input = document.createElement('textarea');
+        input.value = group; input.setAttribute('readonly', ''); input.style.position = 'fixed'; input.style.opacity = '0';
+        document.body.appendChild(input); input.select();
+        try { document.execCommand('copy'); } finally { document.body.removeChild(input); }
+        done();
+      }
+    });
+  });
 })();
 
 /* --- FAQ 手风琴兜底（2026-10-19）---

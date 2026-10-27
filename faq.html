@@ -1,37 +1,184 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FAQ｜T-Box</title><meta name="description" content="T-Box 常见问题：适合什么场景、浮窗怎么用、换电脑怎么办、试用与卡密规则。">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="T-Box">
-<meta property="og:title" content="FAQ｜T-Box">
-<meta property="og:description" content="T-Box 常见问题：适合什么场景、浮窗怎么用、换电脑怎么办、试用与卡密规则。">
-<meta property="og:url" content="https://tbox.du4s.com/faq.html">
-<meta property="og:image" content="https://tbox.du4s.com/assets/img/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:alt" content="T-Box 自我训练辅助浮窗：练习题出现时，参考答案显示在屏幕边缘，点击穿透、不抢焦点">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tbox.du4s.com/assets/img/og.png">
-<meta name="twitter:image:alt" content="T-Box 自我训练辅助浮窗：练习题出现时，参考答案显示在屏幕边缘，点击穿透、不抢焦点">
-<link rel="canonical" href="https://tbox.du4s.com/faq.html">
-<meta name="theme-color" content="#0A0B10">
-<link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="assets/design.css"><script src="assets/config.js?v=77666a2221"></script><script defer src="assets/app.js"></script>
-<script defer src="assets/design.js"></script><link rel="icon" href="assets/img/logo.svg" type="image/svg+xml"></head><body class="design-upgrade"><nav class="nav" aria-label="主导航">
-  <a class="brand" href="index.html">T-<span>Box</span></a>
-  <div class="navlinks"><a href="download.html">下载</a><a href="activate.html">卡密教程</a><a href="faq.html" aria-current="page">常见问题</a><span class="nav-status" role="status">购买与售后</span></div>
-</nav><main class="wrap page-content faq"><header class="page-header"><span class="eyebrow">使用帮助 / FAQ</span><h1>先把疑问说清楚。</h1><p class="lead">安装、卡密、内容保护与已知限制。在购买前，把这些事实核对一遍。</p></header><p><a class="btn primary" data-buy href="#buy-pending">立即购买</a></p><details name="faq" open><summary>购买后需要注册吗？</summary><p>离线产品卡兑换不要求注册账号。网站已配置 16688 商家购买入口；能否下单、支付与交付请核对商家页面和实际订单。不同卡格式的入口见激活教程。</p></details><details name="faq"><summary>为什么要安装根证书？</summary><p>测试版用本地根证书签名，让 Windows 能校验安装器与产品内部组件。安装器会在安装时把这张根证书加入本机信任库；卸载时它会弹窗问「是否同时删除根证书」，<strong>选「是」</strong>。选「否」的话这张自建根会一直留在你的信任库里——它不在微软公信根名单内，留着没用。也正因为是自建根，<strong>安装之前</strong>系统并不认这个签名，这就是下面那条提示的由来。</p></details><details name="faq"><summary>卸载后那张根证书还在吗？</summary><p>取决于你在卸载确认框里点的哪个按钮。选「是」——已经删掉；选「否」——还在。想手动确认或清理：<code>certutil -store Root "T-Box Local Root CA"</code> 能查到就是还在，用<code>以管理员身份</code>运行 <code>certutil -delstore Root "T-Box Local Root CA"</code> 即可删除。</p></details><details name="faq"><summary>Windows 提示「已保护你的电脑 / 未知发布者」，要不要继续？</summary><p>先暂停核对来源与文件哈希。确认可信之后，再自行决定是否点<strong>更多信息</strong> → <strong>仍要运行</strong>。原因是那张本地根证书在安装之前还没进系统信任库，不是文件坏了。判断文件有没有被调包别看这个提示，看 SHA256：下载页给了期望值和 <code>Get-FileHash</code> 命令，只能证明它与该期望值一致；期望值本身也必须来自你信任的发布渠道。自签证书谁都能造一张同名的，哈希对不上就别运行。</p></details><details name="faq"><summary>浮窗会出现在屏幕共享里吗？</summary><p>提示盒使用内容保护标志降低录屏暴露；不同会议软件和独占全屏的表现以现场环境为准。</p></details><details name="faq"><summary>答案为空怎么办？</summary><p>先核对网络与模型配置，查看软件右下角状态栏；可以尝试“一键恢复”。没有余额页。不要修改安装目录文件，若仍失败请保留日志与原始错误。</p></details><details name="faq"><summary>如何校验安装包？</summary><p>在 PowerShell 运行下载页给出的 Get-FileHash 命令，对比页面 SHA256。</p></details>
-  <!-- 购买未开通时显示的兜底区块：由 assets/app.js 在 BUY_URL 为空时取消 hidden。
-       为什么要有：BUY_URL 没填时，「立即购买」原来是个 href="#" 的死链，
-       用户点了只会跳回页首 + 冒出一行灰字。卖货站最贵的位置放一个点不动的按钮，
-       比不放还糟。现在它会把用户带到这段解释 + 一条真的能走的下载路径。 -->
-  <section class="section" id="buy-pending" hidden><div class="panel pending-panel"><div><span class="section-kicker">先试，再决定</span><h2>购买入口暂不可用</h2><p class="muted">购买入口取决于本站配置与商家页面；本站不承诺实时库存或发货状态。你可以先下载最新版本免费试用，验证自己的设备、题面与共享表现。</p></div><a class="btn primary" href="download.html#dl-actions" data-buy-pending-cta>去下载试用版</a></div></section>
-<details name="faq"><summary>现在买了卡密能激活吗？</summary><p>当前产品 <code>TB-YYYYMMDD-PLAN-SEQ4-CHK4#签名</code> 卡采用 Ed25519，由产品卡密兑换入口在本机验签。旧启动器 <code>TB1.</code> 卡采用 RSA-SHA256，两套格式不可混用。网页校验通过不等于订单已交付或软件已激活，具体步骤见激活教程。</p></details>
-<details name="faq"><summary>那现在怎么试用？</summary><p>未激活免费试用为<b>累计实际使用 3 小时</b>，不是下载后 7 天；仅产品运行时计时，关闭后暂停。用尽后暂停该试用入口，授权是否生效以软件内状态为准。下载构建与当前源码的同步情况须按实际版本核对。</p></details>
-<details name="faq"><summary>授权离线，是不是所有功能都不联网？</summary><p>不是。卡密验签是本地操作；云端转写会发送音频，云端回答或视觉分析会发送相关文字、图片和上下文。模型下载、更新与商家支付也有各自网络请求。详见下方数据与隐私说明。</p></details>
-<details name="faq"><summary>离线授权能远程吊销、换机或续期吗？</summary><p>本机验签不能实时查询全局吊销或兑换状态；旧 TB1. 绑机规则与当前产品卡不同。换机、续期或退款后的授权处置须按订单人工核对；本站不承诺已实现远程吊销或全局防重复兑换。</p></details>
-<details name="faq"><summary>免费累计 3 小时和付费体验卡 7 天有什么区别？</summary><p>免费试用按实际运行累计 3 小时；体验卡是付费的标称 7 天档位，价格不变。当前产品卡源码从兑换时计算标称期限，另有 1 天宽限，不与免费试用自动顺延；旧 TB1. 卡依载荷中的绝对到期时间。网页不推算最终到期时间，请核对软件兑换结果。</p></details>
-<details name="faq"><summary>能导入录音或视频文件转写吗？</summary><p><b>不能，而且这是刻意的设计取舍。</b>本产品只处理<b>实时采集</b>的麦克风与系统声音（<code>soundcard</code> 采集 → 声学模型），<b>不支持导入</b> <code>.mp3</code> / <code>.mp4</code> / <code>.wav</code> 这类已有音视频文件。这样做换来三个好处：安装包更小、启动更快、并且<b>不随包分发任何 GPL 音视频编解码器</b>（如 x264 / x265 / SvtAv1Enc）。如果你需要转写已有录音，请先用其他工具转成文字再粘进来。</p></details>
-<section class="section panel" id="privacy" aria-labelledby="privacy-title"><h2 id="privacy-title">数据与隐私：先分清本机与云端</h2><p>在 Windows 上，设置（可能含模型 API key）、草稿与面试历史使用当前用户 DPAPI 保护；答题 JSONL、诊断 trace、题库与资料库 SQLite、启动错误记录可能是明文。常用数据目录为 <code>%LOCALAPPDATA%\TBoxData</code>，未指定目录的源码默认 <code>%LOCALAPPDATA%\TishiBox\suite</code>。获得该账户或文件访问权限的程序可能读取这些数据；DPAPI 不是对同账户程序的隔离。</p><p>本地 Whisper 转写本身在本机运行；选择云端转写会将采集音频发送给配置的转写服务。云端回答与视觉分析会发送相关题面、转写、文档上下文及图片，API key 用于所配服务的鉴权。第三方接收方、所在地、保存和训练规则应在启用前逐项核对，不能把“离线验签”理解成“所有数据不上网”。不要提交无权处理的他人录音、简历或考试材料。</p><p>部分日志有体积上限，面试历史最多保留最近 100 条；没有证据表明其余数据会按天自动删除。可先在软件可用的导出功能备份所需记录，再关闭软件，通过订单售后渠道请求数据查阅、删除或问题处理；删除入口、保存期限及第三方清理流程仍待完善。本站当前不是一份已完成的全产品隐私政策，运营主体名称及独立隐私联系渠道尚待补齐。</p></section>
-<section class="section panel" id="after-sales" aria-labelledby="after-sales-title"><h2 id="after-sales-title">售后、补发与退款</h2><p><b>未激活使用的卡密，在收到卡密后 7 天内可申请退款。</b>激活使用后，只有在依法适用数字商品无理由退货例外、且购买前已显著告知并取得必要确认时，才不支持无理由退款；质量问题、描述不符、无法交付等依法应处理的退款或其他权利不受影响。不得以“虚拟商品”为由一概拒绝售后；平台规则或法定保障更有利的，按相应保障处理。</p><p>卡密失效、签名不符、重复兑换或付款后未收到卡密：请保留订单号、商品名称、支付时间、软件版本与错误码，先核对是否复制完整及入口是否匹配，再通过原订单售后申请核对、补发或退款。<code>CARD_ALREADY_USED</code> 只反映本机数据目录的已用记录，不是全局订单结论。不要公开完整卡密、API key、录音或简历；不要求用户重复付款来排错。</p><p>联系入口：<a href="https://www.16688.com.cn/shop/S667305" target="_blank" rel="noopener">原购买店铺 S667305</a>，返回原订单使用页面实际提供的售后或平台申诉入口。本站未核实独立邮箱、商家响应时限或售后按钮是否可用，不虚构联系方式。离线卡无经验证的全局激活/吊销能力，退款核验采取订单人工核对；不能仅因系统无法判断已激活就拒绝合理退款。独立联系渠道、退款状态台账及购买前确认留证仍是待完成项。</p></section>
-</main><footer class="footer"><div class="wrap"><div class="footer-groups"><section class="footer-group"><h3>产品</h3><a href="index.html">功能概览</a></section><section class="footer-group"><h3>下载</h3><a href="download.html">下载试用</a></section><section class="footer-group"><h3>帮助</h3><a href="activate.html">激活指南</a><a href="faq.html">常见问题</a></section><section class="footer-group"><h3>合规</h3><a href="faq.html">已知限制</a><a href="faq.html#privacy">数据与隐私</a><a href="faq.html#after-sales">售后与退款</a></section></div><div class="footer-copyright"><span>© 2026 T-Box Technology · Windows 桌面工具</span></div></div></footer></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>T-Box 常见问题｜买之前先看</title>
+  <meta name="description" content="T-Box 买之前你可能想问的 21 个问题：设备、功能、数据、价格和售后。">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="T-Box">
+  <meta property="og:title" content="T-Box 常见问题｜买之前先看">
+  <meta property="og:description" content="设备、功能、数据、价格和售后问题，一页看清。">
+  <meta property="og:url" content="https://tbox.du4s.com/faq.html">
+  <meta property="og:image" content="https://tbox.du4s.com/assets/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://tbox.du4s.com/assets/img/og.png">
+  <link rel="canonical" href="https://tbox.du4s.com/faq.html">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/design.css">
+  <link rel="stylesheet" href="assets/design-tokens.css">
+  <script src="assets/config.js?v=20261023"></script>
+  <script defer src="assets/app.js"></script>
+  <script defer src="assets/design.js"></script>
+</head>
+<body class="design-upgrade">
+  <nav class="nav" aria-label="主导航">
+    <a class="brand" href="index.html">T-<span>Box</span></a>
+    <div class="navlinks">
+      <a href="download.html">下载</a>
+      <a href="buy.html">购买</a>
+      <a href="activate.html">卡密教程</a>
+      <a aria-current="page" href="faq.html">常见问题</a>
+    </div>
+  </nav>
+
+  <main class="wrap page-content faq">
+    <header class="page-header">
+      <span class="eyebrow">使用帮助 / FAQ</span>
+      <h1>买之前你可能想问的 21 个问题</h1>
+      <p class="lead">下面每一条都是真人会问的。看完还有疑问，<a href="#support">QQ售后群 1127804697</a> 找我们。</p>
+    </header>
+
+    <p><a class="btn primary" data-buy href="#buy-pending">查看价格</a></p>
+
+    <section class="faq-group" aria-labelledby="eligibility-heading">
+      <h2 id="eligibility-heading">我能不能用</h2>
+      <details class="faq-item" name="faq" open>
+        <summary>我电脑能用吗？</summary>
+        <p>目前面向 Windows 10/11；内存要求[占位：最低内存]，独显要求[占位：是否需要]。</p>
+        <details class="faq-more"><summary>展开</summary><p>首次使用请允许麦克风、系统声音和屏幕采集权限；先用试用版检查自己的声卡和显示器。</p></details>
+      </details>
+      <details class="faq-item" name="faq" open>
+        <summary>我专业不对口能用吗？</summary>
+        <p>能。它是通用求职辅助，不限专业，也不限定行业。</p>
+      </details>
+      <details class="faq-item" name="faq" open>
+        <summary>我英语不好能用吗？</summary>
+        <p>能。不会英语不影响使用；中文题面和中文表达可直接使用。</p>
+        <details class="faq-more"><summary>展开</summary><p>英文题面或英文面试请先用试用版测试识别和提示效果，再决定是否购买。</p></details>
+      </details>
+      <details class="faq-item" name="faq" open>
+        <summary>手机上能用吗？</summary>
+        <p>不能直接用。T-Box 是 Windows 桌面软件，手机端暂不运行。</p>
+      </details>
+    </section>
+
+    <section class="faq-group" id="limits" aria-labelledby="function-heading">
+      <h2 id="function-heading">它到底干什么</h2>
+      <details class="faq-item" name="faq">
+        <summary>它会替我答题吗？</summary>
+        <p>不会。它只给结构化提示，最终说什么由你决定。</p>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary>面试时它能听见对方说话吗？</summary>
+        <p>能听见已授权采集的麦克风或系统声音，并尝试转成文字。</p>
+        <details class="faq-more"><summary>展开</summary><p>没有采集权限、声音太小、噪声太大或多人同时说话时，转写会漏字或延迟；它不会凭空听见未采集的声音。</p></details>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary>它是实时弹出答案，还是我自己查？</summary>
+        <p>它会在你触发后显示提示，你根据提示组织回答，不用手动翻资料。</p>
+        <details class="faq-more"><summary>展开</summary><p>提示来自当前转写、题面或你提供的材料；网络、权限和模型状态会影响出现速度。</p></details>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary>它能帮我改简历吗？</summary>
+        <p>能做结构和表述建议，不能替你保证经历真实或承诺录用。</p>
+        <details class="faq-more"><summary>展开</summary><p>你可以让它检查岗位匹配、项目描述和错别字；姓名、日期、数字等事实请自己核对。</p></details>
+      </details>
+    </section>
+
+    <section class="faq-group" aria-labelledby="data-heading">
+      <h2 id="data-heading">我的数据安全吗</h2>
+      <details class="faq-item" name="faq">
+        <summary>我的简历会被上传吗？</summary>
+        <p id="privacy">不一定。导入和整理默认在本地；你主动使用云端模型时，相关片段才会发出。</p>
+        <details class="faq-more"><summary>展开</summary><p>不想发送的身份证号、住址、电话等内容，请先删除或打码，再进行云端分析。</p></details>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary>我的录音会被保存吗？</summary>
+        <p>本地转写可不上传音频；云端转写会发送音频，保存规则按服务商说明执行。</p>
+        <details class="faq-more"><summary>展开</summary><p>你可以优先选择本地 SenseVoice 转写，并在使用后删除本地记录。</p></details>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary>你们能看到我的面试内容吗？</summary>
+        <p>我们不会主动查看；你选择云端处理时，对应内容会经过所选服务商。</p>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary>卸载后数据会删干净吗？</summary>
+        <p>不会保证自动清空。卸载前先导出需要的记录，再按文档删除本地数据目录。</p>
+        <details class="faq-more"><summary>展开</summary><p>如果电脑由多人使用，请同时检查下载目录、桌面导出文件和回收站。</p></details>
+      </details>
+    </section>
+
+    <section class="faq-group" aria-labelledby="price-heading">
+      <h2 id="price-heading">钱怎么算</h2>
+      <details class="faq-item" name="faq">
+        <summary>试用是免费的吗？多久？</summary>
+        <p>是。免费试用 3 小时，只在软件实际运行时累计。</p>
+        <details class="faq-more"><summary>展开</summary><p>关闭软件后不继续计时；重新打开会从剩余试用时长继续。</p></details>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary>¥9.9 / ¥29 / ¥69 有什么区别？</summary>
+        <p>区别主要是有效期，功能按购买页标注执行。</p>
+        <table class="faq-table">
+          <thead><tr><th>档位</th><th>价格</th><th>有效期</th><th>适合谁</th></tr></thead>
+          <tbody>
+            <tr><td>体验卡</td><td>¥9.9</td><td>7 天</td><td>先验证设备</td></tr>
+            <tr><td>月卡</td><td>¥29</td><td>30 天</td><td>集中投递面试</td></tr>
+            <tr><td>季卡</td><td>¥69</td><td>90 天</td><td>持续准备</td></tr>
+          </tbody>
+        </table>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary>会自动续费吗？</summary>
+        <p>不会。一次性卡密，到期后不会自动扣款。</p>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary>买了能退吗？</summary>
+        <p>退款按购买页实际政策办理；购买前请先确认，疑问请通过 QQ售后群 1127804697 反馈。</p>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary>卡密能在几台电脑用？</summary>
+        <p>默认 1 台电脑；如需多台请先咨询 QQ售后群 1127804697。</p>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary>卡密过期了怎么办？</summary>
+        <p>过期后停止授权，不会继续扣费；请购买新卡或通过 QQ售后群 1127804697 咨询。</p>
+      </details>
+    </section>
+
+    <section class="faq-group" aria-labelledby="support-heading">
+      <h2 id="support-heading">出问题找谁</h2>
+      <details class="faq-item" name="faq">
+        <summary>装不上怎么办？</summary>
+        <p>先重启电脑，再用管理员权限安装，并确认 Windows 10/11 和磁盘空间正常。</p>
+        <details class="faq-more"><summary>展开</summary><ol><li>关闭杀毒软件的误报拦截后重试。</li><li>仍失败时记录错误截图、Windows 版本和安装包版本。</li><li>通过 <a href="#support">QQ售后群 1127804697</a> 发来信息。</li></ol></details>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary>卡密输了不生效怎么办？</summary>
+        <p>先核对字母数字，再确认电脑联网、时间正确且未超过有效期。</p>
+        <details class="faq-more"><summary>展开</summary><ol><li>从原始订单复制卡密，避免空格和全角字符。</li><li>重启软件后再激活一次。</li><li>保留订单号、错误提示和版本号，联系 <a href="#support">QQ售后群 1127804697</a>。</li></ol></details>
+      </details>
+      <details class="faq-item" name="faq">
+        <summary>能联系到人吗？</summary>
+        <p id="contact">能。通过 QQ售后群 1127804697 反馈，我们会按订单和错误信息处理。</p>
+      </details>
+    </section>
+
+    <section class="section support-section" id="support"><div class="panel pending-panel"><div><span class="section-kicker">共创体验官计划 / 售后支持</span><h2>一起把 T-Box 打磨得更好</h2><p class="muted">提交可复现 Bug 或可执行改进建议；核实并采纳后奖励使用时长。加入 QQ 售后交流群反馈版本、错误提示和复现步骤。请勿公开简历、API Key、卡密或验证码。</p><p class="support-group">QQ群：<strong data-qq-group>1127804697</strong></p></div><button class="btn" type="button" data-copy-qq="1127804697">复制QQ群号</button></div></section><section class="section" id="buy-guide"><div class="panel pending-panel"><div><span class="section-kicker">购买入口</span><h2>前往购买页选择卡密</h2><p class="muted">在本站购买页核对方案，再前往 16688 店铺下单。</p></div><a class="btn primary" href="buy.html">查看购买方案</a></div></section>
+  <section class="section" id="buy-pending" hidden><div class="panel pending-panel"><h2>购买入口</h2><p class="muted">购买页正在准备中，请先使用试用版。</p></div></section></main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-groups">
+        <section class="footer-group"><h3>产品</h3><a href="index.html">功能概览</a><a href="pricing.html">价格</a></section>
+        <section class="footer-group"><h3>下载</h3><a href="download.html">下载试用</a></section>
+        <section class="footer-group"><h3>帮助</h3><a href="activate.html">激活指南</a><a href="faq.html">常见问题</a><a href="#support">QQ售后群</a></section>
+        <section class="footer-group"><h3>合规</h3><a href="#privacy">数据与隐私</a><a href="#limits">已知限制</a></section>
+      </div>
+      <div class="footer-copyright"><span>© 2026 T-Box Technology</span></div>
+    </div>
+  </footer>
+</body>
+</html>
+
 

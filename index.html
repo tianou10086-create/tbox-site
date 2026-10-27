@@ -3,201 +3,37 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>T-Box｜把不会的题，练成见过的题</title>
-<meta name="description" content="T-Box 是面试与笔试的自我训练辅助工具：练习题一出现，参考答案就显示在屏幕边缘的浮窗里。点击穿透、不抢焦点，不打断你练习的节奏。Windows 10 / 11，无需注册，免费试用 3 小时。">
-<!-- 分享卡片：这站主要在 QQ 群 / 微信里传，没有 og 标签时链接预览是空白的。 -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="T-Box">
-<meta property="og:title" content="T-Box｜把不会的题，练成见过的题">
-<meta property="og:description" content="面试与笔试的自我训练辅助工具。答案显示在屏幕边缘的浮窗里，点击穿透、不抢焦点，不打断你练习的节奏。免费试用 3 小时，无需注册。">
-<meta property="og:url" content="https://tbox.du4s.com/">
-<meta property="og:image" content="https://tbox.du4s.com/assets/img/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:alt" content="T-Box 自我训练辅助浮窗：练习题出现时，参考答案显示在屏幕边缘，点击穿透、不抢焦点">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tbox.du4s.com/assets/img/og.png">
-<meta name="twitter:image:alt" content="T-Box 自我训练辅助浮窗：练习题出现时，参考答案显示在屏幕边缘，点击穿透、不抢焦点">
-<link rel="canonical" href="https://tbox.du4s.com/">
-<!-- 深色背景与 assets/design.css 的 --bg 保持一致。 -->
-<meta name="theme-color" content="#0A0B10">
-
-<!--
-  结构化数据刻意不写 availability：购买通道还没接，写 InStock 就是假话；
-  也刻意不写 aggregateRating：没有真实评价就不能编。
-  （价格口径的出处属于仓库内部文档，不写进对外页面——HTML 注释是任何访客都能看到的。）
--->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "T-Box",
-  "description": "面试与笔试的自我训练辅助工具：练习题出现时，参考答案显示在屏幕边缘的浮窗里，点击穿透、不抢焦点。卡密激活，不自动续费。",
-  "brand": { "@type": "Brand", "name": "T-Box" },
-  "url": "https://tbox.du4s.com/",
-  "image": "https://tbox.du4s.com/assets/img/og.png",
-  "offers": [
-    { "@type": "Offer", "name": "体验卡", "price": "9.9", "priceCurrency": "CNY" },
-    { "@type": "Offer", "name": "月卡", "price": "29", "priceCurrency": "CNY" },
-    { "@type": "Offer", "name": "求职季卡", "price": "69", "priceCurrency": "CNY" }
-  ]
-}
-</script>
-<link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="assets/design.css">
-<link rel="stylesheet" href="assets/design-tokens.css">
-<script src="assets/config.js?v=77666a2221"></script>
-<script defer src="assets/app.js"></script>
-<script defer src="assets/design.js"></script>
-<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml"></head>
-<body class="design-upgrade">
-
-<nav class="nav" aria-label="主导航">
-  <a class="brand" href="index.html">T-<span>Box</span></a>
-  <div class="navlinks"><a href="download.html">下载</a><a href="activate.html">卡密教程</a><a href="faq.html">常见问题</a><span class="nav-status" title="发卡平台接入后此按钮变为购买入口">购买与售后</span></div>
-</nav>
-
+<title>T-Box｜把经历讲清楚，再去面试</title>
+<meta name="description" content="T-Box 是给求职者的 Windows AI 面试与笔试准备助手：导入简历、用本地 SenseVoice 转写、读屏识题，并在极速/标准/深思三档之间选择回答长度。免费试用 3 小时。">
+<meta property="og:type" content="website"><meta property="og:site_name" content="T-Box"><meta property="og:title" content="T-Box｜把经历讲清楚，再去面试"><meta property="og:description" content="简历二次分析、15 个行业术语包、本地 SenseVoice 转写与读屏识题。免费试用 3 小时。"><meta property="og:url" content="https://tbox.du4s.com/"><meta property="og:image" content="https://tbox.du4s.com/assets/img/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="T-Box 求职准备助手">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://tbox.du4s.com/assets/img/og.png"><meta name="twitter:image:alt" content="T-Box 求职准备助手">
+<link rel="canonical" href="https://tbox.du4s.com/"><meta name="theme-color" content="#10191F">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"T-Box","applicationCategory":"BusinessApplication","operatingSystem":"Windows 10/11","description":"面向求职者的 AI 面试与笔试准备助手，支持简历二次分析、本地 SenseVoice 转写、读屏识题与三档回答。","offers":{"@type":"Offer","price":"9.9","priceCurrency":"CNY"}}</script>
+<link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/design.css"><link rel="stylesheet" href="assets/design-tokens.css"><script src="assets/config.js?v=20261023"></script><script defer src="assets/app.js"></script><script defer src="assets/design.js"></script><link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<style>iframe:focus{outline:2px solid var(--tbox-accent-text);outline-offset:2px}</style></head>
+<body class="design-upgrade" style="--hero-focus:radial-gradient(ellipse 72% 90% at 18% 22%,color-mix(in srgb,var(--tbox-accent) 42%,var(--site-clear)),var(--site-clear) 66%)">
+<nav class="nav" aria-label="主导航"><a class="brand" href="index.html">T-<span>Box</span></a><div class="navlinks"><a href="download.html">下载</a><a href="buy.html">购买</a><a href="activate.html">卡密教程</a><a href="faq.html">常见问题</a></div></nav>
 <main class="wrap">
-
-  <!-- 首屏：3 秒说清「谁的什么痛、怎么解决、凭什么信」 -->
-  <section class="hero">
-  <div class="hero-copy"><span class="eyebrow">T-BOX / 面试与笔试的自我训练辅助</span>
-    <h1>先把「不会」，<br><em>练成「见过」。</em></h1>
-    <p class="lead">练习题一出现，参考答案就在屏幕边缘。点击穿透、不抢焦点——你不用切窗口，练习的节奏不被打断。</p>
-    <div class="actions"><a class="btn primary" href="download.html">下载试用</a><a class="btn" href="activate.html">看卡密怎么用</a></div>
-    <p class="hero-meta">Windows 10 / 11 · 无需注册 · 不自动续费<br>免费试用 3 小时（只在实际运行时累计）· 支持选择、图形、英文题</p>
-  </div>
-  <figure class="hero-preview">
-  <div class="hero-card" aria-label="训练辅助浮窗界面示意，非实际截图">
-    <div class="visual-titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div class="visual-heading"><b>少一点遮挡，多一点专注</b></div>
-    <div class="visual-stage"><div class="visual-document"><span class="visual-type">英文词义 / 示例题面</span><strong>Which word is closest to “meticulous”?</strong><div class="visual-options"><span>A · careless</span><span class="selected">B · extremely careful</span><span>C · rapid</span><span>D · ordinary</span></div></div><div class="visual-answer">B 极其仔细的</div></div>
-    <div class="visual-caption"><span>纯白 70% · 透明背景</span><span>给结论，不堆解析</span></div>
-  </div>
-<figcaption class="visual-note">界面示意 · 非实际截图</figcaption>
-</figure>
-<ul class="hero-facts" aria-label="三个产品特点"><li><div><strong data-count="820" data-suffix="×150">820×150</strong> 固定浮窗<span>点击穿透，不抢焦点</span></div></li><li><div><strong data-count="7" data-suffix=" 天">7 天</strong> 体验卡<span>到期由产品本体拦截</span></div></li><li><div><strong data-count="3" data-suffix=" 类">3 类</strong> 题型建议<span>选择 / 图形 / 英文</span></div></li></ul>
+<section class="hero">
+  <div class="hero-copy"><span class="eyebrow">T-BOX / 给正在找工作的人</span><h1>把经历讲清楚，<br><em>再去面试。</em></h1><p class="lead">把简历、题面与转写放到一起，先有思路，再组织表达。</p><div class="actions"><a class="btn primary" href="download.html">下载试用 3 小时</a><a class="btn" href="#how">先看怎么用</a></div><p class="hero-meta">Windows 10 / 11 · 本地转写 · 极速/标准/深思三档</p></div>
+  <figure class="hero-preview"><div class="hero-card" aria-label="T-Box 回答档位界面示意，非实际截图"><div class="visual-titlebar" aria-hidden="true"><i></i><i></i><i></i></div><div class="visual-heading"><b>同一道题，三种回答长度</b></div><div class="visual-stage"><div class="visual-document"><span class="visual-type">项目经历 / 行为面试</span><strong>说一个你推动流程改进的例子。</strong><div class="visual-options"><span>极速 · 约 60 字</span><span class="selected">标准 · 约 90 字</span><span>深思 · 更完整</span></div></div><div class="visual-answer">先说背景，再说动作，最后落到结果。</div></div><div class="visual-caption"><span>示意 · 非实际截图</span><span>先有思路，再组织表达</span></div></div><figcaption class="visual-note">回答档位与内容仅作示意</figcaption></figure>
+  <ul class="hero-facts" aria-label="发布与使用基准"><li><div><strong data-count="820" data-suffix="×150">820×150</strong><span>旧版自检基准</span></div></li><li><div><strong data-count="7" data-suffix=" 天">7 天</strong><span>授权卡期限示例</span></div></li><li><div><strong data-count="3" data-suffix=" 类">3 类</strong><span>练习题面入口</span></div></li></ul>
 </section>
-
-<section class="section compact-section"><div class="section-head"><div><span class="section-kicker">01 / 不打断你的节奏</span><h2>答案在旁，操作照常。</h2></div><p>透明字幕留在桌面，复杂判断留给你。不同设备与第三方软件表现，请先实测。</p></div>
-<div class="cards"><article class="card"><span class="card-number">01 — 显示</span><h3>文字清楚，背景留白</h3><p class="muted">纯白 70% 字幕，背景全透明。固定 820×150 显示区域，点击穿透、不抢焦点。</p></article><article class="card"><span class="card-number">02 — 内容保护</span><h3>共享表现，可以自己验</h3><p class="muted">浮窗采用 <strong>DisplayAffinity=0x11</strong> 内容保护与逐像素分层渲染。<a href="faq.html">会议、录屏与独占全屏表现以现场实测为准</a>。</p></article><article class="card"><span class="card-number">03 — 答案</span><h3>短题给结论，口述给段落</h3><p class="muted">选择题、图形题、英文题给短答案；口述模式显示完整段落。答案仅作建议，不替代你的判断。</p></article></div></section>
-<section class="section"><div class="section-head"><div><span class="section-kicker">02 / 把事实摆出来</span><h2>先核对，再信任。</h2></div><p>不靠销量或评价说服你。下面四件事，都有可复核的依据。</p></div><div class="trust-grid capability-bento"><article class="panel"><span class="badge">SHA256 可核验</span><h3>用哈希核对文件，不靠签名名头</h3><p class="muted">0.1.31 便携包不提供 Authenticode 签名，也不安装本地根证书——文件属性里看不到「数字签名」。完整性请只用发布页上的 SHA256 核对，校验不过就不要运行。历史上签名过的安装版停在 0.1.29。</p></article><article class="panel"><span class="badge">离线验签</span><h3>当前产品卡密采用 Ed25519 签名</h3><p class="muted">当前 TB-…#签名 卡由产品端用内置公钥本机验签；旧 TB1. 卡是另一套协议。授权校验与模型联网是两回事。答题所需网络与模型服务是另一条链路。</p></article><article class="panel"><span class="badge">本机保存</span><h3>本地数据分项保护</h3><p class="muted">设置、草稿与面试历史使用 Windows 当前用户 DPAPI；产品卡授权记录已改为设备密钥加密的 <code>entitlement.dat</code>，只保留一份明文兼容副本 <code>card-license.dat</code> 给旧启动器读到期时间。部分答题记录仍是明文，不能宣称全部数据已加密。详见数据与隐私说明。</p></article><article class="panel"><span class="badge">3 小时试用门</span><h3>到期有明确状态</h3><p class="muted">未激活可免费试用 3 小时，只在实际运行软件时累计——关掉就停表，不按自然时间扣。试用用量记在本机数据目录（设备密钥加密），不写注册表。期满后导航会收进「会员」页而不是把程序锁死，兑换成功后其余页面立即恢复。</p></article></div></section>
-
-  <!-- 照搬竞品最强的一招：把「看不见」拆成四个具体场景 -->
-  <section class="section">
-    <h2>「看不见」到底指哪四个场景</h2>
-    <p class="lead">笼统说"隐身"没有意义。T-Box 按下列四个具体场景设计，每一项你都可以自己验证：</p>
-    <table class="table">
-      <thead><tr><th>场景</th><th>设计上做了什么</th><th>你怎么自己验</th></tr></thead>
-      <tbody>
-        <tr><td>屏幕共享（腾讯会议 / 飞书 / Zoom）</td><td>内容保护标记，抓屏取到的该窗口为空白</td><td>开共享预览，看浮窗是否出现在预览里</td></tr>
-        <tr><td>录屏软件（OBS / 系统录屏）</td><td>同上，逐像素分层窗口</td><td>录 10 秒回放，看浮窗是否入画</td></tr>
-        <tr><td>任务栏 / Alt+Tab 列表</td><td>浮窗不进任务栏，不出现在切换器</td><td>按 Alt+Tab 看列表里有没有它</td></tr>
-        <tr><td>全屏应用（浏览器 F11 / kiosk）</td><td>UIAccess 置顶，覆盖全屏前台</td><td>F11 全屏后看浮窗是否仍可见</td></tr>
-      </tbody>
-    </table>
-    <p class="muted">说明：以上是设计目标与验证方法，不是对第三方软件行为的承诺。第三方会议/录屏软件版本更新可能改变结果，购买前请用体验卡在自己的机器上实测。</p>
-  </section>
-
-  <!-- 我们的差异化：可验证。竞品全是纯文案 -->
-  <section class="section">
-    <h2>每个宣称都能自己验证</h2>
-    <p class="lead">这里不要求你相信形容词：不要求你相信文案，只要求你跑一条命令。</p>
-    <table class="table">
-      <thead><tr><th>声称</th><th>验证方式</th></tr></thead>
-      <tbody>
-        <tr><td>浮窗真的置顶、真的点击穿透</td><td>安装后运行下面的命令，输出里直接给窗口层级与透明参数</td></tr>
-        <tr><td>渲染是逐像素、背景全透明</td><td>同上，输出米白字 RGB(243,241,233)、A=255，背景 A=0</td></tr>
-        <tr><td>安装包没有被改动</td><td><a href="download.html">下载页</a>给出 SHA256，自己算一遍对一下</td></tr>
-        <tr><td>激活状态可核对</td><td><a href="activate.html">激活页</a>有完整五步与失败排查</td></tr>
-      </tbody>
-    </table>
-    <p class="muted"><strong>在 PowerShell 中运行只读显示自检</strong>，保留完整输出或系统错误：</p>
-    <pre class="code">&amp; "$env:ProgramFiles\TBoxTopMost\TBoxTopMost.exe" checkall</pre>
-    <p class="muted">这是带 <code>uiAccess="true"</code> 清单的浮窗，受 Windows 启动约束影响。若出现“请求的操作需要提升”（740），请保留原始错误；不能把简单提权视为必然解决办法。启动器的正常启动与这条独立探针应分别核验。</p>
-    <p class="muted">它输出的是<b>一行 key=value</b>，而且不管你在哪个目录运行，都会顺手把同一行写进 <code>%TEMP%\TBoxTopMost-checkall.txt</code>（用 <code>--report-file 路径</code> 可以指定别处）。找不到控制台文字时，就去这个文件里拿。</p>
-    <p class="muted">这一行里该看到什么（字段名与期望值取自程序本身）：</p>
-    <table class="table">
-      <tr><th>字段</th><th>期望值</th><th>说明</th></tr>
-      <tr><td><code>frozen_rect=True</code></td><td><code>rect=358,40,820x150</code></td><td>尺寸与位置被钉死，不是随手摆的</td></tr>
-      <tr><td><code>visible=True</code></td><td>—</td><td>窗口真的可见</td></tr>
-      <tr><td><code>layer_mode=ULW_ALPHA</code></td><td><code>ULW_ok=True</code></td><td>逐像素分层渲染真的生效</td></tr>
-      <tr><td><code>TokenUIAccess=True</code></td><td>—</td><td>拿到 UIAccess 特权，才能真正盖在全屏之上</td></tr>
-      <tr><td><code>DisplayAffinity=0x11</code></td><td>—</td><td>0x11 = 排除出抓屏（内容保护）</td></tr>
-      <tr><td><code>textPixelsMaxRGB=(243,241,233)</code><br><code>textPixelsAlpha=255</code><br><code>backgroundAlphaMax=0</code></td><td>—</td><td>文字使用设计令牌米白 <code>#F3F1E9</code>；原始像素全不透明，背景全透明，就是「逐像素」的实际含义</td></tr>
-    </table>
-    <p class="muted">如果末尾出现 <code>metrics_valid=False</code> 或 <code>frozen_rect=False</code>，说明实测值没达到上面这些数（显示缩放、字体、被其它置顶窗口干扰都可能影响）。把那个 txt 发给售后即可核对，不用自己猜。</p>
-  </section>
-
-  <section class="section"><div class="section-head"><div><span class="section-kicker">03 / 按自己的节奏选择</span><h2>先体验，再选期限。</h2></div><p>卡密激活，不自动续费。三档均已开通在线支付（支付宝 / 微信），付款后页面直接显示卡密。</p></div><div class="pricing">
-    <article class="card price">
-      <h3>体验卡</h3>
-      <strong class="amount">¥9.9</strong>
-      <p class="muted">7 天有效期 · 首次体验</p>
-      <p class="muted">先验证你的声卡、显示器和题面识别，再决定要不要买。</p>
-      <a class="btn" data-buy="trial" href="#buy-pending">买 7 天体验卡</a>
-    </article>
-    <article class="card price recommended">
-      <div class="tag">推荐</div>
-      <h3>月卡</h3>
-      <strong class="amount">¥29</strong>
-      <p class="muted">30 天 · 完整功能</p>
-      <p class="muted">正好覆盖一轮投递+面试高峰，多数人只需要这一档。</p>
-      <a class="btn primary" data-buy="month" href="#buy-pending">买月卡</a>
-    </article>
-    <article class="card price">
-      <h3>求职季卡</h3>
-      <strong class="amount">¥69</strong>
-      <p class="muted">90 天 · 覆盖整个秋招/春招</p>
-      <p class="muted">一轮完整求职周期用得上，比按月买省一半，不自动续费。</p>
-      <a class="btn" data-buy="season" href="#buy-pending">买求职季卡</a>
-    </article>
-  </div><p class="pricing-note">三档均以卡密授权；绑定规则以实际签发的卡密为准。在线支付由 16688 平台代收，结算页会加收约 2.8% 手续费，最终金额以结算页为准。</p></section>
-
-  <!-- 已知限制：诚实是最便宜的信任 -->
-  <section class="section">
-    <h2>已知限制（买之前先看清楚）</h2>
-    <div class="cards">
-      <article class="card">
-        <h3>答案不保证正确</h3>
-        <p class="muted">系统按题型与题面给<strong>建议</strong>，不承诺替代人工判断。关键场次请当作提示用，不要当标准答案。</p>
-      </article>
-      <article class="card">
-        <h3>第三方软件行为会变</h3>
-        <p class="muted">会议与录屏软件更新后，内容保护的表现可能变化；不同会议软件的表现以实测为准。我们不承诺"永远看不见"，只承诺给出可复现的验证方法。</p>
-      </article>
-      <article class="card">
-        <h3>卡密离线验签，不联网</h3>
-        <p class="muted">当前 <code>TB-…#签名</code> 产品卡采用 <strong>Ed25519 签名</strong>，由产品端离线验签，不自动续费。此路径的授权记录写在 <code>entitlement.dat</code>（设备密钥加密，内含卡密签名）与 <code>used-cards.dat</code>（加密台账）；<code>card-license.dat</code> 只是给旧启动器读到期时间的明文兼容副本，不参与授权判定。<strong>未激活仍可免费试用 3 小时（只在实际运行时累计）</strong>；旧版用的是占位地址，那些版本点「激活」仍会失败。</p>
-      </article>
-      <article class="card">
-        <h3>首次安装会被 Windows 拦一次</h3>
-        <p class="muted">测试版用的是<strong>本地根证书</strong>签名：公开可信的代码签名证书需要企业资质与年费，现阶段没有。所以下载后双击，Windows 大概率弹「已保护你的电脑」，要点<strong>更多信息 → 仍要运行</strong>；安装器才会把根证书装进本机信任库，此后产品内部组件的签名校验才是通过状态。卸载时安装器会弹窗问「是否同时删除根证书」，<strong>建议选「是」</strong>——选「否」的话，这张自建根证书会一直留在你的信任库里。</p>
-        <p class="muted"><strong>自签证书不证明"这是官方包"</strong>，任何人都能用同名的自建根签名一个包。真正能防调包的是下载页上的 SHA256——装之前先对一遍。</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- 上手三步 -->
-  <section class="section">
-    <h2>三步开始</h2>
-    <div class="steps">
-      <div class="step"><div><strong>下载便携包</strong> —— <a href="download.html">下载页</a>有版本号与 SHA256；解压后双击 TishiBox.exe 即可，不装根证书、不需要管理员权限。</div></div>
-      <div class="step"><div><strong>输入卡密激活</strong> —— 拿到卡密后，<a href="activate.html">激活页</a>有五步流程和失败排查。</div></div>
-      <div class="step"><div><strong>跑一次 checkall</strong> —— 确认置顶、穿透、透明都正常，再在真实题面上试。</div></div>
-    </div>
-  </section>
-
-
-  <!-- 购买未开通时显示的兜底区块：由 assets/app.js 在 BUY_URL 为空时取消 hidden。
-       为什么要有：BUY_URL 没填时，「立即购买」原来是个 href="#" 的死链，
-       用户点了只会跳回页首 + 冒出一行灰字。卖货站最贵的位置放一个点不动的按钮，
-       比不放还糟。现在它会把用户带到这段解释 + 一条真的能走的下载路径。 -->
-  <section class="section" id="buy-pending" hidden><div class="panel pending-panel"><div><span class="section-kicker">先试，再决定</span><h2>购买入口暂不可用</h2><p class="muted">购买入口取决于本站配置与商家页面；本站不承诺实时库存或发货状态。你可以先下载最新版本免费试用，验证自己的设备、题面与共享表现。</p></div><a class="btn primary" href="download.html#dl-actions" data-buy-pending-cta>去下载试用版</a></div></section>
+<section class="section promo-section" aria-label="产品宣传片">
+<iframe src="assets/promo.html" title="提示盒产品短片" tabindex="-1" style="width:100%;border:0;aspect-ratio:16/9;" loading="lazy" sandbox="allow-scripts allow-same-origin"></iframe>
+</section>
+<section class="section compact-section" id="how"><div class="section-head"><div><span class="section-kicker">01 / 先解决最费脑的三件事</span><h2>不替你面试，只帮你更快进入状态。</h2></div><p>把“我做过什么”“题目在问什么”“怎么说更像自己”拆开处理。</p></div><div class="cards"><article class="card"><span class="card-number">01 — 简历</span><h3>导入一次，二次分析</h3><p class="muted">导入已有简历，先梳理项目与经历，再把岗位问题映射到你真正做过的内容。不会凭空补经历。</p></article><article class="card"><span class="card-number">02 — 回答</span><h3>三档长度，按场合切换</h3><p class="muted"><strong>极速约 60 字</strong>先抓重点；<strong>标准约 90 字</strong>适合口述；<strong>深思</strong>给更完整的组织建议。</p></article><article class="card"><span class="card-number">03 — 识题</span><h3>听见、看懂，再决定</h3><p class="muted">本地 SenseVoice 做转写；读屏识题用视觉模型理解题面。按当前配置选择模型，输出请自己复核。</p></article></div></section>
+<section class="section"><div class="section-head"><div><span class="section-kicker">02 / 找到你的使用场景</span><h2>不同求职阶段，各有一条落点。</h2></div><p>不是一句“适用所有面试”，而是从你现在最急的那一步开始。</p></div><div class="trust-grid capability-bento"><article class="panel"><span class="badge">校招 / 春秋招</span><h3>把校园项目说成可回答的故事</h3><p class="muted">导入简历后先做二次分析，用标准档把课程、社团与项目经历组织成 STAR 结构，再用深思档补齐追问角度。</p></article><article class="panel"><span class="badge">社招 / 管理岗</span><h3>把复杂经历压成重点</h3><p class="muted">用极速档先列主线，用 15 个行业术语包校准专业表达；不替你编数字，关键结果由你确认。</p></article><article class="panel"><span class="badge">转行 / 跨行业</span><h3>先补语境，再练表达</h3><p class="muted">术语包帮助你理解目标岗位常见说法，读屏识题可把题面拆成可回答的小问题。</p></article><article class="panel"><span class="badge">留学生 / 英文场景</span><h3>先把问题听清楚</h3><p class="muted">本地 SenseVoice 转写与简历上下文分开处理；模型是否支持你的语言，取决于你自备的 API 与配置。</p></article></div></section>
+<section class="section"><div class="section-head"><div><span class="section-kicker">03 / 购买前核对</span><h2>先验证三件事，再决定要不要买。</h2></div><p>下载后按设备、转写、题面三步核对；不合适就停在试用阶段，不需要先付款。</p></div><div class="cards"><article class="card"><h3>① 先测设备</h3><p class="muted">打开试用后先检查麦克风、系统音频与窗口显示；任一项失败都能看到对应原因。</p></article><article class="card"><h3>② 再测转写与识题</h3><p class="muted">用一段自己的短音频和一张题面截图各跑一次；本地转写与视觉识题的结果都要自己复核。</p></article><article class="card"><h3>③ 最后看数据边界</h3><p class="muted">本地转写不上传录音；主动调用云端模型或视觉服务时，材料会按所选配置离开本机。答案只是准备建议，不是录用承诺。</p></article></div></section>
+<section class="section"><div class="section-head"><div><span class="section-kicker">04 / 下载前看清楚</span><h2>数据怎么走，由你选的模型决定。</h2></div><p>简历与音频的处理边界必须透明。</p></div><div class="table-panel"><table class="table"><thead><tr><th>材料</th><th>本地能做什么</th><th>何时可能离开本机</th></tr></thead><tbody><tr><td>简历</td><td>导入、二次分析、作为回答上下文</td><td>你把内容发送给所选云模型时</td></tr><tr><td>麦克风音频</td><td>本地 SenseVoice 转写</td><td>你主动选择云端转写或模型服务时</td></tr><tr><td>题面截图</td><td>读屏识题前在本机选择区域</td><td>提交给你配置的视觉模型时</td></tr></tbody></table></div></section>
+<section class="section"><div class="section-head"><div><span class="section-kicker">05 / 按自己的节奏</span><h2>先试，再决定要不要买。</h2></div><p>一次性卡密，不自动续费；价格以当前购买页为准。</p></div><div class="pricing"><article class="card price"><h3>体验卡</h3><strong class="amount">¥9.9</strong><ul class="benefits"><li>7 天 · 先验证设备与题面</li></ul><a class="btn" data-buy="trial" href="#buy-pending">先看体验卡</a></article><article class="card price recommended"><div class="tag">推荐 · 最划算</div><h3>月卡</h3><strong class="amount">¥29</strong><ul class="benefits"><li>30 天 · 覆盖集中准备期</li></ul><a class="btn primary" data-buy="month" href="#buy-pending">查看月卡</a></article><article class="card price"><h3>季卡</h3><strong class="amount">¥69</strong><ul class="benefits"><li>一次购买 · 不自动续费</li></ul><a class="btn" data-buy="season" href="#buy-pending">查看季卡</a></article></div><p class="pricing-note">一次性卡密，不自动续费；购买前先用 3 小时试用。</p></section>
+<section class="section" id="self-check"><div class="section-head"><div><span class="section-kicker">高级排障 / 只读字段</span><h2>需要排查旧版显示问题？</h2></div><p>下面的字段来自历史发布探针，仅用于复核安装包行为，不是新的营销承诺。当前门户以能力清单为准。</p></div><details class="panel"><summary>查看安装包自检字段（可选）</summary><pre class="code">defaults=x358 y40 width820 height150 affinity=0x11 layer=ULW_ALPHA
+frozen_rect=…  TokenUIAccess=…  DisplayAffinity=0x…
+textPixelsAlpha=…  textPixelsMaxRGB=…  backgroundAlphaMax=…
+metrics_valid=False  ·  TBoxTopMost-checkall.txt  ·  --report-file</pre><p class="muted">历史版本的基准显示区域为 820×150；若你在排障，请以本机 TBoxTopMost-checkall.exe 的真实输出为准。</p></details></section>
+<section class="section" id="buy-guide"><div class="panel pending-panel"><div><span class="section-kicker">购买入口</span><h2>前往购买页选择卡密</h2><p class="muted">在本站购买页核对方案，再前往 16688 店铺下单。</p></div><a class="btn primary" href="buy.html">查看购买方案</a></div></section>
+<section class="section" id="buy-pending" hidden><div class="panel pending-panel"><div><span class="section-kicker">购买入口状态</span><h2>购买入口已配置</h2><p class="muted">购买按钮会打开 16688 店铺；也可以先下载试用包验证设备与题面链路。</p></div><a class="btn primary" href="buy.html">查看购买方案</a></div></section>
 </main>
+<footer class="footer"><div class="wrap"><div class="footer-groups"><section class="footer-group"><h3>产品</h3><a href="index.html">功能概览</a><a href="pricing.html">价格</a></section><section class="footer-group"><h3>下载</h3><a href="download.html">下载试用</a></section><section class="footer-group"><h3>帮助</h3><a href="activate.html">激活指南</a><a href="faq.html">常见问题</a><a href="buy.html">购买</a></section><section class="footer-group"><h3>合规</h3><a href="faq.html#privacy">数据与隐私</a><a href="faq.html#limits">已知限制</a></section></div><div class="footer-copyright"><span>© 2026 T-Box Technology · Windows 桌面工具</span><span>纯静态门户 </span></div></div></footer>
+</body></html>
 
-<footer class="footer"><div class="wrap"><div class="footer-groups"><section class="footer-group"><h3>产品</h3><a href="index.html">功能概览</a></section><section class="footer-group"><h3>下载</h3><a href="download.html">下载试用</a></section><section class="footer-group"><h3>帮助</h3><a href="activate.html">激活指南</a><a href="faq.html">常见问题</a></section><section class="footer-group"><h3>合规</h3><a href="faq.html">已知限制</a><a href="faq.html#privacy">数据与隐私</a><a href="faq.html#after-sales">售后与退款</a></section></div><div class="footer-copyright"><span>© 2026 T-Box Technology · Windows 桌面工具</span></div></div></footer>
-
-</body>
-</html>
