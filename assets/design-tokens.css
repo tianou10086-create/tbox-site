@@ -226,3 +226,6 @@ body.design-upgrade :focus-visible { outline: var(--tbox-focus-width) solid var(
   --tbox-surface-rgb: 255, 255, 255;
   --tbox-text-primary-rgb: 22, 40, 44;
 }
+
+/* Homepage product palette: warm white, ink green, restrained orange action. */
+body.design-upgrade { --tbox-background:#f7f5ef; --tbox-bg:#f7f5ef; --tbox-surface:#fffefa; --tbox-surface-raised:#eef5ef; --tbox-text-primary:#19352e; --tbox-text-secondary:#526660; --tbox-text-tertiary:#6a7d75; --tbox-accent:#0b5a47; --tbox-accent-text:#0b5a47; --tbox-border:#b9cbc1; --tbox-line:#b9cbc1; --tbox-warning:#b45c24; --tbox-accent-soft:#dfeee5; }
