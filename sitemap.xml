@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://tboxapp.top/</loc><lastmod>2026-10-30</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://tboxapp.top/download.html</loc><lastmod>2026-10-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://tboxapp.top/pricing.html</loc><lastmod>2026-10-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://tboxapp.top/buy.html</loc><lastmod>2026-10-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://tboxapp.top/membership.html</loc><lastmod>2026-10-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://tboxapp.top/setup-key.html</loc><lastmod>2026-10-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://tboxapp.top/activate.html</loc><lastmod>2026-10-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://tboxapp.top/faq.html</loc><lastmod>2026-10-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-<url><loc>https://tboxapp.top/docs.html</loc><lastmod>2026-10-30</lastmod></url><url><loc>https://tboxapp.top/releases.html</loc><lastmod>2026-10-30</lastmod></url><url><loc>https://tboxapp.top/feedback.html</loc><lastmod>2026-10-30</lastmod></url></urlset>
+<url><loc>https://tboxapp.top/activate.html</loc></url>
+<url><loc>https://tboxapp.top/buy.html</loc></url>
+<url><loc>https://tboxapp.top/docs-account.html</loc></url>
+<url><loc>https://tboxapp.top/docs-audio.html</loc></url>
+<url><loc>https://tboxapp.top/docs-config.html</loc></url>
+<url><loc>https://tboxapp.top/docs-license.html</loc></url>
+<url><loc>https://tboxapp.top/docs-start.html</loc></url>
+<url><loc>https://tboxapp.top/docs.html</loc></url>
+<url><loc>https://tboxapp.top/download.html</loc></url>
+<url><loc>https://tboxapp.top/faq.html</loc></url>
+<url><loc>https://tboxapp.top/feedback.html</loc></url>
+<url><loc>https://tboxapp.top/</loc></url>
+<url><loc>https://tboxapp.top/membership.html</loc></url>
+<url><loc>https://tboxapp.top/pricing.html</loc></url>
+<url><loc>https://tboxapp.top/privacy.html</loc></url>
+<url><loc>https://tboxapp.top/product.html</loc></url>
+<url><loc>https://tboxapp.top/releases.html</loc></url>
+<url><loc>https://tboxapp.top/setup-key.html</loc></url>
+<url><loc>https://tboxapp.top/verify.html</loc></url>
+</urlset>
