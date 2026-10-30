@@ -2,6 +2,7 @@
 (function (root) {
   'use strict';
   function resolveBase(raw, location) {
+    if (location.hostname === 'github.io' || location.hostname.endsWith('.github.io')) return '';
     if (typeof raw !== 'string' || !/^\/[A-Za-z0-9/_-]+$/.test(raw) || raw.startsWith('//')) return '';
     if (location.protocol !== 'https:' && !['localhost', '127.0.0.1'].includes(location.hostname)) return '';
     try {

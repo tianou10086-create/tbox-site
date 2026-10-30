@@ -16,7 +16,7 @@
   const logout = document.getElementById('account-logout');
   let mode = 'login', busy = false, token = null, base = '';
   const config = window.TBOX_ACCOUNT_CONFIG || {};
-  base = window.TBOX_ACCOUNT_API.resolveBase(config.API_BASE, location);
+  base = config.PUBLIC_ACCOUNT_ENABLED === true ? window.TBOX_ACCOUNT_API.resolveBase(config.API_BASE, location) : '';
   const say = (text, error = false) => { status.textContent = text; status.classList.toggle('error', error); };
   const pending = value => { busy = value; fields.disabled = value || !base; tabs.forEach(tab => tab.disabled = value); refresh.disabled = value; logout.disabled = value; submit.textContent = value ? '正在处理…' : !base ? '账户服务暂未开放' : mode === 'login' ? '登录' : '创建账户'; };
   const messages = { invalid_credentials: '账户名或密码不正确，请检查后再试。', username_exists: '这个账户名已注册，请改用登录或更换账户名。', username_invalid: '账户名需为 3–64 位字母、数字或 _ . @ -。', invalid_request: '请检查账户名和密码格式。密码需为 12–128 位。', account_banned: '此账户已被停用。请通过售后渠道核对账户状态。', authentication_required: '请先登录。', session_expired_or_invalid: '登录已失效，请重新登录。', session_revoked: '本次登录已退出，请重新登录。' };
@@ -68,6 +68,7 @@
   form.addEventListener('submit', async e => {
     e.preventDefault();
     if (!base || busy || !form.reportValidity()) return;
+    if (typeof navigator !== 'undefined' && navigator.onLine === false) { say('浏览器当前离线。请恢复网络后再试，尚未发送凭据。', true); return; }
     if (mode === 'register' && password.value !== confirm.value) { say('两次输入的密码不一致。', true); confirm.focus(); return; }
     const payload = { username: username.value.trim().toLowerCase(), password: password.value };
     pending(true); say(mode === 'register' ? '正在创建账户…' : '正在登录…');
