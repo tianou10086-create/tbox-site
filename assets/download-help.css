@@ -3,3 +3,4 @@
 .download-page .btn.primary{background:#245744;border-color:#245744;color:#fff}.download-page .badge,.download-page .eyebrow,.download-page .section-kicker{color:#245744}
 .download-page #verify-prompt{box-sizing:border-box;display:block;width:100%;max-width:100%;min-height:250px;margin:12px 0 18px;padding:18px;border:1px solid #bac5b6;border-radius:6px;background:#f8f7f3;color:#213c33;font:15px/1.8 system-ui,"Microsoft YaHei",sans-serif;resize:vertical}
 .download-page #verify-copy-status{font-size:14px;line-height:1.6}.download-page :focus-visible{outline:3px solid #915122;outline-offset:4px}.download-page #release-verify details{margin-top:24px}.download-page #release-verify summary{cursor:pointer;min-height:44px}
+body.design-upgrade.download-page{--tbox-accent:#245744;--tbox-accent-text:#245744;--tbox-accent-soft:#e9efe2;--site-link-hover:#183f31}
