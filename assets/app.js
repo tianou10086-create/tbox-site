@@ -41,16 +41,18 @@
     });
   }
 
-  // 已配置购买渠道时直接进入 16688 店铺；未配置时保留本站购买页兜底。
+  // 指定档位直达商品；通用入口先在本站核对购买方案。
   document.querySelectorAll('.nav-status').forEach(function (el) {
     el.hidden = true;
     el.removeAttribute('title');
   });
   document.querySelectorAll('[data-buy]').forEach(function (a) {
     var key = a.getAttribute('data-buy');
-    var url = key === 'trial' ? c.BUY_URL_TRIAL : key === 'month' ? c.BUY_URL_MONTH : key === 'season' ? c.BUY_URL_SEASON : c.BUY_URL;
+    var url = key === 'trial' ? c.BUY_URL_TRIAL : key === 'month' ? c.BUY_URL_MONTH : key === 'season' ? c.BUY_URL_SEASON : '';
     if (configured(url)) bindLink(a, url, '购买入口暂时不可用');
-    else { a.href = 'buy.html'; a.removeAttribute('target'); }
+    else if (!key || !/^https?:\/\//i.test(a.getAttribute('href') || '')) {
+      a.href = 'buy.html'; a.removeAttribute('target');
+    }
   });
 
   // 下载 CTA（主线路 + 备用线路；备用未配置则复用主线路，避免死链）
@@ -84,14 +86,21 @@
       var group = c.QQ_SUPPORT_GROUP || button.getAttribute('data-copy-qq') || '';
       if (!group) return;
       var done = function () { notify(button, 'QQ群号已复制：' + group); };
+      var failed = function () { notify(button, '未能自动复制，请手动复制QQ群号：' + group); };
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(group).then(done).catch(done);
+        navigator.clipboard.writeText(group).then(done).catch(failed);
       } else {
+        var focus = document.activeElement;
         var input = document.createElement('textarea');
         input.value = group; input.setAttribute('readonly', ''); input.style.position = 'fixed'; input.style.opacity = '0';
         document.body.appendChild(input); input.select();
-        try { document.execCommand('copy'); } finally { document.body.removeChild(input); }
-        done();
+        var copied = false;
+        try { copied = document.execCommand('copy'); } catch (error) { copied = false; }
+        finally {
+          document.body.removeChild(input);
+          if (focus && focus.focus) focus.focus();
+        }
+        if (copied) done(); else failed();
       }
     });
   });

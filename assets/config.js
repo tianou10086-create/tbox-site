@@ -3,13 +3,13 @@
 // digest 逐字节核对一致（sha256:962da8fb…d298d0e / TBox-Setup 由 Get-FileHash 复核）。
 // 下载直链指向 tianou10086-create/tbox-site 的 Release 资产：GitHub 仓库单文件上限 100 MB，
 // 101.9 MB 的安装包与 147.0 MB 的便携包只能作为 Release 资产分发，不能进仓库根目录。
-// 购买渠道：16688 店铺；三个档位目前共用同一个店铺页，由店内商品名区分。
+// 购买渠道：16688；三档商品直链已于 2026-10-30 在公开商品页核对名称、价格与期限。
 window.TBOX_CONFIG = {
   QQ_SUPPORT_GROUP: "1127804697",
   BUY_URL: "https://www.16688.com.cn/shop/S667305",
-  BUY_URL_TRIAL: "https://www.16688.com.cn/shop/S667305",
-  BUY_URL_MONTH: "https://www.16688.com.cn/shop/S667305",
-  BUY_URL_SEASON: "https://www.16688.com.cn/shop/S667305",
+  BUY_URL_TRIAL: "https://www.16688.com.cn/goods/G32787408",
+  BUY_URL_MONTH: "https://www.16688.com.cn/goods/G11327877",
+  BUY_URL_SEASON: "https://www.16688.com.cn/goods/G80959262",
   MIRROR_1: "https://github.com/tianou10086-create/tbox-site/releases/tag/v0.1.37",
   // 便携包直链（与 PORTABLE_URL 同源，保留该键以兼容旧断言）。
   MIRROR_2: "https://github.com/tianou10086-create/tbox-site/releases/download/v0.1.37/TBox-0.1.37-portable.zip",
