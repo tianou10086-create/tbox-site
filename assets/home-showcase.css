@@ -79,3 +79,12 @@ body.home.showcase-live :focus-visible{outline:3px solid #915122;outline-offset:
  body.home.showcase-live .price{padding:28px 24px}
  body.home.showcase-live .footer-links{gap:18px}
 }
+
+/* Product film: no autoplay, no extra runtime, no layout shift. */
+body.home.showcase-live .product-film{width:min(100%,1040px);min-width:0;margin:8px auto 0;text-align:left}
+body.home.showcase-live .film-heading{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:0 0 16px}
+body.home.showcase-live .film-heading h2{font-size:20px;line-height:1.5;letter-spacing:-.02em;margin:0}
+body.home.showcase-live .film-heading span{font-size:14px;color:#515d55;white-space:nowrap}
+body.home.showcase-live .product-film video{display:block;width:100%;height:auto;aspect-ratio:16/9;border:1px solid #d8dfd5;border-radius:12px;background:#f5f6f2;box-shadow:0 16px 48px #213c330a}
+body.home.showcase-live .product-film figcaption{max-width:76ch;color:#515d55;font-size:13px;line-height:1.8;margin:14px 0 0}
+@media(max-width:600px){body.home.showcase-live .film-heading{align-items:flex-start;flex-direction:column;gap:4px}body.home.showcase-live .film-heading h2{font-size:19px}body.home.showcase-live .product-film video{border-radius:8px}}
