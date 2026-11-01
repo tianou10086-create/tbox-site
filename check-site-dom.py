@@ -129,7 +129,7 @@ def main():
         elif not any(h in ("buy.html", "pricing.html") or h.startswith(("http://", "https://")) for h in buy_hrefs):
             raise AssertionError(f"{page}: no reachable pricing or purchase link found")
     d = docs["index.html"]
-    if count_class(d, "hero") != 1 or count_class(d, "pricing") != 1: raise AssertionError("index.html: hero/pricing structure missing")
+    if count_class(d, "hero") != 1 or (count_class(d, "pricing") + count_class(d, "home-pricing")) != 1: raise AssertionError("index.html: hero/pricing structure missing")
     dd_price_check(root)
     d = docs["download.html"]
     for key in ("data-version", "data-size", "data-sha256", "data-release-date", "data-primary-download", "data-mirror-1", "data-mirror-2"):
