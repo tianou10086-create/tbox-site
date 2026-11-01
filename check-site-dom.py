@@ -135,7 +135,7 @@ def main():
     for key in ("data-version", "data-size", "data-sha256", "data-release-date", "data-primary-download", "data-mirror-1", "data-mirror-2"):
         if not has_attr(d, key): raise AssertionError(f"download.html: {key} missing")
     d = docs["activate.html"]
-    if count_class(d, "steps") != 1 or count_class(d, "step") != 5: raise AssertionError("activate.html: five activation steps missing")
+    if (count_class(d, "steps") + count_class(d, "guide-layout")) != 1 or (count_class(d, "step") + count_class(d, "guide-step")) != 5: raise AssertionError("activate.html: five activation steps missing")
     d = docs["faq.html"]
     if count_class(d, "faq") != 1 or d.tags.count("details") < 5: raise AssertionError("faq.html: FAQ details missing")
     print(f"DOM PASS pages={len(PAGES)} root={root}")
