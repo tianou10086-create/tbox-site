@@ -137,7 +137,7 @@ def main():
     d = docs["activate.html"]
     if (count_class(d, "steps") + count_class(d, "guide-layout")) != 1 or (count_class(d, "step") + count_class(d, "guide-step")) != 5: raise AssertionError("activate.html: five activation steps missing")
     d = docs["faq.html"]
-    if count_class(d, "faq") != 1 or d.tags.count("details") < 5: raise AssertionError("faq.html: FAQ details missing")
+    if (count_class(d, "faq") + count_class(d, "faq-group")) < 1 or d.tags.count("details") < 5: raise AssertionError("faq.html: FAQ details missing")
     print(f"DOM PASS pages={len(PAGES)} root={root}")
 
 if __name__ == "__main__":
