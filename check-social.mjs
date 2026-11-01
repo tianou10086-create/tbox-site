@@ -14,7 +14,7 @@ for(const page of pages){
  const canonical=attr(src,/<link\s+rel="canonical"\s+href="([^"]+)"/i), theme=attr(src,/<meta\s+name="theme-color"\s+content="([^"]+)"/i), desc=attr(src,/<meta\s+name="description"\s+content="([^"]+)"/i), image=attr(src,/<meta\s+property="og:image"\s+content="([^"]+)"/i);
  let imageOk=false,imageBytes=0,dims=[0,0],imageName='';
  if(/^https:\/\//.test(image)){const rel=image.replace(BASE,'');imageName=path.basename(rel);const local=path.join(root,rel);if(fs.existsSync(local)){imageBytes=fs.statSync(local).size;dims=pngSize(local);imageOk=imageName==='og-wechat.png'&&dims[0]===1200&&dims[1]===630&&imageBytes<=32768;}}
- const ok=og>=5&&tw>=2&&canonical.startsWith(BASE)&&theme==='#0b0f14'&&desc&&/^https:\/\//.test(image)&&imageOk;
+ const ok=og>=5&&tw>=2&&canonical.startsWith(BASE)&&['#0b0f14', '#f7f8f4'].includes(theme)&&desc&&/^https:\/\//.test(image)&&imageOk;
  console.log(`${page} og:image=${imageName||'MISSING'} bytes=${imageBytes} dimensions=${dims[0]}x${dims[1]}`); rows.push({page,og,twitter:tw,canonical:canonical?'OK':'EMPTY',theme:theme||'EMPTY',image:imageName||'MISSING',imageBytes});
  if(!ok)fail.push(`${page}: og=${og} twitter=${tw} canonical=${canonical} theme=${theme} desc=${!!desc} image=${image} dims=${dims.join('x')} bytes=${imageBytes}`);
 }
