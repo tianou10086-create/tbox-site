@@ -109,7 +109,7 @@ def main():
         d = Doc(); d.feed(src); docs[page] = d
         if not has_attr(d, "lang", "zh-CN"): raise AssertionError(f"{page}: html lang=zh-CN missing")
         if "title" not in d.tags: raise AssertionError(f"{page}: title missing")
-        if "assets/style.css" not in src and "assets/home.css" not in src: raise AssertionError(f"{page}: stylesheet missing")
+        if all(css not in src for css in ("assets/style.css", "assets/home.css", "assets/site.css")): raise AssertionError(f"{page}: stylesheet missing")
         if page in RUNTIME_ASSET_PAGES:
             for href in ("assets/config.js", "assets/app.js"):
                 if href not in src: raise AssertionError(f"{page}: {href} missing")
