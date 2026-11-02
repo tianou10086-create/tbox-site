@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "status": "pending_evidence",
+  "publishable": false,
+  "currency": "CNY",
+  "updated_at": "2026-11-03",
+  "evidence_ref": null,
+  "approval_ref": null,
+  "comparisons": [],
+  "own_price_public_copy_ready": true,
+  "public_sale_ready": false,
+  "own_price_verified_at": "2026-11-03T03:39:26+08:00",
+  "own_price_approval_ref": "I-own-prices-20261103",
+  "own_prices": [
+    {
+      "id": "tbox_byok_trial",
+      "name": "体验卡",
+      "price_cny": 9.9,
+      "currency": "CNY",
+      "validity_days": 7,
+      "billing_unit": "一份软件授权",
+      "validity_unit": "自然日",
+      "model_fee_included": false,
+      "auto_renew": false,
+      "online_purchasing_open": false
+    },
+    {
+      "id": "tbox_byok_month",
+      "name": "月卡",
+      "price_cny": 29,
+      "currency": "CNY",
+      "validity_days": 30,
+      "billing_unit": "一份软件授权",
+      "validity_unit": "自然日",
+      "model_fee_included": false,
+      "auto_renew": false,
+      "online_purchasing_open": false
+    },
+    {
+      "id": "tbox_byok_season",
+      "name": "季卡",
+      "price_cny": 69,
+      "currency": "CNY",
+      "validity_days": 90,
+      "billing_unit": "一份软件授权",
+      "validity_unit": "自然日",
+      "model_fee_included": false,
+      "auto_renew": false,
+      "online_purchasing_open": false
+    }
+  ]
+}
