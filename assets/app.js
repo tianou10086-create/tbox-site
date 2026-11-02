@@ -46,11 +46,11 @@
     el.hidden = true;
     el.removeAttribute('title');
   });
+  // New checkout is not live yet. Preserve legacy settings for historical orders,
+  // but never route a new purchase CTA directly to the old provider.
   document.querySelectorAll('[data-buy]').forEach(function (a) {
-    var key = a.getAttribute('data-buy');
-    var url = key === 'trial' ? c.BUY_URL_TRIAL : key === 'month' ? c.BUY_URL_MONTH : key === 'season' ? c.BUY_URL_SEASON : c.BUY_URL;
-    if (configured(url)) bindLink(a, url, '购买入口暂时不可用');
-    else { a.href = 'buy.html'; a.removeAttribute('target'); }
+    a.href = 'buy.html';
+    a.removeAttribute('target');
   });
 
   // 下载 CTA（主线路 + 备用线路；备用未配置则复用主线路，避免死链）
@@ -85,13 +85,14 @@
       if (!group) return;
       var done = function () { notify(button, 'QQ群号已复制：' + group); };
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(group).then(done).catch(done);
+        navigator.clipboard.writeText(group).then(done).catch(function () { notify(button, '复制未成功，请手动复制群号：' + group); });
       } else {
         var input = document.createElement('textarea');
         input.value = group; input.setAttribute('readonly', ''); input.style.position = 'fixed'; input.style.opacity = '0';
         document.body.appendChild(input); input.select();
-        try { document.execCommand('copy'); } finally { document.body.removeChild(input); }
-        done();
+        var copied = false;
+        try { copied = document.execCommand('copy'); } catch (error) { copied = false; } finally { document.body.removeChild(input); }
+        if (copied) done(); else notify(button, '复制未成功，请手动复制群号：' + group);
       }
     });
   });

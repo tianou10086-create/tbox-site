@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="T-Box 单色标记">
+  <title>T-Box mark · single color</title>
+  <!--
+    T-Box 单色（挖空）版 —— 用于只允许一个颜色的场景：丝印、烫印、水印、
+    单色印刷、以及需要叠在任意背景上的叠加层。
+
+    为什么用挖空而不是「把所有填充刷成同一色」：
+      刷成同一色会让外框和 T 变成一整块实心方块，T 直接消失；
+      挖空（mask）让 T 和薄荷条变成透明的负空间，
+      于是无论背景是什么颜色，标记的形都保得住。
+
+    currentColor：把 color 设成什么，标记就是什么颜色。
+  -->
+  <mask id="tbox-cut">
+    <rect width="512" height="512" fill="#FFFFFF"/>
+    <rect x="120" y="104" width="272" height="104" rx="52" fill="#000000"/>
+    <rect x="204" y="104" width="104" height="200" rx="52" fill="#000000"/>
+    <rect x="148" y="352" width="216" height="64" rx="32" fill="#000000"/>
+  </mask>
+  <rect x="24" y="24" width="464" height="464" rx="104" fill="currentColor" mask="url(#tbox-cut)"/>
+</svg>
