@@ -68,6 +68,31 @@ export function renderOwnPrices(root, data) {
   return { visiblePlans: plans.length };
 }
 
+export function renderOfficialFacts(root, data) {
+  root.replaceChildren();
+  if (!data.official_price_fact_table_ready || !data.official_fact_approval_ref) return 0;
+  const rows = (data.official_reference_rows || []).filter(r => r.public_fact_table_allowed);
+  const create = (tag, text) => { const el=document.createElement(tag);el.textContent=text;return el; };
+  const list=create('div','');list.className='value-reference-list';
+  const own=create('article','');
+  const plan=(data.own_prices || []).find(r=>r.id==='tbox_byok_season');
+  if (plan) {
+    own.append(create('h3','T-Box｜¥'+plan.price_cny+' / '+plan.validity_days+'个自然日'));
+    own.append(create('p','软件授权；第三方模型费用另付。不自动续费，在线购买暂未开放。'));
+    list.append(own);
+  }
+  for(const row of rows) {
+    const article=create('article','');
+    article.append(create('h3',row.label+'｜¥'+row.price_cny+' / '+row.quantity+row.unit));
+    article.append(create('p',row.model_terms));
+    article.append(create('p',row.conditions));
+    const source=create('a','原始来源 · '+row.observed_at);
+    source.href=row.source_url;source.target='_blank';source.rel='noopener noreferrer';
+    article.append(source);list.append(article);
+  }
+  root.append(list);return rows.length;
+}
+
 export async function loadComparison(root, url) {
   const response = await fetch(url);
   if (!response.ok) throw new Error('对比数据读取失败：HTTP ' + response.status);

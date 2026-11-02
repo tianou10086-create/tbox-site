@@ -48,5 +48,48 @@
       "auto_renew": false,
       "online_purchasing_open": false
     }
+  ],
+  "official_price_fact_table_ready": true,
+  "official_fact_approval_ref": "I-final-20261103-0404",
+  "official_reference_rows": [
+    {
+      "label": "官方样本 A",
+      "review_id": "official_A",
+      "price_cny": 79.9,
+      "quantity": 10,
+      "unit": "使用小时",
+      "sku": "10小时使用时长",
+      "model_terms": "时长与解答额度分开；自备模型费用另付。部分托管模型另扣解答额度。",
+      "conditions": "官网默认档位，最终以客户端为准；有效期本轮未核。",
+      "source_url": "https://iwsite.minitk.vip/",
+      "observed_at": "2026-11-03",
+      "public_fact_table_allowed": true
+    },
+    {
+      "label": "官方样本 B",
+      "review_id": "official_D",
+      "price_cny": 99,
+      "quantity": 5,
+      "unit": "使用小时",
+      "sku": "5小时包",
+      "model_terms": "实时面试模型与检索包含；准备功能另计积分。",
+      "conditions": "官网促销现价，未算邀请优惠；小时包永久有效，附500 AI积分。",
+      "source_url": "https://askcc.com.cn/pricing",
+      "observed_at": "2026-11-03",
+      "public_fact_table_allowed": true
+    },
+    {
+      "label": "官方样本 C",
+      "review_id": "official_C",
+      "price_cny": 129.9,
+      "quantity": 300,
+      "unit": "面试分钟",
+      "sku": "面试时长300分钟",
+      "model_terms": "面试、笔试、模拟分别购买；默认笔试模型与高阶模型不同，语音模型费用范围未全核。",
+      "conditions": "官网按量套餐标永久有效；不能并入笔试、模拟额度。",
+      "source_url": "https://offergo.site/pricing",
+      "observed_at": "2026-11-03",
+      "public_fact_table_allowed": true
+    }
   ]
 }

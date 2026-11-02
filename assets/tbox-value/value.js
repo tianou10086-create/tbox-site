@@ -1,4 +1,4 @@
-import { renderOwnPrices, renderComparison } from './comparison.js';
+import { renderOwnPrices, renderComparison, renderOfficialFacts } from './comparison.js';
 
 const own = document.getElementById('value-own-prices');
 const comparison = document.getElementById('value-comparison');
@@ -8,6 +8,13 @@ try {
   const data = await response.json();
   renderOwnPrices(own, data);
   renderComparison(comparison, data);
+  const officialRows = renderOfficialFacts(document.getElementById('official-price-facts'), data);
+  document.getElementById('price-reference').hidden = officialRows === 0;
+  if (officialRows && location.hash === '#price-reference') {
+    const revealReference = () => document.getElementById('price-reference').scrollIntoView({behavior:'instant'});
+    if (document.readyState === 'complete') revealReference();
+    else window.addEventListener('load', revealReference, {once:true});
+  }
   // Do not keep displaying a fixed-price campaign image after its data changes.
   const imageMatchesApprovedPrice = data.own_price_public_copy_ready === true &&
     data.public_sale_ready === false && data.own_prices.some(p =>
