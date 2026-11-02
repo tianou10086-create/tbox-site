@@ -352,3 +352,11 @@ body.design-upgrade .buy-page > .section-head { margin-bottom: 40px; }
   body.design-upgrade .visual-caption { flex-wrap: wrap; gap: 4px; }
   body.design-upgrade .promo-section { padding-block: 24px 40px; }
 }
+
+/* Bundled title glyphs: OFL-1.1, subset source recorded with the release. */
+@font-face { font-family: "TBox Editorial"; src: url("fonts/tbox-editorial-600.woff2") format("woff2"); font-style: normal; font-weight: 600; font-display: swap; }
+:root { --font-display: "TBox Editorial", "Noto Serif SC", "Source Han Serif SC", "Songti SC", SimSun, Georgia, serif; }
+
+/* Keep the embedded film legible instead of shrinking all its copy. */
+body.design-upgrade .promo-section iframe { height:560px; aspect-ratio:auto!important; border:1px solid var(--stroke)!important; }
+@media(max-width:720px) { body.design-upgrade .promo-section iframe { height:760px; } }
