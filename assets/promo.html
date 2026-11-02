@@ -37,29 +37,68 @@ body::before{content:"";position:absolute;inset:-20%;background:radial-gradient(
 @keyframes breathe{0%,100%{opacity:1}50%{opacity:.3}}@keyframes wave{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}@keyframes rule{0%,100%{transform:scaleX(.15);opacity:.5}50%{transform:scaleX(1);opacity:1}}@keyframes logo{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-.6cqw,0) scale(1.025)}}
 @container(max-width:480px){.panel header{font-size:.95cqw}.panel .star-row p{font-size:1cqw}.panel .star-row small{font-size:.8cqw}.panel .star-row b{font-size:1.15cqw}.panel-foot{font-size:.8cqw}.timeline .steps{margin-top:2cqw}.timeline .step{padding-top:.8cqw}.timeline .step b{font-size:2cqw}.timeline .step p{font-size:1.6cqw;line-height:1.6;margin:.5cqw 0}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.scene,.panel{display:none!important}.reduced-summary{display:block}.parallax{transform:none!important}.grid{opacity:.45}.scan{opacity:.25}}
+/* Editorial film: readable type, restrained surface, same seven-scene timeline. */
+@font-face{font-family:"TBox Editorial";src:url("fonts/tbox-editorial-600.woff2") format("woff2");font-style:normal;font-weight:600;font-display:swap}
+:root{color-scheme:light;--promo-bg:#FAF9F6;--surface:#FFFFFF;--raised:#F0EDE6;--text:#292923;--muted:#595A52;--mint:#923427;--line:#CBC7BC}
+html,body{font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+body::before,.film::after,.grid,.scan,.orbit,.rule::after{display:none}
+.hud{font:400 12px/1.5 "Segoe UI","Microsoft YaHei",sans-serif;letter-spacing:0}
+.topbar{left:32px;right:32px;top:24px}.brand{gap:8px}.brand strong{font-size:14px;letter-spacing:0}.badge{width:24px;height:24px;border-radius:3px;background:transparent}
+.top-meta{gap:16px}.rule{left:32px;right:32px;top:68px;background:var(--line)}
+.footer{left:32px;right:32px;bottom:18px}.footer-note{gap:16px}.dot{animation:none}
+.chapters{left:32px;right:32px;bottom:52px;gap:16px}.chapter{gap:8px;padding-top:8px}
+.copy,.timeline .copy,.assist .copy{left:32px;top:108px;width:45%}
+.kicker,.type{font:600 12px/1.5 "Segoe UI","Microsoft YaHei",sans-serif;letter-spacing:.04em;margin:0 0 14px}
+.headline,.structure-title,.assist .headline{font-family:"TBox Editorial","Noto Serif SC","Source Han Serif SC","Songti SC",SimSun,serif;font-size:clamp(28px,4cqw,38px);line-height:1.5;letter-spacing:0;font-weight:600}
+.support{font-size:15px;line-height:1.7;margin-top:16px}.cursor{display:none}
+.listen-card,.panel{right:32px;top:112px;width:38%;padding:14px;border-radius:4px;background:var(--surface);box-shadow:none;transform:none!important}
+.listen-card header,.panel header{font:600 12px/1.5 "Segoe UI","Microsoft YaHei",sans-serif;gap:8px}.listen-card p{font-size:16px;line-height:1.6;margin-top:16px}.listen-card small{font-size:14px;line-height:1.6}.wave{height:44px;margin-top:18px;gap:5px}
+.panel header{padding-bottom:8px}.star-row{gap:10px;padding:4px 8px;margin-top:6px;border-radius:2px;background:var(--promo-bg)}.star-row>i{background:transparent}.star-row b{flex-shrink:0;width:24px;height:24px;border:0;font:600 14px/1.5 "Segoe UI",sans-serif}.star-row p{font-size:14px;line-height:1.35}.star-row small{font-size:12px;line-height:1.35}.panel-foot{font:400 12px/1.5 "Segoe UI","Microsoft YaHei",sans-serif;margin-top:8px}
+.caption{left:32px;right:32px;bottom:104px;margin:0;font-size:14px;line-height:1.6;color:var(--muted)}
+.steps{gap:12px;margin-top:20px}.step{padding-top:12px}.step b{font-size:16px;line-height:1.5}.step p{font-size:14px;line-height:1.7;margin:8px 0}.track{height:1px}
+.closing .copy{left:32px;top:120px;width:65%}.closing .headline{font-size:68px;line-height:1.4;letter-spacing:0}.closing .support{font-size:24px;line-height:1.6}
+.logo-gem{right:12%;top:33%;width:104px;border-radius:4px;background:var(--surface);box-shadow:none;animation:none}.logo-gem>i{width:38px;height:48px}
+.reduced-summary{left:32px;right:32px;top:108px;bottom:100px}.reduced-summary h1{font-family:"TBox Editorial",SimSun,serif;font-weight:600;font-size:30px;line-height:1.5;margin:0 0 18px}.summary-grid{gap:16px}.summary-grid article{padding:14px;border-radius:3px;background:var(--surface)}.summary-grid h2{font-size:17px;line-height:1.5}.summary-grid p{font-size:14px;line-height:1.7;margin:8px 0 0}.reduced-summary>p{font-size:14px;line-height:1.7;margin:16px 0 0}
+@container(max-width:640px){
+ .topbar{left:20px;right:20px;top:20px}.brand>span:last-child{display:none}.top-meta{gap:0}.top-meta span:last-child{display:none}.rule{left:20px;right:20px;top:60px}
+ .copy,.timeline .copy,.assist .copy,.closing .copy{left:20px;right:20px;top:88px;width:auto}
+ .headline,.structure-title,.assist .headline{font-size:28px;line-height:1.5}.support{font-size:14px;line-height:1.7;margin-top:12px}
+ .listen-card,.panel{left:20px;right:20px;top:310px;width:auto;transform:none!important}.listen-card{top:330px}
+ .panel header{font-size:12px}.panel .star-row p{font-size:14px}.panel .star-row small{font-size:12px}.panel .star-row b{font-size:14px}.panel-foot{font-size:12px}
+ .timeline .steps{margin-top:16px;gap:8px}.timeline .step{padding-top:8px}.timeline .step b{font-size:14px}.timeline .step p{font-size:14px;line-height:1.7;margin:6px 0}
+ .caption{left:20px;right:20px;bottom:112px;font-size:14px;line-height:1.6}
+ .chapters{left:20px;right:20px;bottom:54px;gap:8px}.chapter{gap:5px;padding-top:8px}
+ .footer{left:20px;right:20px;bottom:18px;gap:12px}.footer-note>span:last-child{display:none}.live{white-space:nowrap}
+ .closing .headline{font-size:52px}.closing .support{font-size:24px}.logo-gem{top:310px;left:20px;right:auto;width:88px}
+ .reduced-summary{left:20px;right:20px;top:88px;bottom:104px;overflow:auto}.reduced-summary h1{font-size:26px;line-height:1.5;margin-bottom:16px}.summary-grid{grid-template-columns:1fr;gap:10px}.summary-grid article{padding:12px}.summary-grid h2{font-size:17px}.summary-grid p{font-size:14px;margin-top:6px}.reduced-summary>p{font-size:12px;line-height:1.6;margin-top:12px}
+}
+
+
+/* Keep the written story available to assistive technology during playback. */
+@media(prefers-reduced-motion:no-preference){.reduced-summary{display:block;left:0;top:0;right:auto;bottom:auto;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
 </style>
 </head>
 <body>
 <main class="film" aria-label="T-Box 产品故事，45 秒循环；下方提供文字摘要">
  <div class="parallax" aria-hidden="true"><div class="grid"></div><div class="scan"></div><div class="orbit"></div></div>
  <div class="hud">
-  <div class="topbar"><div class="brand"><span class="badge">T</span><strong>T-BOX</strong><span>PRODUCT FILM</span></div><div class="top-meta"><span>WINDOWS 10 / 11</span><span>MIC + LOOPBACK</span></div></div>
+  <div class="topbar"><div class="brand"><span class="badge">T</span><strong>T-BOX</strong><span>产品短片</span></div><div class="top-meta"><span>WINDOWS 10 / 11</span><span>麦克风 + 系统音频</span></div></div>
   <div class="rule" aria-hidden="true"></div>
-  <div class="chapters"><div class="chapter"><b>01</b><span>LISTEN / 听见</span></div><div class="chapter"><b>02</b><span>STRUCTURE / 理清</span></div><div class="chapter"><b>03</b><span>EXPRESS / 表达</span></div><div class="chapter"><b>04</b><span>T-BOX / 准备</span></div></div>
-  <div class="footer"><div class="footer-note"><span>产品分镜示意 · 非实时结果</span><span>把经历讲清楚</span></div><div class="live"><i class="dot" aria-hidden="true"></i><span>45S / LOOP</span></div></div>
+  <div class="chapters"><div class="chapter"><b>01</b><span>听见</span></div><div class="chapter"><b>02</b><span>理清</span></div><div class="chapter"><b>03</b><span>表达</span></div><div class="chapter"><b>04</b><span>准备</span></div></div>
+  <div class="footer"><div class="footer-note"><span>产品分镜示意 · 非实时结果</span><span>把经历讲清楚</span></div><div class="live"><i class="dot" aria-hidden="true"></i><span>45秒循环</span></div></div>
  </div>
  <section class="scene opening" aria-hidden="true">
   <div class="copy"><div class="type" id="type"></div><h2 class="headline"><span class="crop"><span>听见问题。</span></span><span class="crop"><span><em>理清思路。</em><i class="cursor"></i></span></span></h2><p class="support">捕捉声音，也保持你的注意力。</p></div>
-  <div class="listen-card"><header><span>INPUT / AUDIO</span><span>● LISTENING</span></header><div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p>正在听取问题<small>麦克风 + 系统音频</small></p></div>
+  <div class="listen-card"><header><span>音频输入</span><span>收音中</span></header><div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p>正在听取问题<small>麦克风 + 系统音频</small></p></div>
  </section>
  <section class="scene question" aria-hidden="true"><div class="copy"><p class="kicker">02 / QUESTION</p><h1 class="headline"><span class="crop"><span>面试官问了一个</span></span><span class="crop"><span><em>你没准备的问题。</em><i class="cursor"></i></span></span></h1></div><p class="caption">面试官问了一个你没准备的问题。</p></section>
- <section class="scene answer" aria-hidden="true"><div class="copy"><p class="kicker">03 / ANSWER</p><h2 class="headline"><span class="crop"><span>让经历，变成</span></span><span class="crop"><span><em>有结构的回答。</em></span></span></h2><p class="support">先给结论，再补充背景和行动。</p></div><p class="caption">3 秒后，结构化的答案出现在手边。</p></section>
+ <section class="scene answer" aria-hidden="true"><div class="copy"><p class="kicker">03 / ANSWER</p><h2 class="headline"><span class="crop"><span>让经历，变成</span></span><span class="crop"><span><em>有结构的回答。</em></span></span></h2><p class="support">先给结论，再补充背景和行动。</p></div><p class="caption">把问题整理成回答参考，再补充自己的细节。</p></section>
  <section class="scene structure" aria-hidden="true"><div class="copy"><p class="kicker">04 / STRUCTURE</p><h2 class="headline structure-title">不是一整段话。<br><em>是四个落点。</em></h2><p class="support">背景、目标、行动、结果。<br>保留你自己的经历和判断。</p></div><p class="caption">STAR 结构 · 关键数据 · 追问预案</p></section>
- <aside class="panel" aria-hidden="true"><header><span>T-BOX / 回答提示</span><b>● READY</b></header><div class="star-row"><i></i><b>S</b><p>背景<small>先交代当时的问题</small></p></div><div class="star-row"><i></i><b>T</b><p>目标<small>说清自己承担的任务</small></p></div><div class="star-row"><i></i><b>A</b><p>行动<small>讲出关键决策与步骤</small></p></div><div class="star-row"><i></i><b>R</b><p>结果<small>用真实数据回应影响</small></p></div><div class="panel-foot"><span>关键数据</span><span>追问预案 →</span></div></aside>
+ <aside class="panel" aria-hidden="true"><header><span>T-BOX / 回答提示</span><b>参考结构</b></header><div class="star-row"><i></i><b>S</b><p>背景<small>先交代当时的问题</small></p></div><div class="star-row"><i></i><b>T</b><p>目标<small>说清自己承担的任务</small></p></div><div class="star-row"><i></i><b>A</b><p>行动<small>讲出关键决策与步骤</small></p></div><div class="star-row"><i></i><b>R</b><p>结果<small>用真实数据回应影响</small></p></div><div class="panel-foot"><span>关键数据</span><span>追问预案 →</span></div></aside>
  <section class="scene timeline" aria-hidden="true"><div class="copy"><p class="kicker">05 / TIMELINE</p><h2 class="headline structure-title">一步一步，<br><em>讲得更清楚。</em></h2><div class="steps"><i class="track"></i><div class="step"><b>01 背景</b><p>当时遇到了<br>什么问题？</p></div><div class="step"><b>02 动作</b><p>你做了哪些<br>关键决策？</p></div><div class="step"><b>03 结果</b><p>落到真实的<br>结果和影响。</p></div></div></div><p class="caption">先说背景，再说动作，最后落到结果。</p></section>
  <section class="scene assist" aria-hidden="true"><div class="copy"><p class="kicker">06 / ASSIST</p><h2 class="headline"><span class="crop"><span>它不替你回答，</span></span><span class="crop"><span><em>只帮你想清楚。</em></span></span></h2><p class="support">想清楚，再用自己的话表达。</p></div><p class="caption">它不替你回答，只帮你想清楚。</p></section>
  <section class="scene closing" aria-hidden="true"><div class="copy"><p class="kicker">07 / READY</p><h2 class="headline">T-Box</h2><p class="support">把经历讲清楚</p></div><div class="logo-gem"><i></i></div><p class="caption">T-Box · 把经历讲清楚</p></section>
- <section class="reduced-summary" aria-label="产品故事文字摘要"><h1>T-Box · 把经历讲清楚</h1><div class="summary-grid"><article><h2>01 听见问题</h2><p>面试官问了一个你没准备的问题。麦克风与系统音频捕捉声音。</p></article><article><h2>02 理清结构</h2><p>分镜：3 秒后，结构化的答案出现在手边。STAR 结构 · 关键数据 · 追问预案。</p></article><article><h2>03 自己表达</h2><p>先说背景，再说动作，最后落到结果。它不替你回答，只帮你想清楚。</p></article></div><p>已按系统设置关闭循环动效。背景 / 目标 / 行动 / 结果，完整故事保留在此。</p></section>
+ <section class="reduced-summary" aria-label="产品故事文字摘要"><h1>T-Box · 把经历讲清楚</h1><div class="summary-grid"><article><h2>01 听见问题</h2><p>面试官问了一个你没准备的问题。麦克风与系统音频捕捉声音。</p></article><article><h2>02 理清结构</h2><p>回答提示仅作分镜示意，请结合自己的真实经历。STAR 结构 · 关键数据 · 追问预案。</p></article><article><h2>03 自己表达</h2><p>先说背景，再说动作，最后落到结果。它不替你回答，只帮你想清楚。</p></article></div><p>已按系统设置关闭循环动效。背景 / 目标 / 行动 / 结果，完整故事保留在此。</p></section>
 </main>
 <script>
 (()=>{

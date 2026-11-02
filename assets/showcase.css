@@ -1,0 +1,117 @@
+/* T-Box showcase. Original CSS informed by ScrewFast's product-first hierarchy.
+   No third-party runtime, images or fonts are imported. */
+body.editorial-showcase .nav { min-height:76px; background:#faf9f6; }
+body.editorial-showcase .brand { font-size:24px; }
+body.editorial-showcase .navlinks { gap:28px; }
+body.editorial-showcase main.wrap { max-width:1240px; }
+body.editorial-showcase .hero { display:flex; flex-direction:column; align-items:center; gap:36px; padding:60px 0 36px; position:relative; }
+body.editorial-showcase .hero-copy { width:min(100%,960px); text-align:center; }
+body.editorial-showcase .eyebrow { display:inline-flex; gap:12px; align-items:center; margin:0 0 20px; font-size:14px; letter-spacing:.12em; }
+body.editorial-showcase .eyebrow::before { display:block; content:""; width:28px; height:1px; background:currentColor; }
+body.editorial-showcase .hero h1 { font-size:clamp(38px,4.15vw,60px); line-height:1.35; letter-spacing:-.025em; margin:0; text-wrap:balance; }
+body.editorial-showcase .hero h1 em { color:#923427; }
+body.editorial-showcase .hero .lead { max-width:650px; margin:22px auto 0; font-size:18px; line-height:1.8; }
+body.editorial-showcase .hero .actions { display:flex; justify-content:center; gap:12px; margin-top:26px; }
+body.editorial-showcase .hero .actions .btn { min-width:154px; padding:12px 24px; font-size:15px; border-radius:5px; min-height:50px; }
+body.editorial-showcase .hero .actions .btn.primary { background:#292923; border-color:#292923; color:#fff; }
+body.editorial-showcase .hero .actions .btn.primary:hover { background:#923427; border-color:#923427; }
+body.editorial-showcase .hero .actions .btn:not(.primary) { border-color:#7f8176; background:transparent; }
+body.editorial-showcase .hero-meta { margin:16px 0 0; font-size:14px; color:#595a52; }
+body.editorial-showcase .hero-preview { position:relative; width:min(100%,960px); margin:8px auto 0; padding:20px 24px 0; isolation:isolate; }
+body.editorial-showcase .hero-preview::before { content:""; position:absolute; z-index:-1; inset:0 -36px 42px; background:#eee7dd; border-radius:10px; }
+body.editorial-showcase .hero-preview::after { content:""; position:absolute; z-index:-1; left:-36px; top:0; width:6px; height:72px; background:#9e392c; border-radius:4px 0 0 0; }
+body.editorial-showcase .hero .hero-preview .hero-card,
+body.editorial-showcase .hero .hero-preview .hero-card:hover { background:#fff; border:1px solid #bcb8ae; border-radius:7px; box-shadow:0 18px 40px #29292312; transform:none; padding:0 26px; }
+body.editorial-showcase .visual-titlebar { margin:0 -26px 0; padding:12px 20px; border-radius:6px 6px 0 0; background:#f3f1ec; }
+body.editorial-showcase .visual-titlebar i { width:7px; height:7px; background:#8b887e; }
+body.editorial-showcase .visual-heading { padding:16px 0 12px; font-size:14px; }
+body.editorial-showcase .visual-stage { display:grid; grid-template-columns:1.2fr 1fr; align-items:stretch; gap:24px; padding-top:18px; padding-bottom:18px; min-height:0; }
+body.editorial-showcase .visual-document { display:flex; flex-direction:column; padding:16px; background:#faf9f6; border:1px solid #deded5; border-radius:3px; }
+body.editorial-showcase .visual-type { font-size:14px; color:#923427; }
+body.editorial-showcase .visual-document strong { font-size:16px; margin-top:10px; }
+body.editorial-showcase .visual-options { display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
+body.editorial-showcase .visual-options span { padding:5px 9px; font-size:14px; line-height:1.6; }
+body.editorial-showcase .visual-options span.selected { background:#f4e7df; }
+body.editorial-showcase .visual-answer { display:flex; align-items:center; margin:0; padding:24px; background:#f4eee4; border:0; border-left:2px solid #9e392c; color:#292923; font:500 22px/1.7 var(--font-family); text-align:left; }
+body.editorial-showcase .visual-caption { padding:12px 0; font-size:14px; border-top:1px solid #deded5; }
+body.editorial-showcase .visual-note { font-size:14px; margin-top:12px; color:#595a52; }
+body.editorial-showcase .hero-facts { width:min(100%,960px); margin:0; padding:22px 0 0; grid-template-columns:repeat(3,1fr); gap:0; text-align:left; }
+body.editorial-showcase .hero-facts li { padding:0 28px; }
+body.editorial-showcase .hero-facts li>div { display:flex; gap:14px; align-items:baseline; }
+body.editorial-showcase .hero-facts strong { font-size:18px; white-space:nowrap; }
+body.editorial-showcase .hero-facts span { font-size:14px; }
+body.editorial-showcase .section { padding-block:80px; }
+body.editorial-showcase .section-head { margin-bottom:36px; }
+body.editorial-showcase .section-head h2 { max-width:720px; font-size:clamp(26px,2.8vw,38px); line-height:1.45; font-weight:600; }
+body.editorial-showcase .section-head>p { padding-top:32px; font-size:15px; line-height:1.9; }
+body.editorial-showcase .section-kicker { font-size:14px; letter-spacing:.1em; }
+body.editorial-showcase .promo-section { padding:48px 0 72px; border-top:0; }
+body.editorial-showcase .compact-section .cards { gap:0; }
+body.editorial-showcase .compact-section .cards>.card,
+body.editorial-showcase .compact-section .cards>.card:first-child { padding:0 28px 8px; border:0; border-left:1px solid #deded5; border-radius:0; background:transparent; }
+body.editorial-showcase .compact-section .cards>.card:first-child { padding-left:0; border-left:0; }
+body.editorial-showcase .compact-section .cards>.card:last-child { padding-right:0; }
+body.editorial-showcase .card-number { font-size:14px; margin-bottom:30px; }
+body.editorial-showcase .card h3,body.editorial-showcase .panel h3 { font-size:21px; line-height:1.5; }
+body.editorial-showcase .card p,body.editorial-showcase .panel p { font-size:15px; line-height:1.9; }
+body.editorial-showcase .capability-bento { gap:1px; background:#d9d4ca; border:1px solid #d9d4ca; border-radius:6px; overflow:hidden; }
+body.editorial-showcase .capability-bento>.panel { padding:32px; background:#f4f1eb; border:0; border-radius:0; }
+body.editorial-showcase .capability-bento>.panel:nth-child(2),body.editorial-showcase .capability-bento>.panel:nth-child(3) { background:#faf9f6; }
+body.editorial-showcase .capability-bento h3 { margin-top:14px; }
+body.editorial-showcase .pricing { gap:20px; }
+body.editorial-showcase .pricing .price { padding:32px; border:1px solid #d9d4ca; border-radius:6px; background:#fff; }
+body.editorial-showcase .pricing .price.recommended { border:1px solid #923427; background:#f7eee7; }
+body.editorial-showcase .price .amount { font-size:44px; line-height:1.2; letter-spacing:-.04em; }
+body.editorial-showcase .table-panel { border-radius:5px; border:1px solid #d9d4ca; }
+body.editorial-showcase .table th,body.editorial-showcase .table td { padding:20px; }
+body.editorial-showcase .footer { background:#ede9e0; padding-block:48px 24px; }
+@media(max-width:980px) {
+ body.editorial-showcase .hero { padding-top:48px; }
+ body.editorial-showcase .hero h1 { font-size:48px; }
+ body.editorial-showcase .hero-preview { width:100%; padding:16px 16px 0; }
+ body.editorial-showcase .hero-preview::before { inset:0 0 42px; }
+ body.editorial-showcase .hero-preview::after { left:0; }
+ body.editorial-showcase .hero-facts li { padding-inline:16px; }
+ body.editorial-showcase .hero-facts li>div { display:block; }
+ body.editorial-showcase .section-head>p { padding-top:0; }
+}
+@media(max-width:640px) {
+ body.editorial-showcase .nav { gap:10px; padding:16px 20px; }
+ body.editorial-showcase .navlinks { gap:16px; }
+ body.editorial-showcase .hero { gap:28px; padding:36px 0 28px; }
+ body.editorial-showcase .hero h1 { font-size:32px; line-height:1.5; letter-spacing:0; }
+ body.editorial-showcase .eyebrow { font-size:14px; margin-bottom:16px; letter-spacing:.04em; }
+ body.editorial-showcase .hero .lead { font-size:16px; line-height:1.9; margin-top:18px; }
+ body.editorial-showcase .hero .actions { flex-direction:column; margin-top:22px; }
+ body.editorial-showcase .hero .actions .btn { width:100%; min-height:48px; }
+ body.editorial-showcase .hero-meta { font-size:14px; line-height:1.7; }
+ body.editorial-showcase .hero-preview { padding:12px 10px 0; }
+ body.editorial-showcase .hero .hero-preview .hero-card,body.editorial-showcase .hero .hero-preview .hero-card:hover { padding:0 14px; box-shadow:0 10px 18px #2929230c; }
+ body.editorial-showcase .visual-titlebar { margin-inline:-14px; padding:10px 14px; }
+ body.editorial-showcase .visual-stage { grid-template-columns:1fr; gap:12px; padding-block:14px; }
+ body.editorial-showcase .visual-document { padding:12px; }
+ body.editorial-showcase .visual-document strong { font-size:15px; }
+ body.editorial-showcase .visual-answer { padding:16px; font-size:18px; line-height:1.7; }
+ body.editorial-showcase .visual-caption { font-size:14px; gap:4px; }
+ body.editorial-showcase .hero-facts { grid-template-columns:1fr; padding-top:18px; gap:10px; }
+ body.editorial-showcase .hero-facts li,body.editorial-showcase .hero-facts li:first-child { padding:0; border:0; }
+ body.editorial-showcase .hero-facts li>div { display:flex; gap:14px; }
+ body.editorial-showcase .hero-facts strong { min-width:88px; font-size:16px; }
+ body.editorial-showcase .section { padding-block:48px; }
+ body.editorial-showcase .section-head { gap:16px; margin-bottom:26px; }
+ body.editorial-showcase .section-head h2 { font-size:27px; }
+ body.editorial-showcase .promo-section { padding:24px 0 48px; }
+ body.editorial-showcase .compact-section .cards { gap:24px; }
+ body.editorial-showcase .compact-section .cards>.card,body.editorial-showcase .compact-section .cards>.card:first-child,body.editorial-showcase .compact-section .cards>.card:last-child { padding:0 0 24px; border:0; border-bottom:1px solid #deded5; }
+ body.editorial-showcase .card-number { margin-bottom:14px; }
+ body.editorial-showcase .capability-bento { grid-template-columns:1fr; gap:1px; }
+ body.editorial-showcase .capability-bento>.panel { padding:24px 20px; }
+ body.editorial-showcase .pricing .price { padding:26px 22px; }
+ body.editorial-showcase .table th,body.editorial-showcase .table td { padding:14px; }
+}
+/* Clear inherited small-screen mock heights; keep the preview content-led. */
+body.editorial-showcase .hero-meta { justify-content:center; text-align:center; max-width:none; margin-inline:auto; }
+body.editorial-showcase .visual-document { min-height:0; }
+body.editorial-showcase .visual-answer { min-height:0; }
+
+@media(max-width:1040px) { body.editorial-showcase .hero-preview::before { inset:0 0 42px; } body.editorial-showcase .hero-preview::after { left:0; } }
