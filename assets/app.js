@@ -14,7 +14,13 @@
   }
 
   /** 在元素旁边给一句友好说明，不打断浏览 */
-  function notify(el, text) {
+  function notify(el, text, success) {
+    if (success && document.querySelector('.site-toast')) {
+      var previous = el.nextElementSibling;
+      if (previous && previous.classList.contains('link-note')) previous.remove();
+      document.dispatchEvent(new CustomEvent('tbox:copied', { detail: text }));
+      return;
+    }
     if (!el) return;
     var tip = el.nextElementSibling;
     if (!tip || !tip.classList.contains('link-note')) {
@@ -83,7 +89,7 @@
     button.addEventListener('click', function () {
       var group = c.QQ_SUPPORT_GROUP || button.getAttribute('data-copy-qq') || '';
       if (!group) return;
-      var done = function () { notify(button, 'QQ群号已复制：' + group); };
+      var done = function () { notify(button, 'QQ群号已复制：' + group, true); };
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(group).then(done).catch(function () { notify(button, '复制未成功，请手动复制群号：' + group); });
       } else {
