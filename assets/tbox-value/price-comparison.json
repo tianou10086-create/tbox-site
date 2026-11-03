@@ -53,7 +53,7 @@
   "official_fact_approval_ref": "I-final-20261103-0404",
   "official_reference_rows": [
     {
-      "label": "官方样本 A",
+      "label": "面试答题助手",
       "review_id": "official_A",
       "price_cny": 79.9,
       "quantity": 10,
@@ -63,10 +63,11 @@
       "conditions": "官网默认档位，最终以客户端为准；有效期本轮未核。",
       "source_url": "https://iwsite.minitk.vip/",
       "observed_at": "2026-11-03",
-      "public_fact_table_allowed": true
+      "public_fact_table_allowed": true,
+      "public_summary": "自备模型费用另付；时长与解答额度分别计费。"
     },
     {
-      "label": "官方样本 B",
+      "label": "实时面试助手",
       "review_id": "official_D",
       "price_cny": 99,
       "quantity": 5,
@@ -76,10 +77,11 @@
       "conditions": "官网促销现价，未算邀请优惠；小时包永久有效，附500 AI积分。",
       "source_url": "https://askcc.com.cn/pricing",
       "observed_at": "2026-11-03",
-      "public_fact_table_allowed": true
+      "public_fact_table_allowed": true,
+      "public_summary": "实时模型包含；准备功能另计积分。"
     },
     {
-      "label": "官方样本 C",
+      "label": "面试时长包",
       "review_id": "official_C",
       "price_cny": 129.9,
       "quantity": 300,
@@ -89,7 +91,8 @@
       "conditions": "官网按量套餐标永久有效；不能并入笔试、模拟额度。",
       "source_url": "https://offergo.site/pricing",
       "observed_at": "2026-11-03",
-      "public_fact_table_allowed": true
+      "public_fact_table_allowed": true,
+      "public_summary": "面试时长套餐；模型计费范围请查看来源页。"
     }
   ]
 }

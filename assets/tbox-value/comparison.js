@@ -84,8 +84,8 @@ export function renderOfficialFacts(root, data) {
   for(const row of rows) {
     const article=create('article','');
     article.append(create('h3',row.label+'｜¥'+row.price_cny+' / '+row.quantity+row.unit));
-    article.append(create('p',row.model_terms));
-    article.append(create('p',row.conditions));
+    article.append(create('p',row.public_summary || row.model_terms));
+    const terms=create('details','');terms.append(create('summary','套餐说明'),create('p',row.model_terms+' '+row.conditions));article.append(terms);
     const source=create('a','原始来源 · '+row.observed_at);
     source.href=row.source_url;source.target='_blank';source.rel='noopener noreferrer';
     article.append(source);list.append(article);

@@ -1,4 +1,4 @@
-import { renderOwnPrices, renderComparison, renderOfficialFacts } from './comparison.js';
+import { renderOwnPrices, renderComparison, renderOfficialFacts } from './comparison.js?v=20261103-v5';
 
 const own = document.getElementById('value-own-prices');
 const comparison = document.getElementById('value-comparison');
