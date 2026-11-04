@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "brand": "TBOX",
+  "as_of": "2026-11-04",
+  "status": "candidate_disabled",
+  "model_fee_included": true,
+  "purchasing_open": false,
+  "auto_renew": false,
+  "legacy_entitlements_changed": false,
+  "legacy_catalog": "price-comparison.json",
+  "domestic": [
+    {
+      "id": "tbox_included_7",
+      "name": "体验包",
+      "name_en": "Try",
+      "cny": 29.9,
+      "days": 7,
+      "minutes": 30,
+      "answers": 30,
+      "vision": 5,
+      "state": "candidate_disabled",
+      "included_model": true,
+      "auto_renew": false,
+      "purchasing_open": false
+    },
+    {
+      "id": "tbox_included_30",
+      "name": "月包",
+      "name_en": "Month",
+      "cny": 79,
+      "days": 30,
+      "minutes": 120,
+      "answers": 150,
+      "vision": 30,
+      "state": "candidate_disabled",
+      "included_model": true,
+      "auto_renew": false,
+      "purchasing_open": false
+    },
+    {
+      "id": "tbox_included_90",
+      "name": "季包",
+      "name_en": "Season",
+      "cny": 149,
+      "days": 90,
+      "minutes": 360,
+      "answers": 500,
+      "vision": 100,
+      "state": "candidate_disabled",
+      "included_model": true,
+      "auto_renew": false,
+      "purchasing_open": false
+    }
+  ],
+  "international": [
+    {
+      "id": "tbox_intl_included_30",
+      "currency": "USD",
+      "price": 19.99,
+      "days": 30,
+      "minutes": 120,
+      "answers": 150,
+      "vision": 30,
+      "included_model": true,
+      "purchasing_open": false,
+      "state": "region_and_checkout_unverified",
+      "auto_renew": false
+    }
+  ],
+  "usage_contract": {
+    "minutes": "session_minutes_including_two_audio_tracks",
+    "answer_input_token_limit": 4000,
+    "answer_total_output_token_limit": 1000,
+    "vision_input_token_limit": 12000,
+    "vision_total_output_token_limit": 1500,
+    "thinking_tokens_included_in_output_limit": true,
+    "overage": "pause_without_automatic_charge",
+    "automatic_renewal": false,
+    "trial": "existing_3_running_hours_unchanged_not_cloud_credit"
+  }
+}

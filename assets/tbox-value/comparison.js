@@ -27,7 +27,7 @@ export function renderComparison(root, data) {
   const table = element('table', '');
   table.append(element('caption', '价格为采集日期的记录，不代表当前成交价；以实际订单页为准。'));
   const head = element('thead', ''); const tr = element('tr', '');
-  for (const name of ['比较项目', 'T-Box', '对比价格', '适用条件', '来源']) tr.append(element('th', name));
+  for (const name of ['比较项目', 'TBOX', '对比价格', '适用条件', '来源']) tr.append(element('th', name));
   head.append(tr); table.append(head);
   const body = element('tbody', '');
   const currency = new Intl.NumberFormat('zh-CN', { style: 'currency', currency: 'CNY' });
@@ -57,7 +57,7 @@ export function renderOwnPrices(root, data) {
     const name = document.createElement('h3'); name.textContent = plan.name;
     const price = document.createElement('p'); price.className = 'tbox-own-price';
     price.textContent = '¥' + plan.price_cny + ' / ' + plan.validity_days + '个自然日';
-    const unit = document.createElement('p'); unit.textContent = '软件授权 · 不自动续费';
+    const unit = document.createElement('p'); unit.textContent = '旧版 BYOK 软件授权 · 不自动续费';
     article.append(name, price, unit); list.append(article);
   }
   const limits = document.createElement('p'); limits.className = 'tbox-own-limits';
@@ -77,7 +77,7 @@ export function renderOfficialFacts(root, data) {
   const own=create('article','');
   const plan=(data.own_prices || []).find(r=>r.id==='tbox_byok_season');
   if (plan) {
-    own.append(create('h3','T-Box｜¥'+plan.price_cny+' / '+plan.validity_days+'个自然日'));
+    own.append(create('h3','TBOX｜¥'+plan.price_cny+' / '+plan.validity_days+'个自然日'));
     own.append(create('p','软件授权；第三方模型费用另付。不自动续费，在线购买暂未开放。'));
     list.append(own);
   }

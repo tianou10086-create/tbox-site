@@ -66,7 +66,7 @@
   drawer.setAttribute('aria-labelledby', 'comparison-title');
   drawer.setAttribute('aria-describedby', 'comparison-note');
   drawer.setAttribute('aria-modal', 'false');
-  drawer.innerHTML = `<div class="drawer-head"><div><span class="eyebrow">PLAN COMPARISON</span><h2 id="comparison-title">按准备周期选方案</h2></div><button type="button" class="drawer-close" aria-label="关闭方案对比">×</button></div><p id="comparison-note">这是软件授权价格，不包含第三方模型调用额度。</p><div class="comparison-rows"></div><p class="drawer-notice">微信充值接入中，暂未开放在线购买。可先下载免费试用。</p><div class="drawer-actions"><a class="btn primary" href="download.html">先下载试用</a><a class="btn" href="pricing.html">查看完整权益</a><a href="buy.html">购买状态与历史订单 →</a></div><p class="drawer-hint">此面板不会锁定页面，可继续浏览对照。</p>`;
+  drawer.innerHTML = `<div class="drawer-head"><div><span class="eyebrow">PLAN COMPARISON</span><h2 id="comparison-title">按准备周期选方案</h2></div><button type="button" class="drawer-close" aria-label="关闭方案对比">×</button></div><p id="comparison-note">这是含模型总价候选；包含价格页列明的语音、回答与视觉额度，验证中暂未开售。</p><div class="comparison-rows"></div><p class="drawer-notice">微信充值接入中，暂未开放在线购买。可先下载免费试用。</p><div class="drawer-actions"><a class="btn primary" href="download.html">先下载试用</a><a class="btn" href="pricing.html">查看完整权益</a><a href="buy.html">购买状态与历史订单 →</a></div><p class="drawer-hint">此面板不会锁定页面，可继续浏览对照。</p>`;
   const rowContainer = drawer.querySelector('.comparison-rows');
   rows.forEach(({ label, price, term }) => {
     const row = document.createElement('div');

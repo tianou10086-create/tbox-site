@@ -1,4 +1,4 @@
-import { renderOwnPrices, renderComparison, renderOfficialFacts } from './comparison.js?v=20261103-v5';
+import { renderOwnPrices, renderComparison, renderOfficialFacts } from './comparison.js?v=20261104-included';
 
 const own = document.getElementById('value-own-prices');
 const comparison = document.getElementById('value-comparison');
@@ -15,13 +15,17 @@ try {
     if (document.readyState === 'complete') revealReference();
     else window.addEventListener('load', revealReference, {once:true});
   }
-  // Do not keep displaying a fixed-price campaign image after its data changes.
-  const imageMatchesApprovedPrice = data.own_price_public_copy_ready === true &&
-    data.public_sale_ready === false &&
-    [['tbox_byok_trial', 9.9, 7], ['tbox_byok_month', 29, 30], ['tbox_byok_season', 69, 90]]
-      .every(([id, price, days]) => data.own_prices.some(p =>
-        p.id === id && p.price_cny === price && p.validity_days === days &&
-        p.model_fee_included === false && p.auto_renew === false && p.online_purchasing_open === false));
+  // The image now depicts the NEW included-model catalog, never the legacy BYOK prices.
+  const offerResponse = await fetch(new URL('./model-inclusive.json', import.meta.url));
+  if (!offerResponse.ok) throw new Error('Offer data HTTP ' + offerResponse.status);
+  const offer = await offerResponse.json();
+  const imageMatchesApprovedPrice = offer.brand === 'TBOX' && offer.purchasing_open === false &&
+    offer.status === 'candidate_disabled' && offer.model_fee_included === true &&
+    [['tbox_included_7',29.9,7,30,30,5],['tbox_included_30',79,30,120,150,30],['tbox_included_90',149,90,360,500,100]]
+      .every(([id,price,days,minutes,answers,vision]) => offer.domestic.some(p =>
+        p.id === id && p.cny === price && p.days === days && p.minutes === minutes &&
+        p.answers === answers && p.vision === vision && p.included_model === true &&
+        p.auto_renew === false && p.purchasing_open === false));
   document.querySelector('[data-approved-promo]').hidden = !imageMatchesApprovedPrice;
 } catch (error) {
   own.textContent = '价格信息暂不可用，请查看价格与授权说明页。';
