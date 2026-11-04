@@ -17,9 +17,11 @@ try {
   }
   // Do not keep displaying a fixed-price campaign image after its data changes.
   const imageMatchesApprovedPrice = data.own_price_public_copy_ready === true &&
-    data.public_sale_ready === false && data.own_prices.some(p =>
-      p.id === 'tbox_byok_season' && p.price_cny === 69 && p.validity_days === 90 &&
-      p.model_fee_included === false && p.auto_renew === false && p.online_purchasing_open === false);
+    data.public_sale_ready === false &&
+    [['tbox_byok_trial', 9.9, 7], ['tbox_byok_month', 29, 30], ['tbox_byok_season', 69, 90]]
+      .every(([id, price, days]) => data.own_prices.some(p =>
+        p.id === id && p.price_cny === price && p.validity_days === days &&
+        p.model_fee_included === false && p.auto_renew === false && p.online_purchasing_open === false));
   document.querySelector('[data-approved-promo]').hidden = !imageMatchesApprovedPrice;
 } catch (error) {
   own.textContent = '价格信息暂不可用，请查看价格与授权说明页。';
