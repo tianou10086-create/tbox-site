@@ -20,8 +20,8 @@ try {
   if (!offerResponse.ok) throw new Error('Offer data HTTP ' + offerResponse.status);
   const offer = await offerResponse.json();
   const imageMatchesApprovedPrice = offer.brand === 'TBOX' && offer.purchasing_open === false &&
-    offer.status === 'candidate_disabled' && offer.model_fee_included === true &&
-    [['tbox_included_7',99,7,120,250,50],['tbox_included_30',299,30,600,1200,200],['tbox_included_90',699,90,1800,3600,600]]
+    offer.revision === 5 && offer.status === 'candidate_disabled' && offer.model_fee_included === true &&
+    [["tbox_value_trial_v5",49,7,180,300,50],["tbox_value_month_v5",149,30,720,1000,200],["tbox_value_quarter_v5",369,90,2160,3000,600]]
       .every(([id,price,days,minutes,answers,vision]) => offer.domestic.some(p =>
         p.id === id && p.cny === price && p.days === days && p.minutes === minutes &&
         p.answers === answers && p.vision === vision && p.included_model === true &&

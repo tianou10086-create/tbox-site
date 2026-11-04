@@ -10,13 +10,13 @@
   "legacy_catalog": "price-comparison.json",
   "domestic": [
     {
-      "id": "tbox_included_7",
-      "name": "冲刺包",
-      "name_en": "Sprint",
-      "cny": 99,
+      "id": "tbox_value_trial_v5",
+      "name": "体验包",
+      "name_en": "Try",
+      "cny": 49,
       "days": 7,
-      "minutes": 120,
-      "answers": 250,
+      "minutes": 180,
+      "answers": 300,
       "vision": 50,
       "state": "candidate_disabled",
       "included_model": true,
@@ -24,13 +24,13 @@
       "purchasing_open": false
     },
     {
-      "id": "tbox_included_30",
-      "name": "专业月包",
-      "name_en": "Professional",
-      "cny": 299,
+      "id": "tbox_value_month_v5",
+      "name": "标准月包",
+      "name_en": "Standard",
+      "cny": 149,
       "days": 30,
-      "minutes": 600,
-      "answers": 1200,
+      "minutes": 720,
+      "answers": 1000,
       "vision": 200,
       "state": "candidate_disabled",
       "included_model": true,
@@ -38,13 +38,13 @@
       "purchasing_open": false
     },
     {
-      "id": "tbox_included_90",
-      "name": "季度进阶包",
+      "id": "tbox_value_quarter_v5",
+      "name": "季度包",
       "name_en": "Season",
-      "cny": 699,
+      "cny": 369,
       "days": 90,
-      "minutes": 1800,
-      "answers": 3600,
+      "minutes": 2160,
+      "answers": 3000,
       "vision": 600,
       "state": "candidate_disabled",
       "included_model": true,
@@ -52,32 +52,26 @@
       "purchasing_open": false
     }
   ],
-  "international": [
-    {
-      "id": "tbox_intl_included_30",
-      "currency": "USD",
-      "price": 49,
-      "days": 30,
-      "minutes": 600,
-      "answers": 1200,
-      "vision": 200,
-      "included_model": true,
-      "purchasing_open": false,
-      "state": "region_and_checkout_unverified",
-      "auto_renew": false
-    }
-  ],
+  "international": [],
   "usage_contract": {
     "minutes": "session_minutes_including_two_audio_tracks",
-    "answer_input_token_limit": 4000,
-    "answer_total_output_token_limit": 1000,
+    "answer_input_token_limit": 6000,
+    "answer_total_output_token_limit": 2400,
     "vision_input_token_limit": 12000,
-    "vision_total_output_token_limit": 1500,
+    "vision_total_output_token_limit": 2400,
     "thinking_tokens_included_in_output_limit": true,
     "overage": "pause_without_automatic_charge",
     "automatic_renewal": false,
     "trial": "existing_3_running_hours_unchanged_not_cloud_credit"
   },
-  "revision": 4,
-  "positioning": "premium_candidate_not_market_validated"
+  "revision": 5,
+  "positioning": "value_price_under_199_not_market_validated",
+  "international_status": "repricing_and_regional_cost_validation_pending_not_for_sale",
+  "route_proposal": {
+    "text_vision": "qwen3.8-omni-flash Beijing candidate",
+    "speech": "paraformer-realtime-v2 Beijing candidate",
+    "fallback": "DeepSeek Flash, budgeted not activated",
+    "reseller": "metadata_and_contract_review_only",
+    "production_verified": false
+  }
 }
