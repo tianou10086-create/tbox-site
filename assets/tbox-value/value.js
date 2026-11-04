@@ -21,7 +21,7 @@ try {
   const offer = await offerResponse.json();
   const imageMatchesApprovedPrice = offer.brand === 'TBOX' && offer.purchasing_open === false &&
     offer.status === 'candidate_disabled' && offer.model_fee_included === true &&
-    [['tbox_included_7',29.9,7,30,30,5],['tbox_included_30',79,30,120,150,30],['tbox_included_90',149,90,360,500,100]]
+    [['tbox_included_7',99,7,120,250,50],['tbox_included_30',299,30,600,1200,200],['tbox_included_90',699,90,1800,3600,600]]
       .every(([id,price,days,minutes,answers,vision]) => offer.domestic.some(p =>
         p.id === id && p.cny === price && p.days === days && p.minutes === minutes &&
         p.answers === answers && p.vision === vision && p.included_model === true &&
