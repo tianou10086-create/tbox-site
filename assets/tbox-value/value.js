@@ -26,7 +26,8 @@ try {
         p.id === id && p.cny === price && p.days === days && p.minutes === minutes &&
         p.answers === answers && p.vision === vision && p.included_model === true &&
         p.auto_renew === false && p.purchasing_open === false));
-  document.querySelector('[data-approved-promo]').hidden = !imageMatchesApprovedPrice;
+  const promo = document.querySelector('[data-approved-promo]');
+  if (promo) promo.hidden = !imageMatchesApprovedPrice;
 } catch (error) {
   own.textContent = '价格信息暂不可用，请查看价格与授权说明页。';
   comparison.hidden = true;

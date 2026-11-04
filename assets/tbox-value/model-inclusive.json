@@ -10,20 +10,6 @@
   "legacy_catalog": "price-comparison.json",
   "domestic": [
     {
-      "id": "tbox_value_trial_v5",
-      "name": "体验包",
-      "name_en": "Try",
-      "cny": 49,
-      "days": 7,
-      "minutes": 180,
-      "answers": 300,
-      "vision": 50,
-      "state": "candidate_disabled",
-      "included_model": true,
-      "auto_renew": false,
-      "purchasing_open": false
-    },
-    {
       "id": "tbox_value_month_v5",
       "name": "标准月包",
       "name_en": "Standard",
@@ -73,5 +59,20 @@
     "fallback": "DeepSeek Flash, budgeted not activated",
     "reseller": "metadata_and_contract_review_only",
     "production_verified": false
+  },
+  "revision_note": "v5.1 paid trial withdrawn after subsequent explicit user request",
+  "withdrawn_unsold_offer": {
+    "id": "tbox_value_trial_v5",
+    "name": "体验包",
+    "name_en": "Try",
+    "cny": 49,
+    "days": 7,
+    "minutes": 180,
+    "answers": 300,
+    "vision": 50,
+    "state": "candidate_disabled",
+    "included_model": true,
+    "auto_renew": false,
+    "purchasing_open": false
   }
 }
