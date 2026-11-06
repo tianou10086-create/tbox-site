@@ -51,7 +51,7 @@
 
   const triggers = [...document.querySelectorAll('[data-plan-compare]')];
   const cards = [...document.querySelectorAll('.price, .plan-card')];
-  if (!triggers.length || cards.length !== 3 || !window.HTMLDialogElement) return;
+  if (!triggers.length || cards.length < 2 || !window.HTMLDialogElement) return;
   const rows = cards.map(card => {
     const label = card.querySelector('h3')?.textContent;
     const price = card.querySelector('.amount')?.textContent.match(/¥[\d.]+/)?.[0];
