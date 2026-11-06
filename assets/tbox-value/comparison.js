@@ -77,7 +77,7 @@ export function renderOfficialFacts(root, data) {
   const own=create('article','');
   const plan=(data.own_prices || []).find(r=>r.id==='tbox_byok_season');
   if (plan) {
-    own.append(create('h3','TBOX｜¥'+plan.price_cny+' / '+plan.validity_days+'个自然日'));
+    own.append(create('h3','TBOX（旧版 BYOK 软件授权）｜¥'+plan.price_cny+' / '+plan.validity_days+'个自然日'));
     own.append(create('p','软件授权；第三方模型费用另付。不自动续费，在线购买暂未开放。'));
     list.append(own);
   }
