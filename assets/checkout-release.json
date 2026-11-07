@@ -1,0 +1,6 @@
+{
+  "catalog_url": "https://api.tboxapp.top/included/catalog",
+  "checkout_url": "https://api.tboxapp.top/included/checkout",
+  "contract_version": "TBOX-VALUE-V5-20261104",
+  "approved_skus": []
+}
