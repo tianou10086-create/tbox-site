@@ -183,3 +183,6 @@ body.portal{--bg:#071e17;--panel:#102c21;--raised:#16372a;--text:#f1f2e6;--accen
 .portal-footer nav{display:flex;flex-wrap:wrap;gap:16px 24px}
 .portal-footer nav a{font-size:14px}
 @media(max-width:760px){.hero-media{max-width:100%}.launch .video-note{font-size:14px}.launch-footer>nav{gap:16px 22px}.portal-footer nav{gap:16px}}
+
+.launch-actions>.login-link{display:block;max-width:14rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:760px){.launch-actions>.login-link{max-width:9rem}}

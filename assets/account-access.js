@@ -12,13 +12,13 @@
   const root = document.documentElement;
   const current = new URL(window.location.href);
   const publicPaths = new Set(['/about.html', '/faq.html']);
-  if (!root.hasAttribute('data-account-required') || publicPaths.has(current.pathname)) return;
+  const required = root.hasAttribute('data-account-required') && !publicPaths.has(current.pathname);
 
   const allowedOrigins = new Set(['https://tboxapp.top', 'https://www.tboxapp.top']);
   const allowedPaths = new Set([
     '/', '/index.html', '/download.html', '/pricing.html', '/media.html',
     '/buy.html', '/activate.html', '/setup-key.html', '/membership.html',
-    '/en.html', '/connector.html'
+    '/en.html', '/connector.html', '/about.html', '/faq.html', '/404.html'
   ]);
   const trustedPage = allowedOrigins.has(current.origin) && allowedPaths.has(current.pathname)
     && !current.username && !current.password;
@@ -29,7 +29,7 @@
   login.searchParams.set('return_to', returnTo);
   const api = 'https://api.tboxapp.top';
   const originalVisibility = root.style.visibility;
-  root.style.visibility = 'hidden';
+  if (required) root.style.visibility = 'hidden';
   root.setAttribute('data-account-state', 'checking');
 
   const domReady = document.readyState === 'loading'
@@ -43,8 +43,19 @@
     root.style.visibility = originalVisibility;
   }
 
+  function updateAccount(session, pending = false) {
+    document.querySelectorAll('[data-account-link]').forEach(link => {
+      link.textContent = session ? session.email : pending ? '确认登录状态' : '登录';
+      link.href = session || pending ? api + '/account' : api + '/account?return_to=https%3A%2F%2Ftboxapp.top%2F';
+      link.title = session ? '账户中心 · ' + session.email : link.textContent;
+      link.setAttribute('aria-label', session ? '账户中心：' + session.email : link.textContent);
+    });
+  }
+
   async function failure(reason) {
     await domReady;
+    updateAccount(null, true);
+    if (!required) { reveal('error'); return; }
     if (!originalNodes) originalNodes = Array.from(document.body.childNodes);
     const view = document.createElement('main');
     view.setAttribute('role', 'alert');
@@ -81,13 +92,15 @@
       || !Array.isArray(session.grants)) throw new Error('response');
     // A verified session suffices; grants may be empty. Never create an order,
     // a device, or a client-side substitute for the server's session cookie.
-    return true;
+    return session;
   }
 
   async function check() {
     if (busy) return;
     busy = true;
-    root.style.visibility = 'hidden';
+    await domReady;
+    updateAccount(null, true);
+    if (required) root.style.visibility = 'hidden';
     root.setAttribute('data-account-state', 'checking');
     const controller = new AbortController();
     let timer;
@@ -101,6 +114,8 @@
       });
       const signedIn = await Promise.race([readSession(controller.signal), deadline]);
       if (!signedIn) {
+        updateAccount(null);
+        if (!required) { reveal('ready'); return; }
         window.location.replace(login.href);
         return; // Stay hidden until the login navigation completes.
       }
@@ -114,6 +129,7 @@
           link.href = api + '/account/download?kind=' + kind;
         });
       }
+      updateAccount(signedIn);
       reveal('ready');
     } catch (error) {
       await failure(error.message);
@@ -122,5 +138,7 @@
       busy = false;
     }
   }
+  window.addEventListener('pageshow', event => { if (event.persisted) void check(); });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) void check(); });
   void check();
 })();
