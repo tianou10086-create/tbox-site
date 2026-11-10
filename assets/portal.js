@@ -2,6 +2,7 @@
 (() => {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   document.querySelectorAll('video').forEach(video => {
+    if (video.dataset.manualPlay === 'true') return;
     video.muted = true;
     video.loop = true;
     let inView = false, focused = document.hasFocus();
