@@ -1,0 +1,25 @@
+/* Plain-language product entry; isolated from prices and checkout behavior. */
+.page-index .feature-rows article{grid-template-columns:220px 1fr}
+.page-index .hero .lead{max-width:32em}
+.companion-strip,.connector-get{display:flex;justify-content:space-between;align-items:center;gap:36px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:36px 0}
+.companion-strip h2{max-width:22em}.companion-strip p{max-width:42em}.companion-strip>.btn,.connector-get>.btn{flex-shrink:0}
+.tested-note{color:var(--accent);font-size:14px;line-height:1.8}
+.legal-details{margin:40px 0;color:var(--muted);border-top:1px solid var(--line);background:none}
+.legal-details .legal-section{margin:20px 0 0}.secondary-details{margin:20px 0}.secondary-details>.section{margin:24px 0 8px}
+.connector-download-link{margin:40px 0;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.connector-download-link h2{font-size:22px}.connector-download-link a,.text-action{color:var(--accent);text-decoration:underline;text-underline-offset:5px}
+.text-action{display:inline-flex;align-items:center;min-height:44px}
+.connector-hero{display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:center;min-height:calc(100svh - 180px);padding:24px 0 72px}
+.connector-name{font-size:17px;color:var(--accent);margin:0 0 20px}.connector-hero h1{font-size:clamp(42px,4.5vw,62px);line-height:1.2;letter-spacing:-.045em;margin:0 0 28px}.connector-hero .lead{max-width:28em;font-size:18px}.connector-hero .actions{margin-top:30px;gap:24px}.connector-hero .tested-note{margin-top:22px}
+.connection-flow{padding:10px 0 10px 32px;border-left:1px solid var(--line)}
+.flow-line{padding:24px 24px 24px 28px;position:relative}.flow-line::before{content:"";position:absolute;width:9px;height:9px;border:2px solid var(--muted);border-radius:50%;left:-39px;top:37px;background:var(--bg)}
+.flow-line span{display:block;font-size:13px;color:var(--muted);margin-bottom:10px}.flow-line strong{font-weight:550;font-size:23px}.flow-line p{margin-bottom:0;font-size:14px}
+.flow-active{margin:12px 0;background:var(--panel);border-radius:12px}.flow-active::before{background:var(--accent);border-color:var(--accent)}.flow-active strong{color:var(--accent)}
+.connector-proof{display:grid;grid-template-columns:1fr 1fr;gap:80px;padding:48px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.connector-proof h2{font-size:36px;margin:0}.connector-proof p{max-width:36em}
+.connector-steps{list-style:decimal-leading-zero;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:48px;counter-reset:step}.connector-steps li{list-style:none;padding:22px 0;border-top:1px solid var(--line);counter-increment:step}.connector-steps li::before{content:counter(step,decimal-leading-zero);color:var(--accent);font-size:14px}.connector-steps h3{margin-top:20px}.connector-steps p{max-width:24em}
+.connector-faq{max-width:850px}.connector-faq details{margin:12px 0;border:1px solid var(--line);background:transparent}.connector-faq summary{font-size:16px}.connector-faq details p{font-size:15px}.connector-faq a{text-decoration:underline;text-underline-offset:3px}.file-hash{display:block;overflow-wrap:anywhere;font-size:12px;color:var(--muted)}
+.connector-get p{max-width:38em}.connector-get .support-group{font-size:22px;color:var(--text)}.connector-get{padding:44px 0}.btn{transition:transform .15s ease,background .15s ease}.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0)}
+@media(max-width:1100px){.topbar{gap:18px}.site-nav{gap:16px}.connector-hero{gap:44px}.connector-proof{gap:36px}}
+@media(max-width:850px){.connector-hero{grid-template-columns:1fr;min-height:0;gap:32px;padding-bottom:36px}.connection-flow{margin-left:8px}.connector-proof{gap:28px}.connector-steps{gap:24px}.page-index .feature-rows article{grid-template-columns:170px 1fr}}
+@media(max-width:600px){.connector-hero h1{font-size:42px}.connector-hero .lead{font-size:16px}.connector-hero .actions{gap:12px}.connector-hero .tested-note{font-size:13px}.flow-line strong{font-size:21px}.connector-proof,.connector-steps{grid-template-columns:1fr;gap:16px}.connector-proof h2{font-size:28px}.companion-strip,.connector-get{align-items:flex-start;flex-direction:column;gap:16px}.page-index .feature-rows article{grid-template-columns:1fr}.connector-get .btn{width:100%}.secondary-details{padding:16px}.connector-faq details{padding:16px}.connector-get h2{font-size:27px}}
+@media(prefers-reduced-motion:reduce){.btn{transition:none}.btn:hover{transform:none}}
