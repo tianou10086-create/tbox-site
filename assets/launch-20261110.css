@@ -32,12 +32,12 @@ body.launch::before{content:"";position:absolute;inset:0;z-index:-1;pointer-even
 .launch-actions{display:flex;gap:24px;align-items:center}
 .launch-menu{display:none}
 .launch main{width:min(var(--max),calc(100% - 96px));margin:auto}
-.button{display:inline-flex;justify-content:center;align-items:center;min-height:52px;padding:13px 25px;border:1px solid var(--green);border-radius:8px;background:var(--green);color:#19231d!important;text-decoration:none;font-size:15px;font-weight:600;line-height:1.45;transition:transform .18s ease,background .18s ease,border-color .18s ease;max-width:100%;text-align:center}
-.button:hover{transform:translateY(-2px);background:#cce1d3;border-color:#cce1d3}
-.button:active{transform:translateY(0) scale(.99)}
+.button{display:inline-flex;justify-content:center;align-items:center;min-height:52px;padding:13px 25px;border:1px solid var(--green);border-radius:8px;background:var(--green);color:#19231d!important;text-decoration:none;font-size:15px;font-weight:600;line-height:1.45;transition:transform .16s cubic-bezier(.23,1,.32,1),background .16s ease,border-color .16s ease;max-width:100%;text-align:center}
+@media(hover:hover) and (pointer:fine){.button:hover{transform:translateY(-2px);background:#cce1d3;border-color:#cce1d3}}
+.button:active{transform:translateY(0) scale(.97)}
 .button-small{min-height:40px;padding:8px 19px;font-size:14px}
 .button-quiet{background:transparent;color:var(--ink)!important;border-color:#687b6e}
-.button-quiet:hover{background:#173d2d;border-color:var(--green)}
+@media(hover:hover) and (pointer:fine){.button-quiet:hover{background:#173d2d;border-color:var(--green)}}
 .button-row{display:flex;align-items:center;flex-wrap:wrap;gap:22px}
 .text-link{display:inline-block;text-decoration:none;border-bottom:1px solid #73887a;padding:4px 0;font-size:15px;transition:border-color .18s ease}
 .text-link:hover{border-color:var(--green)}
@@ -186,3 +186,9 @@ body.portal{--bg:#071e17;--panel:#102c21;--raised:#16372a;--text:#f1f2e6;--accen
 
 .launch-actions>.login-link{display:block;max-width:14rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media(max-width:760px){.launch-actions>.login-link{max-width:9rem}}
+
+/* Keep keyboard input immediate; no movement on focused controls. */
+.launch a:focus-visible,.launch button:focus-visible,.launch summary:focus-visible{transition:none}
+.launch .button:focus-visible{transform:none}
+.launch-nav a[aria-current="page"],.launch-menu a[aria-current="page"]{color:var(--green)}
+.launch-menu a[aria-current="page"]{text-decoration:underline;text-underline-offset:.3em}
