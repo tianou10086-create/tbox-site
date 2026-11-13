@@ -55,7 +55,7 @@
     bar.className = 'tb-download-bar';
     bar.setAttribute('aria-label', '快捷下载');
     const label = document.createElement('span'); label.className = 'tb-download-label'; label.textContent = 'T-Box · 快捷下载';
-    const action = download.cloneNode(true); action.className = 'btn primary'; action.textContent = '下载试用'; action.removeAttribute('id');
+    const action = download.cloneNode(true); action.className = 'btn primary'; action.textContent = '下载桌面版'; action.removeAttribute('id');
     const close = document.createElement('button'); close.className = 'tb-download-close'; close.type = 'button'; close.setAttribute('aria-label','关闭快捷下载'); close.textContent = '×';
     bar.append(label, action, close); document.body.appendChild(bar);
     let dismissed = false, heroVisible = true, footerVisible = false;

@@ -49,7 +49,7 @@
       if (count) {
         title.textContent = count === cards.length ? '以下套餐已开放购买入口' : '部分套餐已开放，其他套餐仍在验证';
         summary.textContent = '仅标有“进入收银台”的套餐可继续。登录已有商业平台账户后，由服务端重新核实可购状态、金额与库存；进入收银台不代表付款成功。';
-        document.querySelector('.trust-line').textContent = document.querySelector('.trust-line').textContent.split(' / ')[0] + ' / 到期可续期 / 开放范围以对应套餐按钮为准 / 试用 3 小时只按实际运行时累计';
+        document.querySelector('.trust-line').textContent = document.querySelector('.trust-line').textContent.split(' / ')[0] + ' / 到期可续期 / 开放范围以对应套餐按钮为准 / 软件运行需付费授权；关闭软件后暂停计时';
       }
     } catch (error) {
       title.textContent = '暂不能确认购买状态';
