@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const c = window.TBOX_CONFIG || {};
-  const expectedVersion = '0.1.84';
+  const expectedVersion = '0.1.86';
   const text = (selector,value) => {
     if (value == null || value === '') return;
     document.querySelectorAll(selector).forEach(el => { el.textContent = String(value); });
