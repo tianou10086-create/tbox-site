@@ -19,14 +19,7 @@ try {
   const offerResponse = await fetch(new URL('./model-inclusive.json', import.meta.url));
   if (!offerResponse.ok) throw new Error('Offer data HTTP ' + offerResponse.status);
   const offer = await offerResponse.json();
-  const imageMatchesApprovedPrice = offer.brand === 'TBOX' && offer.purchasing_open === false &&
-    offer.revision === 5 && offer.status === 'candidate_disabled' && offer.model_fee_included === true &&
-    offer.domestic.length === 2 &&
-    [["tbox_value_month_v5",149,30,720,1000,200],["tbox_value_quarter_v5",369,90,2160,3000,600]]
-      .every(([id,price,days,minutes,answers,vision]) => offer.domestic.some(p =>
-        p.id === id && p.cny === price && p.days === days && p.minutes === minutes &&
-        p.answers === answers && p.vision === vision && p.included_model === true &&
-        p.auto_renew === false && p.purchasing_open === false));
+  const imageMatchesApprovedPrice = false; // Legacy raster advert is not approved for V6 prices.
   const promo = document.querySelector('[data-approved-promo]');
   if (promo) promo.hidden = !imageMatchesApprovedPrice;
 } catch (error) {

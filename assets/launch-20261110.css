@@ -192,3 +192,7 @@ body.portal{--bg:#071e17;--panel:#102c21;--raised:#16372a;--text:#f1f2e6;--accen
 .launch .button:focus-visible{transform:none}
 .launch-nav a[aria-current="page"],.launch-menu a[aria-current="page"]{color:var(--green)}
 .launch-menu a[aria-current="page"]{text-decoration:underline;text-underline-offset:.3em}
+
+/* Time-pack cards share the existing responsive layout. */
+@media(min-width:1100px){.price-grid-three{grid-template-columns:repeat(3,minmax(0,1fr))}.price-grid-three .price-card{padding:30px 26px}.price-grid-three .price-card-top{display:block}.price-grid-three .price-card-top>span{display:block;margin-top:10px}}
+@media(min-width:761px) and (max-width:1099px){.price-grid-three{grid-template-columns:1fr}.price-grid-three .plan-features{display:flex;flex-wrap:wrap;gap:12px 30px}}
