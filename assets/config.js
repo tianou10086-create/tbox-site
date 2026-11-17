@@ -7,12 +7,12 @@ window.TBOX_CONFIG = {
   "BUY_URL_SEASON": "https://api.tboxapp.top/included/checkout?sku=tbox_time_5_v6",
   "MIRROR_1": "https://api.tboxapp.top/account/download?kind=installer",
   "MIRROR_2": "https://api.tboxapp.top/account/download?kind=portable",
-  "VERSION": "0.1.87",
-  "SIZE": "217,329,640 bytes (207.3 MiB)",
-  "SHA256": "8E12CD742D99095820F52E9A49D773F60DCB7BC499FC1E7DAEE28AA722D31C75",
+  "VERSION": "0.1.88",
+  "SIZE": "217,331,208 bytes (207.3 MiB)",
+  "SHA256": "F266C6F3B9ACDCB751564A03335A1C69B25FAE79F5565C56DB7E37FE0948A761",
   "RELEASE_DATE": "2026-11-17",
   "PRIMARY_DOWNLOAD": "https://api.tboxapp.top/account/download?kind=installer",
   "PORTABLE_URL": "https://api.tboxapp.top/account/download?kind=portable",
-  "PORTABLE_SIZE": "233,898,152 bytes (223.1 MiB)",
-  "PORTABLE_SHA256": "F4CA4448F60629A4C7A527B8A6A45DA16E323FF4C860BB74CAF2AD40988BF5DE"
+  "PORTABLE_SIZE": "233,900,326 bytes (223.1 MiB)",
+  "PORTABLE_SHA256": "C05236797ADE4CDA8C09AF25E6585174ACEA5FCD84A74FD7F3947FC67AFD4450"
 };
