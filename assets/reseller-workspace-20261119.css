@@ -1,0 +1,128 @@
+/* Page-local partner desk. The order API and the shared claim page are unchanged. */
+body.reseller-desk {
+  --paper:#f7f6ef; --ink:#132e25; --muted:#50645b; --pine:#103f33;
+  --acid:#dfef89; --line:#cdd4c9; --max:1184px; --green:#14573f;
+  --edge:5%;
+  background:var(--paper); color:var(--ink); color-scheme:light; min-height:100vh;
+}
+.reseller-desk::before {display:none}
+.reseller-desk [hidden] {display:none!important}
+.reseller-desk a {color:inherit}
+.reseller-desk a:hover {color:var(--green)}
+.reseller-desk :focus-visible {outline:3px solid #39754c;outline-offset:4px}
+.reseller-desk .skip:focus {color:white}
+.reseller-desk .desk-header,.reseller-desk .desk-main,.reseller-desk .desk-footer {
+  width:min(var(--max),calc(100% - var(--edge) - var(--edge))); margin-inline:auto;
+}
+.desk-header,.desk-footer,.desk-header nav,.desk-footer nav,.desk-footer>div {
+  display:flex; align-items:center;
+}
+.desk-header {min-height:68px; justify-content:space-between; gap:20px; border-bottom:1px solid var(--line)}
+.desk-header .launch-brand {gap:9px;font-size:21px;font-weight:750;letter-spacing:-.055em}
+.desk-header .launch-brand img {width:31px;height:31px}
+.desk-header nav,.desk-footer nav {gap:clamp(14px,2.5vw,36px)}
+.desk-header nav a,.desk-footer nav a {text-decoration:none;font-size:14px;font-weight:600}
+.desk-header nav a {min-height:68px;position:relative;display:inline-flex;align-items:center;white-space:nowrap}
+.desk-header nav a {color:var(--muted);font-weight:400}
+.desk-header nav a[aria-current] {color:var(--ink);font-weight:700}
+.desk-header nav a[aria-current]::after {content:"";position:absolute;bottom:12px;left:24%;right:24%;height:2px;background:var(--pine)}
+.reseller-desk .desk-main {margin-block:clamp(24px,4vw,58px) clamp(50px,7vw,100px);padding:0;max-width:none}
+.desk-door {display:grid;grid-template-columns:minmax(0,1.4fr) minmax(260px,.75fr);position:relative;overflow:hidden;background:var(--pine);border-radius:20px;color:var(--paper)}
+.desk-intro {padding:clamp(28px,4.6vw,66px);align-self:center}
+.desk-path {display:flex;align-items:center;gap:12px;color:#cadaac;font-size:13px;font-weight:600}
+.desk-path a {text-decoration:none;color:inherit}
+.desk-path a:hover,.desk-door .lead a:hover,.desk-access .access-help:hover {color:var(--acid)}
+.desk-path span[aria-hidden] {color:#90ac97}
+.desk-door h1 {color:var(--paper);font-size:clamp(41px,5.1vw,72px);font-weight:670;line-height:1.13;letter-spacing:-.055em;margin:21px 0 18px}
+.desk-door .lead {margin:0;max-width:28em;color:#e0e7d9;font-size:clamp(15px,1.4vw,18px);line-height:1.8}
+.desk-door .lead a {text-decoration-color:#92af8e}
+.desk-access {position:relative;align-self:center;margin:28px clamp(23px,3.6vw,52px) 28px 0;padding:18px 0 18px clamp(23px,3.4vw,48px);border-left:1px solid #608471}
+.access-title {display:flex;align-items:center;gap:10px}
+.access-title svg {width:25px;height:25px;flex:none;color:var(--acid)}
+.access-title h2 {font-size:19px;color:var(--paper);margin:0}
+.desk-access #status {margin:12px 0;color:#e3e8dd;font-size:14px;overflow-wrap:anywhere}
+.desk-access .access-help {display:block;width:fit-content;margin-top:15px;font-size:13px;text-decoration:underline;text-underline-offset:.27em;color:#e3e8dd}
+.desk-door :focus-visible {outline-color:var(--acid)}
+.reseller-desk .button {min-height:44px;border-radius:7px;background:var(--pine);border:1px solid var(--pine);padding:11px 18px;color:#fff!important;font-size:14px;font-weight:650;line-height:1.45;box-shadow:none}
+.reseller-desk .button:hover:not(:disabled) {background:#205542;border-color:#205542;transform:none}
+.reseller-desk .button:active:not(:disabled) {transform:translateY(1px)}
+.reseller-desk #login {background:var(--acid);border-color:var(--acid);color:var(--ink)!important}
+.reseller-desk #login:hover {background:#edf5b8;border-color:#edf5b8}
+.reseller-desk .button-quiet {background:transparent;color:var(--ink)!important;border-color:#a7b7aa}
+.reseller-desk .button-quiet:hover:not(:disabled) {background:#e7eddf;border-color:#849b88}
+.reseller-desk button:disabled {opacity:1;cursor:not-allowed;color:#546159!important;border-color:#cad3c9;background:#e2e7df}
+.desk-guide {display:grid;grid-template-columns:minmax(220px,.82fr) minmax(0,1.5fr);gap:4.5%;align-items:start;padding:clamp(26px,4vw,52px) 0;border-bottom:1px solid var(--line)}
+.guide-intro h2,.block-head h2 {font-size:clamp(24px,2.6vw,36px);margin:0 0 8px;line-height:1.3;letter-spacing:-.04em;font-weight:650}
+.guide-intro p,.block-head p {margin:0;color:var(--muted);font-size:15px;line-height:1.8}
+.guide-rows {margin:0}
+.guide-rows>div {display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:start;padding:14px 0}
+.guide-rows>div:first-child {padding-top:0;border-bottom:1px solid var(--line)}
+.guide-rows>div:last-child {padding-bottom:0}
+.guide-rows dt {display:flex;align-items:center;gap:10px;line-height:1.55;font-weight:650}
+.guide-rows dd {margin:2px 0 0;font-size:15px;color:var(--muted);line-height:1.75}
+.guide-icon {width:30px;height:30px;flex:none;display:grid;place-items:center;background:#e5ebdf;border:1px solid #cbd6c7;border-radius:7px}
+.guide-icon svg {width:18px;height:18px;fill:none;stroke:var(--pine);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.desk-block {margin-top:clamp(32px,5vw,64px)}
+.block-head {margin-bottom:20px}
+.block-head p {max-width:58ch}
+.terms-row {display:flex;align-items:center;gap:10px;background:#ebefe4;padding:12px 16px;border-radius:6px;font-size:14px}
+.terms-row input {width:18px;height:18px;flex:none;accent-color:var(--pine);margin:0}
+.desk-products {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px;margin-top:14px}
+.desk-products .panel {background:#fffefa;min-width:0;border:1px solid var(--line);border-radius:10px;padding:22px}
+.desk-products h3 {margin-bottom:14px;font-size:19px;overflow-wrap:anywhere}
+.desk-products p {margin:0;color:var(--muted);font-size:14px}
+.desk-products h2 {margin:4px 0 20px;color:var(--pine);font-size:clamp(20px,2vw,27px);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.order-head {display:flex;justify-content:space-between;align-items:start;gap:16px}
+.order-head .button {flex:none}
+#summary {font-size:14px;font-variant-numeric:tabular-nums;background:#e8ede1;color:var(--pine);padding:12px 16px;border-radius:6px;max-width:none;margin:0}
+#summary:empty {display:none}
+#orders .order {padding:24px 2px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+#orders .order h3 {font-size:20px;margin-bottom:6px;font-variant-numeric:tabular-nums}
+#orders .order p {font-size:15px;margin-bottom:12px}
+#orders .order img {display:block;background:#fff;padding:8px;border:1px solid var(--line);border-radius:6px;width:196px;max-width:100%;margin:12px 0}
+#orders .order input {display:block;width:min(100%,34rem);padding:10px 12px;min-height:44px;border:1px solid #99ad9c;background:#fffefa;color:var(--ink);border-radius:6px;font:inherit}
+#orders .order form {margin:12px 0}
+#orders .order form label {display:block;font-size:14px}
+#orders .order .button {margin:8px 8px 0 0}
+#orders>p:only-child {margin:14px 0 0;padding:26px;text-align:center;border:1px dashed #aab8a9;border-radius:7px;max-width:none}
+.desk-footer {justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:22px 34px;border-top:1px solid var(--line)}
+.desk-footer>div {gap:16px;flex-wrap:wrap}
+.desk-footer .launch-brand {font-size:17px;gap:8px}
+.desk-footer small,.desk-footer nav {color:var(--muted)}
+@media(max-width:800px) {
+  .desk-door {grid-template-columns:minmax(0,1.18fr) minmax(210px,.82fr)}
+  .desk-guide {grid-template-columns:1fr;gap:20px}
+  .guide-rows>div {grid-template-columns:minmax(124px,.6fr) 1.5fr}
+}
+@media(max-width:700px) {
+  body.reseller-desk {--edge:20px}
+  .desk-header,.desk-header nav a {min-height:61px}
+  .desk-header nav {gap:16px}
+  .desk-header nav a {font-size:13px}
+  .desk-header nav a[aria-current]::after {bottom:9px}
+}
+@media(max-width:620px) {
+  .desk-door {display:block;border-radius:14px}
+  .desk-intro {padding:26px 22px 20px}
+  .desk-door h1 {margin:14px 0 12px}
+  .desk-access {margin:0 22px;padding:18px 0 23px;border-left:0;border-top:1px solid #608471}
+  .access-title h2 {font-size:17px}
+  .desk-access #status {margin:8px 0}
+  .desk-access .access-help {margin-top:11px}
+  .order-head {flex-wrap:wrap}
+}
+@media(max-width:420px) {
+  .guide-rows>div {grid-template-columns:1fr;gap:3px}
+  .guide-rows dd {padding-left:40px}
+  .desk-footer {align-items:start;gap:12px}
+}
+@media(max-width:370px) {
+  body.reseller-desk {--edge:14px}
+  .desk-header {gap:10px}
+  .desk-header .launch-brand {font-size:19px;gap:5px}
+  .desk-header .launch-brand img {width:26px;height:26px}
+  .desk-header nav {gap:10px}
+}
+@media(prefers-reduced-motion:reduce) {
+  .reseller-desk .button,.reseller-desk .button:active:not(:disabled) {transform:none;transition:none}
+}
