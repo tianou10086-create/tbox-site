@@ -105,7 +105,7 @@
     content.append(amount);
 
     const qrMime = order.image_mime || 'image/png';
-    if (order.qrcode_base64 && ['image/png', 'image/jpeg'].includes(qrMime)) {
+    if (order.status === 'pending' && order.qrcode_base64 && ['image/png', 'image/jpeg'].includes(qrMime)) {
       const image = document.createElement('img');
       image.className = 'checkout-dialog__qr';
       image.alt = '本订单动态付款二维码';
@@ -156,6 +156,10 @@
 
     if (order.status === 'paid') {
       status.textContent = '付款已核验，权益已记入账户。';
+      stopPolling();
+    } else if (order.status === 'paid_awaiting_stock') {
+      view.querySelector('#checkout-dialog-title').textContent = titleFor(sku) + ' · 已付款';
+      status.textContent = '已收到付款，面试时长正在等待到账。请勿重复付款，可刷新原订单查看进度。';
       stopPolling();
     } else if (order.status === 'pending' && order.qrcode_base64) {
       status.textContent = '二维码有效期内可直接付款；页面会自动刷新订单状态。';
@@ -244,7 +248,7 @@
 
       openModal(sku, '正在查找本账户的原订单…');
       const orders = await api('/account/api/orders');
-      const existing = (orders.orders || []).find(order => order.sku === sku && ['pending', 'payment_unknown'].includes(order.status));
+      const existing = (orders.orders || []).find(order => order.sku === sku && ['pending', 'payment_unknown', 'paid_awaiting_stock'].includes(order.status));
       if (existing) {
         renderOrder(sku, existing);
         startPolling(sku, existing);
