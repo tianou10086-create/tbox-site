@@ -1,0 +1,68 @@
+/* TBOX web edition · shared editorial chrome and reading layouts. Local assets only. */
+:root {--ed-paper:#f7f7f2;--ed-white:#fffefa;--ed-ink:#172b25;--ed-action:#143d33;--ed-muted:#4c6057;--ed-line:#d6dbd2;--ed-soft:#e9eee4;--ed-width:1184px;--ed-edge:clamp(20px,4.5vw,64px);--ed-type:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif}
+body.editorial-site {--bg:var(--ed-paper);--ink:var(--ed-ink);--muted:var(--ed-muted);--surface:var(--ed-white);--green:var(--ed-action);--line:var(--ed-line);--max:var(--ed-width);margin:0;color-scheme:light;color:var(--ed-ink);background:var(--ed-paper);font-family:var(--ed-type);line-height:1.65}
+body.editorial-site::before {display:none}
+.editorial-site ::selection{background:#d7e5c8;color:#18362c}
+.editorial-site :focus-visible{outline:3px solid #67803c;outline-offset:4px}
+.editorial-site .skip:focus{background:var(--ed-action);color:#fff}
+.editorial-site .launch-header,.editorial-site main:not([role=alert]),.editorial-footer{width:min(var(--ed-width),calc(100% - 2 * var(--ed-edge)));max-width:none;margin-inline:auto}
+.editorial-site .launch-header{min-height:71px;padding:0;gap:clamp(18px,2.6vw,42px);border-bottom:1px solid var(--ed-line);align-items:center}
+.editorial-site .launch-header .launch-brand{font-size:22px;letter-spacing:-.055em;gap:8px;font-weight:730}
+.editorial-site .launch-nav{gap:clamp(16px,2vw,30px)}
+.editorial-site .launch-nav a,.editorial-site .login-link{font-size:14px;white-space:nowrap}
+.editorial-site .launch-nav a[aria-current]{font-weight:650;color:var(--ed-action)}
+.editorial-site .launch-nav a::after,.editorial-site .login-link::after{bottom:-8px}
+.editorial-site .launch-actions{gap:clamp(15px,1.75vw,27px)}.editorial-site .launch-actions .login-link{max-width:9.5em}
+.editorial-site .button{border-radius:6px;min-height:46px;background:var(--ed-action);border-color:var(--ed-action);color:#fff!important;box-shadow:none;padding:11px 20px;transition:background-color .16s ease,border-color .16s ease}
+.editorial-site .button-small{min-height:37px;padding:7px 17px}
+.editorial-site .button-quiet{background:transparent;border-color:#9aa99d;color:var(--ed-ink)!important}
+.editorial-site .button:hover:not(:disabled){background:#245648;border-color:#245648;color:white!important;transform:none}
+.editorial-site .text-link{font-weight:580;border-color:#98a99b}.editorial-site .text-link:hover{border-color:var(--ed-action)}
+.editorial-site .page-intro{max-width:none;padding:clamp(44px,5.3vw,78px) 0 clamp(26px,4vw,48px)}
+.editorial-site .page-intro h1{max-width:22em;margin:0 0 16px;font-size:clamp(38px,4.6vw,64px);letter-spacing:-.055em;line-height:1.15;font-weight:660}
+.editorial-site .page-intro p{max-width:42em;font-size:clamp(16px,1.3vw,19px);line-height:1.7}
+.editorial-site h2,.editorial-site h3{letter-spacing:-.038em;text-wrap:pretty}
+.editorial-site .section-section,.editorial-site .split-section,.editorial-site .quiet-section,.editorial-site .closing-section{padding-block:clamp(40px,5.1vw,76px)}
+.editorial-site .compact-top{padding-top:0}
+.editorial-site .section-section h2,.editorial-site .split-section h2,.editorial-site .quiet-section h2,.editorial-site .closing-section h2{font-size:clamp(25px,2.8vw,38px);line-height:1.28;margin-bottom:20px}
+.editorial-site .section-title{margin-bottom:26px}
+.editorial-site .support-panel,.editorial-site .account-entry{background:var(--ed-soft);border:0;border-radius:8px;gap:clamp(20px,4vw,58px);padding:clamp(22px,3.4vw,42px)}
+.editorial-site .support-panel{margin:35px 0 58px}.editorial-site .support-panel h2,.editorial-site .account-entry h2{font-size:clamp(22px,2.3vw,30px);margin-bottom:8px}
+.editorial-site .support-contact strong{font-family:var(--ed-type);font-variant-numeric:tabular-nums;font-size:clamp(22px,2.2vw,29px)}
+.editorial-site .support-contact{padding-left:25px}.editorial-site .support-panel p{font-size:14px;line-height:1.7}
+.editorial-site .price-card{color:var(--ed-ink);background:var(--ed-white);border-color:var(--ed-line);border-radius:8px}
+.editorial-site .price-featured,.editorial-site .price-card-welfare,.editorial-site .own-row{background:var(--ed-soft)}
+.editorial-site :is(.prose-section,.terms-section,.quiet-section) p{max-width:52em;line-height:1.85}
+.editorial-site code,.editorial-site .sample-question{background:var(--ed-soft);color:var(--ed-ink)}
+.editorial-site thead th{background:#e8ede4;color:var(--ed-ink)}.editorial-site .table-scroll{border-radius:6px}
+.editorial-site .section-jump a{border-radius:4px;background:transparent;border-color:var(--ed-line)}.editorial-site .section-jump a:hover{background:var(--ed-soft)}
+.editorial-site .guide-steps li::before,.editorial-site .feature-number,.editorial-site .purchase-steps li>span{color:#41644f;font-variant-numeric:tabular-nums}
+.editorial-site .step-columns article{border-top:1px solid var(--ed-line);padding-top:14px}
+.editorial-site .step-columns h3{margin-bottom:8px}
+.editorial-site .download-panel{color:#f8faef;background:#183e32;--ink:#f6f8ed;--muted:#d5e0d3;--green:#e4efba;--line:#547265;border:0;border-radius:10px;padding:clamp(24px,4vw,50px)}
+.editorial-site .download-panel .button{color:#162b22!important;background:#e2edcd;border-color:#e2edcd}.editorial-site .download-panel .button-quiet{background:transparent;border-color:#89a191;color:#fff!important}
+.editorial-site .download-panel .button:hover{background:#f1f5dc;color:#162b22!important}.editorial-site .download-panel h2{font-size:clamp(33px,4vw,54px);line-height:1.1}
+.editorial-site .download-panel p.product-label{color:#d7e9c6!important;font-size:13px;margin-bottom:14px!important}
+.editorial-site .download-facts>div{flex-direction:row;justify-content:space-between;gap:16px;border-color:#547265}.editorial-site .download-facts>div strong{text-align:right}
+.editorial-site .film-frame{background:#18251f;border:0;border-radius:8px}.editorial-site .film-section{padding-bottom:clamp(32px,4vw,62px)}
+.editorial-site .film-heading{border-top:1px solid var(--ed-line);padding-top:16px}.editorial-site .film-heading h2{font-size:20px}
+.editorial-site .guide-layout{display:grid;grid-template-columns:minmax(185px,.34fr) minmax(0,1fr);align-items:start;gap:clamp(30px,5.3vw,90px);margin-bottom:clamp(22px,4vw,50px)}
+.editorial-site .guide-layout .section-jump{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:0;position:sticky;top:24px;border-top:2px solid var(--ed-ink)}
+.editorial-site .guide-layout .section-jump a{padding:12px 4px;border:0;border-bottom:1px solid var(--ed-line);border-radius:0;font-size:15px}
+.editorial-site .guide-layout :is(.faq-section,.prose-section){border-top:1px solid var(--ed-line);padding:clamp(20px,3vw,34px) 0;max-width:none}
+.editorial-site .guide-layout :is(.faq-section,.prose-section):first-child{border-top:2px solid var(--ed-ink)}
+.editorial-site .guide-layout h2{font-size:clamp(23px,2.3vw,30px);margin-bottom:12px}
+.editorial-site .faq-section summary{font-size:clamp(16px,1.3vw,18px);padding:16px 38px 16px 0;line-height:1.6}
+.editorial-site .faq-section details>div{padding-inline-end:30px}.editorial-site .faq-section details>div p{max-width:50em}.editorial-site .faq-section details[open] summary{font-weight:620}
+.editorial-site .doc-actions{display:flex;gap:14px;align-items:center;margin-top:20px}.editorial-site .doc-actions a{font-size:15px}
+.editorial-site .reading-intro{max-width:800px}
+.editorial-site main[role=alert] button{border:1px solid var(--ed-line);background:var(--ed-white);color:var(--ed-ink);border-radius:6px;padding:8px 13px}
+.editorial-footer{font-family:var(--ed-type);display:grid;grid-template-columns:minmax(160px,1.3fr) repeat(3,minmax(100px,.65fr));column-gap:clamp(20px,4vw,60px);row-gap:32px;margin:20px auto 0;padding:clamp(28px,4vw,48px) 0 26px;border-top:1px solid var(--ed-line);color:var(--ed-ink);line-height:1.5}
+.editorial-footer .ef-sign{display:inline-flex;gap:8px;align-items:center;text-decoration:none;color:var(--ed-ink);font:740 22px/1 var(--ed-type);letter-spacing:-.055em}
+.editorial-footer .ef-id p{font-size:13px;color:var(--ed-muted);margin:12px 0 0}.editorial-footer .ef-col{display:flex;flex-direction:column;align-items:flex-start;gap:7px}
+.editorial-footer .ef-col strong{font-size:13px;color:var(--ed-ink);margin-bottom:5px}.editorial-footer .ef-col a{font-size:13px;color:var(--ed-muted);text-decoration:none;padding:2px 0}.editorial-footer .ef-col a:hover{text-decoration:underline;text-underline-offset:.25em}
+.editorial-footer>small{grid-column:1/-1;color:var(--ed-muted);font:12px/1.5 var(--ed-type)}
+@media(max-width:960px){.editorial-site .launch-nav{display:none}.editorial-site .launch-actions{margin-left:auto}.editorial-site .launch-menu{display:block;position:relative;font-size:14px}.editorial-site .launch-menu summary{display:flex;align-items:center;min-height:44px;cursor:pointer;list-style:none}.editorial-site .launch-menu summary::-webkit-details-marker{display:none}.editorial-site .launch-menu[open] nav{position:absolute;top:100%;right:0;width:200px;max-width:85vw;background:var(--ed-white);border:1px solid var(--ed-line);border-radius:7px;box-shadow:0 8px 24px #172b251a;display:flex;flex-direction:column;padding:8px}.editorial-site .launch-menu nav a{padding:10px 12px;color:var(--ed-ink);text-decoration:none;font-size:15px}.editorial-site .launch-header{min-height:63px}}
+@media(max-width:720px){.editorial-site .guide-layout{display:block}.editorial-site .guide-layout .section-jump{position:static;display:flex;flex-direction:row;flex-wrap:wrap;gap:0 17px;border-top:0;border-bottom:1px solid var(--ed-line);margin-bottom:18px}.editorial-site .guide-layout .section-jump a{border:0;font-size:14px;padding:8px 0}.editorial-site .support-contact{padding:15px 0 0}.editorial-site .support-panel{margin-bottom:36px}.editorial-site .step-columns{gap:14px}.editorial-site .launch-actions>.login-link{max-width:min(17vw,9.5em)}.editorial-footer{grid-template-columns:repeat(3,minmax(0,1fr));gap:19px 12px}.editorial-footer .ef-id{grid-column:1/-1;display:flex;align-items:center;gap:12px}.editorial-footer .ef-id p{margin:0}.editorial-footer .ef-col a{padding-block:4px}}
+@media(max-width:390px){:root{--ed-edge:16px}.editorial-site .launch-header{gap:8px}.editorial-site .launch-actions{gap:10px}.editorial-site .button-small{padding-inline:11px}}
+@media(prefers-reduced-motion:reduce){.editorial-site .button{transition:none}.editorial-site .button:active{transform:none}}
