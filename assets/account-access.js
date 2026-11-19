@@ -51,8 +51,10 @@
       link.setAttribute('aria-label', session ? '账户中心：' + session.email : link.textContent);
     });
     document.querySelectorAll('[data-account-checkout]').forEach(link => {
-      link.textContent = session ? '立即购买' : pending ? '确认登录状态' : '登录后购买';
-      link.setAttribute('aria-label', session ? '立即购买' : link.textContent);
+      const label = session || pending ? '立即购买' : '登录后购买';
+      link.dataset.checkoutLabel = label;
+      if (link.dataset.checkoutBusy !== 'true') link.textContent = label;
+      link.setAttribute('aria-label', label);
     });
   }
 

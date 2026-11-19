@@ -233,10 +233,24 @@
         return;
       }
 
-      const order = await api('/account/api/orders', {
+      const key = 'tbox-purchase-' + user.account_id + '-' + sku;
+      // Recover ambiguous requests with the same ID. A confirmed terminal
+      // order is not a retry and must not trap the next purchase in this tab.
+      const prior = sessionStorage.getItem(key + ':order');
+      if (prior && (orders.orders || []).some(o => o.id === prior && ['paid', 'cancelled'].includes(o.status))) {
+        sessionStorage.removeItem(key);
+        sessionStorage.removeItem(key + ':order');
+      }
+      let order = await api('/account/api/orders', {
         method: 'POST',
         body: JSON.stringify({ sku, request_id: requestId(user.account_id, sku) })
       });
+      if (!prior && ['paid', 'cancelled'].includes(order.status)) {
+        // A legacy tab can have an old request ID but no saved order ID.
+        // Never auto-submit again; the user can intentionally start a new order.
+        sessionStorage.removeItem(key);
+      }
+      if (order.id) sessionStorage.setItem(key + ':order', order.id);
       renderOrder(sku, order);
       startPolling(sku, order);
     } catch (error) {
@@ -245,7 +259,7 @@
     } finally {
       link.dataset.checkoutBusy = 'false';
       link.removeAttribute('aria-busy');
-      link.textContent = originalText;
+      link.textContent = link.dataset.checkoutLabel || originalText;
     }
   }
 
