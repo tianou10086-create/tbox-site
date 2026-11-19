@@ -159,7 +159,7 @@
       stopPolling();
     } else if (order.status === 'paid_awaiting_stock') {
       view.querySelector('#checkout-dialog-title').textContent = titleFor(sku) + ' · 已付款';
-      status.textContent = '已收到付款，面试时长正在等待到账。请勿重复付款，可刷新原订单查看进度。';
+      status.textContent = '已收到付款，云时长正在等待到账。请勿重复付款，可刷新原订单查看进度。';
       stopPolling();
     } else if (order.status === 'pending' && order.qrcode_base64) {
       status.textContent = '二维码有效期内可直接付款；页面会自动刷新订单状态。';
