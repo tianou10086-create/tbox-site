@@ -113,20 +113,45 @@
       content.append(image);
       const hint = document.createElement('p');
       hint.className = 'checkout-dialog__hint';
-      hint.textContent = '请用微信扫一扫完成付款，付款金额以本订单为准。';
+      hint.textContent = '用微信扫一扫，核对本单金额后付款。';
       content.append(hint);
-    } else if (order.cashier_url) {
+    }
+    let cashier;
+    try {
+      const url = new URL(order.cashier_url);
+      if (url.origin === 'https://km.iu99.top' && !url.username && !url.password) cashier = url.href;
+    } catch (_) {}
+    if (cashier && order.status === 'pending') {
       const link = document.createElement('a');
       link.className = 'button checkout-dialog__link';
-      link.href = order.cashier_url;
+      link.href = cashier;
       link.target = '_blank';
       link.rel = 'noopener';
       link.textContent = '打开快码收银台';
       content.append(link);
       const hint = document.createElement('p');
       hint.className = 'checkout-dialog__hint';
-      hint.textContent = '当前收银台返回了付款地址，打开后核对金额再付款。';
-      content.append(hint);
+      hint.textContent = '若提示使用系统浏览器，请复制本单链接，粘贴到手机的 Safari 或系统浏览器。无需重新下单。';
+      const copy = document.createElement('button');
+      copy.type = 'button';
+      copy.className = 'checkout-dialog__refresh';
+      copy.textContent = '复制本单付款链接';
+      copy.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(cashier);
+          copy.textContent = '已复制本单链接';
+        } catch (_) {
+          if (content.querySelector('input[readonly]')) return;
+          const field = document.createElement('input');
+          field.readOnly = true;
+          field.value = cashier;
+          field.setAttribute('aria-label', '本单付款链接，可长按复制');
+          content.append(field);
+          field.focus(); field.select();
+          copy.textContent = '请长按下方链接复制';
+        }
+      });
+      content.append(copy, hint);
     }
 
     if (order.status === 'paid') {
@@ -183,7 +208,8 @@
       attempts += 1;
       try {
         const updated = await api('/account/api/orders/' + encodeURIComponent(order.id) + '/refresh', { method: 'POST', body: '{}' });
-        renderOrder(sku, updated);
+        // A status-only poll must not reset a copy action or a selected link.
+        if (updated.status !== activeOrder?.status || updated.qrcode_base64 !== activeOrder?.qrcode_base64 || updated.cashier_url !== activeOrder?.cashier_url) renderOrder(sku, updated);
       } catch (_) {
         // The server enforces a five-second per-order refresh cooldown; a later tick retries.
       }
