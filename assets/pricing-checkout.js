@@ -161,6 +161,9 @@
       view.querySelector('#checkout-dialog-title').textContent = titleFor(sku) + ' · 已付款';
       status.textContent = '已收到付款，云时长正在等待到账。请勿重复付款，可刷新原订单查看进度。';
       stopPolling();
+    } else if (order.status === 'payment_unknown') {
+      status.textContent = '快码暂未确认本单的付款信息。请勿重复下单或付款，可刷新原订单查看结果。';
+      stopPolling();
     } else if (order.status === 'pending' && order.qrcode_base64) {
       status.textContent = '二维码有效期内可直接付款；页面会自动刷新订单状态。';
     } else if (order.status === 'pending') {
