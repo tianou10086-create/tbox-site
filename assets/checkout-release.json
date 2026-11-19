@@ -1,6 +1,14 @@
 {
   "catalog_url": "https://api.tboxapp.top/included/catalog",
   "checkout_url": "https://api.tboxapp.top/included/checkout",
-  "contract_version": "TBOX-VALUE-V5-20261104",
-  "approved_skus": []
+  "contract_version": "TBOX-TIME-PASSES-V9-20261119",
+  "approved_skus": [
+    "tbox_trial_5m_10c_v7",
+    "tbox_day_1h_v9",
+    "tbox_day_2h_v9",
+    "tbox_day_3h_v9",
+    "tbox_month_6h_v9",
+    "tbox_quarter_15h_v9",
+    "tbox_year_36h_v9"
+  ]
 }
