@@ -1,0 +1,274 @@
+(() => {
+  'use strict';
+
+  const API = 'https://api.tboxapp.top';
+  const pendingKey = 'tbox-pending-checkout-sku';
+  let modal = null;
+  let pollTimer = null;
+  let activeOrder = null;
+
+  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+  async function api(path, init = {}) {
+    const response = await fetch(API + path, {
+      credentials: 'include',
+      mode: 'cors',
+      cache: 'no-store',
+      ...init,
+      headers: {
+        ...(init.body ? { 'Content-Type': 'application/json' } : {}),
+        ...(init.headers || {})
+      }
+    });
+    let data = null;
+    try { data = await response.json(); } catch (_) {}
+    if (!response.ok) {
+      const error = new Error(typeof data?.detail === 'string' ? data.detail : '请求未成功，请稍后重试。');
+      error.status = response.status;
+      throw error;
+    }
+    return data;
+  }
+
+  async function readSession() {
+    const response = await fetch(API + '/account/api/session', {
+      credentials: 'include', mode: 'cors', cache: 'no-store'
+    });
+    if (response.status === 401) return null;
+    if (!response.ok) throw new Error('暂时无法确认登录状态，请稍后重试。');
+    return response.json();
+  }
+
+  function cardFor(sku) {
+    return document.querySelector('.offer-card[data-sku="' + sku + '"]');
+  }
+
+  function titleFor(sku) {
+    return cardFor(sku)?.querySelector('h3')?.textContent?.trim() || '这份云时长';
+  }
+
+  function ensureModal() {
+    if (modal) return modal;
+    modal = document.createElement('dialog');
+    modal.className = 'checkout-dialog';
+    modal.setAttribute('aria-labelledby', 'checkout-dialog-title');
+    modal.innerHTML = `
+      <form method="dialog" class="checkout-dialog__shell">
+        <button class="checkout-dialog__close" value="cancel" aria-label="关闭购买窗口">×</button>
+        <div class="checkout-dialog__body">
+          <span class="checkout-dialog__eyebrow">TBOX 快码支付</span>
+          <h2 id="checkout-dialog-title"></h2>
+          <div class="checkout-dialog__content" data-checkout-content></div>
+          <p class="checkout-dialog__status" data-checkout-status role="status" aria-live="polite"></p>
+        </div>
+      </form>`;
+    (document.querySelector('.pass-preview') || document.body).append(modal);
+    modal.addEventListener('close', () => {
+      if (pollTimer) window.clearInterval(pollTimer);
+      pollTimer = null;
+      activeOrder = null;
+    });
+    return modal;
+  }
+
+  function openModal(sku, status = '正在确认账户与订单状态…') {
+    const view = ensureModal();
+    view.querySelector('#checkout-dialog-title').textContent = '购买 ' + titleFor(sku);
+    view.querySelector('[data-checkout-content]').replaceChildren();
+    view.querySelector('[data-checkout-status]').textContent = status;
+    if (!view.open) {
+      if (typeof view.showModal === 'function') view.showModal();
+      else view.setAttribute('open', '');
+    }
+    return view;
+  }
+
+  function stopPolling() {
+    if (pollTimer) window.clearInterval(pollTimer);
+    pollTimer = null;
+  }
+
+  function money(cents) {
+    return '¥' + (Number(cents || 0) / 100).toFixed(2);
+  }
+
+  function renderOrder(sku, order) {
+    const view = openModal(sku);
+    const content = view.querySelector('[data-checkout-content]');
+    const status = view.querySelector('[data-checkout-status]');
+    content.replaceChildren();
+    activeOrder = order;
+
+    const amount = document.createElement('p');
+    amount.className = 'checkout-dialog__amount';
+    amount.textContent = money(order.amount_cents);
+    content.append(amount);
+
+    const qrMime = order.image_mime || 'image/png';
+    if (order.qrcode_base64 && ['image/png', 'image/jpeg'].includes(qrMime)) {
+      const image = document.createElement('img');
+      image.className = 'checkout-dialog__qr';
+      image.alt = '本订单动态付款二维码';
+      image.src = 'data:' + qrMime + ';base64,' + order.qrcode_base64;
+      content.append(image);
+      const hint = document.createElement('p');
+      hint.className = 'checkout-dialog__hint';
+      hint.textContent = '请用微信扫一扫完成付款，付款金额以本订单为准。';
+      content.append(hint);
+    } else if (order.cashier_url) {
+      const link = document.createElement('a');
+      link.className = 'button checkout-dialog__link';
+      link.href = order.cashier_url;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = '打开快码收银台';
+      content.append(link);
+      const hint = document.createElement('p');
+      hint.className = 'checkout-dialog__hint';
+      hint.textContent = '当前收银台返回了付款地址，打开后核对金额再付款。';
+      content.append(hint);
+    }
+
+    if (order.status === 'paid') {
+      status.textContent = '付款已核验，权益已记入账户。';
+      stopPolling();
+    } else if (order.status === 'pending' && order.qrcode_base64) {
+      status.textContent = '二维码有效期内可直接付款；页面会自动刷新订单状态。';
+    } else if (order.status === 'pending') {
+      status.textContent = '订单已创建，但暂未返回二维码。请在账户中心刷新原订单，不要重复下单。';
+    } else if (order.status === 'expired') {
+      status.textContent = '该订单付款窗口已结束，请到账户中心查看原订单。';
+      stopPolling();
+    } else if (order.status === 'cancelled') {
+      status.textContent = '该订单已取消，请勿继续付款。';
+      stopPolling();
+    } else {
+      status.textContent = '订单状态：' + order.status + '。请到账户中心核对原订单。';
+    }
+
+    const refresh = document.createElement('button');
+    refresh.type = 'button';
+    refresh.className = 'checkout-dialog__refresh';
+    refresh.textContent = '刷新订单状态';
+    refresh.addEventListener('click', async () => {
+      refresh.disabled = true;
+      try {
+        const updated = await api('/account/api/orders/' + encodeURIComponent(order.id) + '/refresh', { method: 'POST', body: '{}' });
+        renderOrder(sku, updated);
+      } catch (error) {
+        status.textContent = error.message;
+      } finally {
+        refresh.disabled = false;
+      }
+    });
+    content.append(refresh);
+    if (order.status === 'paid') {
+      const account = document.createElement('a');
+      account.className = 'checkout-dialog__account';
+      account.href = API + '/account';
+      account.textContent = '进入账户中心查看权益';
+      content.append(account);
+    }
+  }
+
+  function startPolling(sku, order) {
+    stopPolling();
+    if (order.status !== 'pending') return;
+    let attempts = 0;
+    pollTimer = window.setInterval(async () => {
+      if (!modal?.open || !activeOrder || activeOrder.id !== order.id || attempts >= 60) {
+        stopPolling();
+        return;
+      }
+      attempts += 1;
+      try {
+        const updated = await api('/account/api/orders/' + encodeURIComponent(order.id) + '/refresh', { method: 'POST', body: '{}' });
+        renderOrder(sku, updated);
+      } catch (_) {
+        // The server enforces a five-second per-order refresh cooldown; a later tick retries.
+      }
+    }, 5000);
+  }
+
+  function requestId(accountId, sku) {
+    const key = 'tbox-purchase-' + accountId + '-' + sku;
+    let id = sessionStorage.getItem(key);
+    if (!id) {
+      id = crypto.randomUUID();
+      sessionStorage.setItem(key, id);
+    }
+    return id;
+  }
+
+  async function beginCheckout(sku, link) {
+    if (!sku || link.dataset.checkoutBusy === 'true') return;
+    link.dataset.checkoutBusy = 'true';
+    link.setAttribute('aria-busy', 'true');
+    const originalText = link.textContent;
+    link.textContent = '正在创建订单…';
+    try {
+      const user = await readSession();
+      if (!user) {
+        sessionStorage.setItem(pendingKey, sku);
+        const returnUrl = new URL(window.location.href);
+        returnUrl.searchParams.set('checkout_sku', sku);
+        window.location.assign(API + '/account?return_to=' + encodeURIComponent(returnUrl.href));
+        return;
+      }
+
+      openModal(sku, '正在查找本账户的原订单…');
+      const orders = await api('/account/api/orders');
+      const existing = (orders.orders || []).find(order => order.sku === sku && ['pending', 'payment_unknown'].includes(order.status));
+      if (existing) {
+        renderOrder(sku, existing);
+        startPolling(sku, existing);
+        return;
+      }
+
+      const config = await api('/account/api/config');
+      const spec = (config.catalog?.domestic || []).find(item => item.id === sku);
+      if (!spec?.purchasing_open) {
+        const view = openModal(sku, '');
+        view.querySelector('[data-checkout-status]').textContent = '该套餐当前没有可用库存或尚未开放付款，服务端没有创建支付单。请稍后重试或到账户中心查看原订单。';
+        return;
+      }
+
+      const order = await api('/account/api/orders', {
+        method: 'POST',
+        body: JSON.stringify({ sku, request_id: requestId(user.account_id, sku) })
+      });
+      renderOrder(sku, order);
+      startPolling(sku, order);
+    } catch (error) {
+      const view = openModal(sku, '');
+      view.querySelector('[data-checkout-status]').textContent = error.message;
+    } finally {
+      link.dataset.checkoutBusy = 'false';
+      link.removeAttribute('aria-busy');
+      link.textContent = originalText;
+    }
+  }
+
+  function bind() {
+    const links = [...document.querySelectorAll('[data-account-checkout]')];
+    links.forEach(link => {
+      const card = link.closest('[data-sku]');
+      const sku = card?.dataset.sku;
+      if (!sku) return;
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        void beginCheckout(sku, link);
+      });
+    });
+
+    const querySku = new URLSearchParams(window.location.search).get('checkout_sku') || sessionStorage.getItem(pendingKey);
+    if (querySku && links.some(link => link.closest('[data-sku]')?.dataset.sku === querySku)) {
+      sessionStorage.removeItem(pendingKey);
+      const target = links.find(link => link.closest('[data-sku]')?.dataset.sku === querySku);
+      void beginCheckout(querySku, target);
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bind, { once: true });
+  else bind();
+})();
