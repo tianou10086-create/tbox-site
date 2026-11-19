@@ -50,6 +50,10 @@
       link.title = session ? '账户中心 · ' + session.email : link.textContent;
       link.setAttribute('aria-label', session ? '账户中心：' + session.email : link.textContent);
     });
+    document.querySelectorAll('[data-account-checkout]').forEach(link => {
+      link.textContent = session ? '立即购买' : pending ? '确认登录状态' : '登录后购买';
+      link.setAttribute('aria-label', session ? '立即购买' : link.textContent);
+    });
   }
 
   async function failure(reason) {
