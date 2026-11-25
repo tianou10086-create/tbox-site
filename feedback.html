@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="zh-CN" data-type="software">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>用户反馈｜TBOX</title>
+<meta name="description" content="向 TBOX 团队提交问题反馈、功能建议或速度体验意见，直达开发者并快速跟进。">
+<meta name="page-type" content="software">
+<meta name="site-kind" content="software">
+<meta name="theme-color" content="#f7f7f2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TBOX">
+<meta property="og:title" content="用户反馈｜TBOX">
+<meta property="og:description" content="向 TBOX 团队提交问题反馈、功能建议或速度体验意见，直达开发者并快速跟进。">
+<meta property="og:url" content="https://tboxapp.top/feedback.html">
+<meta property="og:image" content="https://tboxapp.top/assets/img/tbox-study-share-20261119.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://tboxapp.top/feedback.html">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/launch-20261110.css?v=20261116-time-v6">
+<script defer src="assets/account-access.js?v=20261121-01111-pending"></script>
+<link rel="stylesheet" href="assets/editorial-system.css?v=20261119-ed1">
+<link rel="stylesheet" href="assets/sales-upgrade.css?v=20261126-s1">
+<style>
+.fb-shell{padding:clamp(38px,5vw,72px) 0 clamp(48px,6vw,84px)}
+.fb-grid{display:grid;grid-template-columns:minmax(240px,.42fr) minmax(0,.58fr);gap:clamp(28px,5vw,72px);align-items:start}
+.fb-aside{position:sticky;top:28px}
+.fb-kicker{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ed-action);letter-spacing:.02em;margin:0 0 12px}
+.fb-aside h1{margin:0 0 16px;font-size:clamp(34px,4vw,52px);line-height:1.14;letter-spacing:-.05em;font-weight:680;color:var(--ed-ink)}
+.fb-aside>p{margin:0 0 24px;font-size:16px;line-height:1.75;color:var(--ed-muted)}
+.fb-promises{border-top:1px solid var(--ed-line);padding-top:18px;margin:0 0 24px;list-style:none;padding-left:0}
+.fb-promises li{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--ed-line);font-size:14px;color:var(--ed-ink);line-height:1.6}
+.fb-promises b{color:var(--ed-action);font-variant-numeric:tabular-nums;min-width:24px}
+.fb-direct{background:var(--ed-soft);border-radius:8px;padding:18px 20px;font-size:14px;color:var(--ed-muted);line-height:1.7}
+.fb-direct strong{display:block;color:var(--ed-ink);font-size:15px;margin-bottom:4px}
+.fb-direct a{color:var(--ed-action);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+.fb-card{background:var(--ed-white);border:1px solid var(--ed-line);border-radius:10px;padding:clamp(22px,3.2vw,36px);box-shadow:0 10px 30px rgba(23,43,37,.04)}
+.fb-field{margin-bottom:22px;border:0;padding:0}
+.fb-field label,.fb-field legend{display:block;font-size:14px;font-weight:650;color:var(--ed-ink);margin-bottom:6px;padding:0}
+.fb-req{color:#ab4145;margin-left:3px}
+.fb-hint{display:block;font-size:13px;color:var(--ed-muted);margin-bottom:10px;line-height:1.5}
+
+.fb-type-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fb-type-opt{position:relative;display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:var(--ed-paper);border:1px solid var(--ed-line);border-radius:8px;cursor:pointer;transition:border-color .16s ease,background-color .16s ease}
+.fb-type-opt:hover{border-color:#98a99b;background:var(--ed-soft)}
+.fb-type-opt input{margin-top:3px;accent-color:var(--ed-action);flex-shrink:0}
+.fb-type-opt:has(input:checked){border-color:var(--ed-action);background:var(--ed-soft);box-shadow:inset 0 0 0 1px var(--ed-action)}
+.fb-type-title{display:block;font-size:14px;font-weight:640;color:var(--ed-ink);line-height:1.3}
+.fb-type-sub{display:block;font-size:12px;color:var(--ed-muted);margin-top:2px;line-height:1.4}
+
+.fb-tags{display:flex;flex-wrap:wrap;gap:8px}
+.fb-tag{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--ed-line);border-radius:999px;background:var(--ed-paper);font-size:13px;color:var(--ed-ink);cursor:pointer;transition:border-color .15s,background-color .15s}
+.fb-tag:hover{border-color:#98a99b}
+.fb-tag input{position:absolute;opacity:0;pointer-events:none}
+.fb-tag:has(input:checked){background:var(--ed-action);border-color:var(--ed-action);color:#fff}
+
+.fb-input,.fb-textarea{width:100%;box-sizing:border-box;padding:11px 14px;background:var(--ed-paper);border:1px solid var(--ed-line);border-radius:7px;color:var(--ed-ink);font:inherit;font-size:15px;line-height:1.55;transition:border-color .16s ease,background-color .16s ease}
+.fb-input:focus,.fb-textarea:focus{outline:none;border-color:var(--ed-action);background:var(--ed-white);box-shadow:0 0 0 3px rgba(20,61,51,.1)}
+.fb-textarea{min-height:148px;resize:vertical}
+.fb-row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fb-ver-wrap{display:flex;gap:8px}
+.fb-ver-wrap .fb-input{flex:1}
+.fb-mini-btn{padding:0 14px;background:var(--ed-soft);border:1px solid var(--ed-line);border-radius:7px;color:var(--ed-ink);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background-color .15s,border-color .15s}
+.fb-mini-btn:hover{background:#dde5d6;border-color:#98a99b}
+
+.fb-counter{font-size:12px;color:var(--ed-muted);text-align:right;margin-top:6px;font-variant-numeric:tabular-nums}
+.fb-counter.warn{color:#ab4145;font-weight:600}
+
+.fb-upload{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.fb-file-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border:1px dashed #98a99b;border-radius:7px;background:var(--ed-paper);color:var(--ed-ink);font-size:13px;font-weight:580;cursor:pointer;transition:border-color .15s,background-color .15s}
+.fb-file-btn:hover{border-color:var(--ed-action);background:var(--ed-soft)}
+.fb-file-btn input{position:absolute;opacity:0;width:0;height:0}
+.fb-file-meta{font-size:13px;color:var(--ed-muted)}
+.fb-preview{margin-top:10px;display:none;max-width:240px;border-radius:6px;border:1px solid var(--ed-line)}
+.fb-preview.show{display:block}
+
+.fb-alert{display:none;padding:12px 14px;border-radius:7px;font-size:14px;line-height:1.55;margin-bottom:16px}
+.fb-alert.error{display:block;background:#fbe4e4;color:#8c2a2e;border:1px solid #e6b8b8}
+.fb-alert.info{display:block;background:var(--ed-soft);color:var(--ed-ink);border:1px solid var(--ed-line)}
+
+.fb-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:8px;border-top:1px solid var(--ed-line)}
+.fb-actions .button{min-width:148px;font-weight:640;cursor:pointer}
+.fb-privacy{font-size:12px;color:var(--ed-muted);margin:0}
+
+.fb-result{display:none;background:var(--ed-white);border:1px solid var(--ed-line);border-radius:10px;padding:clamp(26px,4vw,42px)}
+.fb-result.visible{display:block}
+.fb-result h2{margin:0 0 10px;font-size:26px;color:var(--ed-ink);letter-spacing:-.04em}
+.fb-result p{margin:0 0 16px;color:var(--ed-muted);font-size:15px;line-height:1.7}
+.fb-result-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.fb-ticket{display:inline-block;padding:4px 10px;border-radius:5px;background:var(--ed-soft);color:var(--ed-action);font-size:13px;font-weight:650;margin-bottom:14px}
+
+@media(max-width:900px){
+  .fb-grid{grid-template-columns:1fr}
+  .fb-aside{position:static}
+}
+@media(max-width:560px){
+  .fb-type-grid,.fb-row-2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body class="launch editorial-site">
+<a class="skip" href="#main">跳到正文</a>
+<header class="launch-header">
+  <a class="launch-brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="30" height="30">TBOX</a>
+  <nav class="launch-nav" aria-label="主导航">
+    <a href="index.html#why-buy">为什么有用</a>
+    <a href="pricing.html">价格套餐</a>
+    <a href="media.html">实战演示</a>
+    <a href="setup-key.html">使用指南</a>
+    <a href="faq.html">帮助与隐私</a>
+    <a href="changelog.html">更新日志</a>
+    <a href="partners.html">代理合作</a>
+  </nav>
+  <div class="launch-actions">
+    <a class="nav-trial-pill" href="pricing.html#try-pass">¥0.10 试 5 分钟</a>
+    <a class="login-link" data-account-link href="https://api.tboxapp.top/account?return_to=https%3A%2F%2Ftboxapp.top%2Ffeedback.html">登录</a>
+    <a class="button button-small" href="download.html">下载</a>
+    <details class="launch-menu">
+      <summary aria-label="打开导航">导航</summary>
+      <nav aria-label="移动导航">
+        <a href="index.html#why-buy">为什么有用</a>
+        <a href="pricing.html">价格套餐</a>
+        <a href="media.html">实战演示</a>
+        <a href="setup-key.html">使用指南</a>
+        <a href="faq.html">帮助与隐私</a>
+        <a href="changelog.html">更新日志</a>
+        <a href="feedback.html" aria-current="page">用户反馈</a>
+        <a href="partners.html">代理合作</a>
+        <a data-account-link href="https://api.tboxapp.top/account?return_to=https%3A%2F%2Ftboxapp.top%2Ffeedback.html">登录</a>
+        <a href="download.html">下载 Windows 版</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main id="main" class="fb-shell">
+  <div class="fb-grid">
+    <aside class="fb-aside">
+      <p class="fb-kicker">产品反馈通道 · TBOX</p>
+      <h1>把不顺手的地方<br>直接告诉我们。</h1>
+      <p>无论是识别速度、界面细节、悬浮窗体验，还是希望新增的功能，每一条反馈都会实时同步给开发者并进入版本排期。</p>
+      <ol class="fb-promises">
+        <li><b>01</b><span>提交后实时触发开发者通知，并在问题追踪单中存档跟进。</span></li>
+        <li><b>02</b><span>如果留下微信号、QQ 或邮箱，修复上线后我们会主动回访。</span></li>
+        <li><b>03</b><span>重大版本变更与修复记录均公开在 <a href="changelog.html" style="color:var(--ed-action);font-weight:600">更新日志</a> 中。</span></li>
+      </ol>
+      <div class="fb-direct">
+        <strong>需要即时人工协助？</strong>
+        也可以直接加入官方支持 QQ 群：<strong style="display:inline;font-variant-numeric:tabular-nums">1127804697</strong>，或查看 <a href="faq.html#support">帮助与支持</a>。
+      </div>
+    </aside>
+
+    <div>
+      <form class="fb-card" id="feedbackForm" novalidate>
+        <div class="fb-alert" id="formAlert" role="alert"></div>
+
+        <fieldset class="fb-field">
+          <legend>反馈类型<span class="fb-req">*</span></legend>
+          <div class="fb-type-grid">
+            <label class="fb-type-opt">
+              <input type="radio" name="type" value="bug" checked>
+              <span><span class="fb-type-title">问题与 Bug</span><span class="fb-type-sub">闪退、识别异常、显示错位等</span></span>
+            </label>
+            <label class="fb-type-opt">
+              <input type="radio" name="type" value="feature">
+              <span><span class="fb-type-title">功能建议</span><span class="fb-type-sub">希望新增的能力或工作流</span></span>
+            </label>
+            <label class="fb-type-opt">
+              <input type="radio" name="type" value="experience">
+              <span><span class="fb-type-title">速度与体验</span><span class="fb-type-sub">答题延迟、界面操作顺手度</span></span>
+            </label>
+            <label class="fb-type-opt">
+              <input type="radio" name="type" value="other">
+              <span><span class="fb-type-title">其他意见</span><span class="fb-type-sub">套餐咨询、合作或其他想法</span></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="fb-field">
+          <legend>涉及模块（可多选）</legend>
+          <div class="fb-tags">
+            <label class="fb-tag"><input type="checkbox" name="module" value="面试模式">面试模式</label>
+            <label class="fb-tag"><input type="checkbox" name="module" value="笔试模式">笔试模式</label>
+            <label class="fb-tag"><input type="checkbox" name="module" value="悬浮窗与置顶">悬浮窗与置顶</label>
+            <label class="fb-tag"><input type="checkbox" name="module" value="资料预分析">资料预分析</label>
+            <label class="fb-tag"><input type="checkbox" name="module" value="安装与计费">安装与计费</label>
+            <label class="fb-tag"><input type="checkbox" name="module" value="界面美观">界面美观</label>
+          </div>
+        </fieldset>
+
+        <div class="fb-field">
+          <label for="fb-desc">详细说明<span class="fb-req">*</span></label>
+          <span class="fb-hint">请描述你遇到的具体现象、期望效果或复现步骤（至少 10 字）。</span>
+          <textarea class="fb-textarea" id="fb-desc" name="description" required minlength="10" maxlength="3000" placeholder="例如：在面试模式下切到双屏后，悬浮窗默认出现在主屏，希望可以记住上次拖动的副屏位置…"></textarea>
+          <div class="fb-counter" id="descCounter">0 / 10 字（最少）</div>
+        </div>
+
+        <div class="fb-row-2">
+          <div class="fb-field">
+            <label for="fb-contact">联系方式（可选）</label>
+            <input class="fb-input" type="text" id="fb-contact" name="contact" maxlength="120" placeholder="微信号 / QQ / 邮箱">
+          </div>
+          <div class="fb-field">
+            <label for="fb-version">客户端版本</label>
+            <div class="fb-ver-wrap">
+              <input class="fb-input" type="text" id="fb-version" name="version" maxlength="40" placeholder="例如 v0.2.0">
+              <button type="button" class="fb-mini-btn" id="detectVersionBtn">自动填充</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="fb-field">
+          <label>附带截图（可选）</label>
+          <span class="fb-hint">支持 PNG / JPG / WebP，单张不超过 2MB。</span>
+          <div class="fb-upload">
+            <label class="fb-file-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              选择图片
+              <input type="file" id="fb-screenshot" name="screenshot" accept="image/png,image/jpeg,image/webp">
+            </label>
+            <span class="fb-file-meta" id="fileName">未选择图片</span>
+          </div>
+          <img id="filePreview" class="fb-preview" alt="截图预览">
+        </div>
+
+        <div class="fb-actions">
+          <p class="fb-privacy">提交内容仅用于产品改进与问题排查，不会公开你的联系方式。</p>
+          <button type="submit" class="button" id="submitBtn">提交反馈</button>
+        </div>
+      </form>
+
+      <section class="fb-result" id="resultPanel" aria-live="polite">
+        <span class="fb-ticket" id="resultBadge">已送达开发者</span>
+        <h2 id="resultTitle">感谢你的反馈，我们已收到</h2>
+        <p id="resultBody">这条反馈已同步推送给 TBOX 团队。如果留下了联系方式，我们会在跟进后与你联系。</p>
+        <div class="fb-result-actions" id="resultActions">
+          <button type="button" class="button" id="submitAnotherBtn">继续提交一条</button>
+          <a class="button button-quiet" href="changelog.html">查看更新日志</a>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="editorial-footer">
+  <div class="ef-id">
+    <a class="ef-sign" href="index.html"><img src="assets/img/logo.svg" alt="" width="27" height="27">TBOX</a>
+    <p>面试与笔试 AI 学习助手</p>
+  </div>
+  <div class="ef-col">
+    <strong>产品</strong>
+    <a href="download.html">下载 Windows 版</a>
+    <a href="pricing.html">套餐与试用</a>
+    <a href="media.html">产品短片</a>
+    <a href="changelog.html">更新日志</a>
+  </div>
+  <div class="ef-col">
+    <strong>使用与支持</strong>
+    <a href="setup-key.html">使用指南</a>
+    <a href="faq.html#support">帮助与支持</a>
+    <a href="feedback.html">用户反馈</a>
+    <a href="partners.html">代理合作</a>
+  </div>
+  <div class="ef-col">
+    <strong>关于</strong>
+    <a href="about.html">关于 TBOX</a>
+    <a href="about.html#terms">条款与退款</a>
+    <a href="faq.html#privacy">数据与隐私</a>
+  </div>
+  <small>© 2026 TBOX</small>
+</footer>
+
+<script src="assets/config.js?v=20261121-01111-pending"></script>
+<script defer src="assets/launch-20261110.js?v=20261121-01111-pending"></script>
+<script>
+(function(){
+  var form = document.getElementById('feedbackForm');
+  var alertBox = document.getElementById('formAlert');
+  var desc = document.getElementById('fb-desc');
+  var counter = document.getElementById('descCounter');
+  var versionInput = document.getElementById('fb-version');
+  var detectBtn = document.getElementById('detectVersionBtn');
+  var fileInput = document.getElementById('fb-screenshot');
+  var fileName = document.getElementById('fileName');
+  var filePreview = document.getElementById('filePreview');
+  var submitBtn = document.getElementById('submitBtn');
+  var resultPanel = document.getElementById('resultPanel');
+  var resultBadge = document.getElementById('resultBadge');
+  var resultTitle = document.getElementById('resultTitle');
+  var resultBody = document.getElementById('resultBody');
+  var resultActions = document.getElementById('resultActions');
+  var submitAnotherBtn = document.getElementById('submitAnotherBtn');
+
+  var API_ENDPOINT = (window.TBOX_CONFIG && window.TBOX_CONFIG.FEEDBACK_URL) || 'https://api.tboxapp.top/feedback';
+  var ISSUE_REPO = 'tianou10086-create/tbox-site';
+  var screenshotMeta = null;
+
+  // 支持客户端带参数直达：feedback.html?v=0.2.0&type=bug
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('v')) versionInput.value = params.get('v');
+  if (params.get('type')) {
+    var preset = form.querySelector('input[name="type"][value="' + params.get('type') + '"]');
+    if (preset) preset.checked = true;
+  }
+
+  function showAlert(msg, kind) {
+    alertBox.textContent = msg;
+    alertBox.className = 'fb-alert ' + (kind || 'error');
+  }
+  function clearAlert() {
+    alertBox.className = 'fb-alert';
+    alertBox.textContent = '';
+  }
+
+  desc.addEventListener('input', function() {
+    var len = desc.value.trim().length;
+    counter.textContent = len < 10 ? (len + ' / 10 字（最少）') : ('已输入 ' + len + ' 字');
+    counter.classList.toggle('warn', len > 0 && len < 10);
+  });
+
+  detectBtn.addEventListener('click', function() {
+    var cfgVer = window.TBOX_CONFIG && window.TBOX_CONFIG.RELEASE && window.TBOX_CONFIG.RELEASE.version;
+    versionInput.value = params.get('v') || (cfgVer ? ('v' + cfgVer) : 'v0.2.0');
+  });
+
+  fileInput.addEventListener('change', function() {
+    var f = fileInput.files && fileInput.files[0];
+    if (!f) {
+      screenshotMeta = null;
+      fileName.textContent = '未选择图片';
+      filePreview.classList.remove('show');
+      return;
+    }
+    if (f.size > 2 * 1024 * 1024) {
+      showAlert('截图大小超过 2MB，请压缩后再选择。', 'error');
+      fileInput.value = '';
+      screenshotMeta = null;
+      return;
+    }
+    clearAlert();
+    fileName.textContent = f.name + ' (' + Math.round(f.size / 1024) + ' KB)';
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      filePreview.src = ev.target.result;
+      filePreview.classList.add('show');
+      screenshotMeta = { name: f.name, size: f.size, mime: f.type };
+    };
+    reader.readAsDataURL(f);
+  });
+
+  function buildFallbackIssueUrl(payload) {
+    var typeNames = { bug: '问题反馈', feature: '功能建议', experience: '速度与体验', other: '其他意见' };
+    var title = '[用户反馈] ' + (typeNames[payload.type] || payload.type) + '：' + payload.description.slice(0, 28);
+    var body = [
+      '### 反馈类型\n' + (typeNames[payload.type] || payload.type),
+      payload.modules.length ? ('### 涉及模块\n' + payload.modules.join('、')) : '',
+      '### 详细说明\n' + payload.description,
+      payload.version ? ('### 客户端版本\n' + payload.version) : '',
+      payload.contact ? ('### 联系方式\n' + payload.contact) : ''
+    ].filter(Boolean).join('\n\n');
+    return 'https://github.com/' + ISSUE_REPO + '/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
+  }
+
+  function showDelivered(data) {
+    form.style.display = 'none';
+    resultBadge.textContent = data && data.issueNumber ? ('反馈编号 #' + data.issueNumber) : '已实时送达开发者';
+    resultTitle.textContent = '感谢你的反馈，我们已收到';
+    resultBody.textContent = '这条反馈已实时通知到 TBOX 开发者并登记跟进。如果你留下了联系方式，我们会在处理完成后主动回复。';
+    resultActions.innerHTML = '';
+    if (data && data.issueUrl) {
+      var a = document.createElement('a');
+      a.className = 'button';
+      a.href = data.issueUrl;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = '查看处理进度';
+      resultActions.appendChild(a);
+    }
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'button button-quiet';
+    btn.textContent = '再提一条反馈';
+    btn.addEventListener('click', resetForm);
+    resultActions.appendChild(btn);
+    resultPanel.classList.add('visible');
+    resultPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function showFallback(payload) {
+    form.style.display = 'none';
+    var issueUrl = buildFallbackIssueUrl(payload);
+    var summaryText = '【TBOX 用户反馈】\n类型：' + payload.type + '\n模块：' + (payload.modules.join('、') || '未选') + '\n版本：' + (payload.version || '未填') + '\n联系方式：' + (payload.contact || '未填') + '\n内容：' + payload.description;
+    resultBadge.textContent = '在线通道维护中 · 请一键直达';
+    resultTitle.textContent = '反馈内容已为你整理好';
+    resultBody.textContent = '当前自动接收服务暂时未连通，为确保你的反馈不丢失，可点击下方按钮直接提交到官方问题单，或一键复制发送到 QQ 群 1127804697。';
+    resultActions.innerHTML = '';
+
+    var ghLink = document.createElement('a');
+    ghLink.className = 'button';
+    ghLink.href = issueUrl;
+    ghLink.target = '_blank';
+    ghLink.rel = 'noopener';
+    ghLink.textContent = '一键提交到官方问题单';
+    resultActions.appendChild(ghLink);
+
+    var copyBtn = document.createElement('button');
+    copyBtn.type = 'button';
+    copyBtn.className = 'button button-quiet';
+    copyBtn.textContent = '复制反馈文本';
+    copyBtn.addEventListener('click', function() {
+      navigator.clipboard.writeText(summaryText).then(function() {
+        copyBtn.textContent = '已复制，可粘贴到 QQ 群';
+      });
+    });
+    resultActions.appendChild(copyBtn);
+
+    var backBtn = document.createElement('button');
+    backBtn.type = 'button';
+    backBtn.className = 'button button-quiet';
+    backBtn.textContent = '返回修改';
+    backBtn.addEventListener('click', function() {
+      resultPanel.classList.remove('visible');
+      form.style.display = 'block';
+    });
+    resultActions.appendChild(backBtn);
+
+    resultPanel.classList.add('visible');
+    resultPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function resetForm() {
+    form.reset();
+    screenshotMeta = null;
+    fileName.textContent = '未选择图片';
+    filePreview.classList.remove('show');
+    counter.textContent = '0 / 10 字（最少）';
+    resultPanel.classList.remove('visible');
+    form.style.display = 'block';
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    clearAlert();
+    var typeEl = form.querySelector('input[name="type"]:checked');
+    if (!typeEl) {
+      showAlert('请选择反馈类型。', 'error');
+      return;
+    }
+    var text = desc.value.trim();
+    if (text.length < 10) {
+      showAlert('详细说明至少需要 10 个字，方便我们准确定位问题。', 'error');
+      desc.focus();
+      return;
+    }
+    var modules = Array.prototype.slice.call(form.querySelectorAll('input[name="module"]:checked')).map(function(el) { return el.value; });
+    var payload = {
+      type: typeEl.value,
+      modules: modules,
+      description: text,
+      contact: document.getElementById('fb-contact').value.trim(),
+      version: versionInput.value.trim(),
+      screenshot: screenshotMeta,
+      page: window.location.href,
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = '正在发送…';
+
+    var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var timer = controller ? setTimeout(function() { controller.abort(); }, 10000) : null;
+
+    fetch(API_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      signal: controller ? controller.signal : undefined
+    })
+    .then(function(res) {
+      if (timer) clearTimeout(timer);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json().catch(function() { return { success: true }; });
+    })
+    .then(function(data) {
+      if (data && data.success === false) {
+        showAlert(data.error || '提交失败，请检查填写内容后重试。', 'error');
+        return;
+      }
+      showDelivered(data);
+    })
+    .catch(function() {
+      if (timer) clearTimeout(timer);
+      showFallback(payload);
+    })
+    .finally(function() {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '提交反馈';
+    });
+  });
+
+  if (submitAnotherBtn) submitAnotherBtn.addEventListener('click', resetForm);
+})();
+</script>
+</body>
+</html>

@@ -1,2 +1,163 @@
 <!doctype html>
-<html data-account-required lang="zh-CN" data-type="software"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第一次使用｜TBOX</title><meta name="description" content="完成TBOX模型连接和设备检查，从一道简单文字题开始，再检查音频、图片及资料留存。"><meta name="page-type" content="software"><meta name="site-kind" content="software"><meta name="theme-color" content="#f7f7f2"><meta property="og:type" content="website"><meta property="og:site_name" content="TBOX"><meta property="og:title" content="第一次使用｜TBOX"><meta property="og:description" content="完成TBOX模型连接和设备检查，从一道简单文字题开始，再检查音频、图片及资料留存。"><meta property="og:url" content="https://tboxapp.top/setup-key.html"><meta property="og:image" content="https://tboxapp.top/assets/img/tbox-study-share-20261119.png"><meta name="twitter:card" content="summary_large_image"><link rel="canonical" href="https://tboxapp.top/setup-key.html"><link rel="icon" href="assets/img/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/launch-20261110.css?v=4"><style>html[data-account-required]:not([data-account-state="ready"]):not([data-account-state="error"]) body{visibility:hidden}</style><script defer src="assets/account-access.js?v=20261119-interview-v1"></script><link rel="stylesheet" href="assets/editorial-system.css?v=20261119-ed1"></head><body class="launch editorial-site"><a class="skip" href="#main">跳到正文</a><header class="launch-header"><a class="launch-brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="30" height="30">TBOX</a><nav class="launch-nav" aria-label="主导航"><a href="index.html#features">产品</a><a href="pricing.html">价格</a><a href="media.html">宣传片</a><a href="setup-key.html" aria-current="page">使用指南</a><a href="faq.html">帮助</a><a href="partners.html">代理合作</a></nav><div class="launch-actions"><a class="login-link" data-account-link href="https://api.tboxapp.top/account?return_to=https%3A%2F%2Ftboxapp.top%2F">登录</a><a class="button button-small" href="download.html">下载</a><details class="launch-menu"><summary aria-label="打开导航">导航</summary><nav aria-label="移动导航"><a href="index.html#features">产品</a><a href="pricing.html">价格</a><a href="media.html">宣传片</a><a href="setup-key.html" aria-current="page">使用指南</a><a href="faq.html">帮助</a><a href="partners.html">代理合作</a><a data-account-link href="https://api.tboxapp.top/account?return_to=https%3A%2F%2Ftboxapp.top%2F">登录</a><a href="download.html">下载 Windows 版</a></nav></details></div></header><main id="main"><header class="page-intro"><h1>首次使用指南</h1><p>选一道面试题或笔试练习题，先确认文字回答可用，再检查声音、截图和资料留存。</p></header><div class="guide-layout"><nav class="section-jump" aria-label="指南目录"><a href="#connect">连接设置</a><a href="#first-test">第一道练习题</a><a href="#errors">错误处理</a><a href="#device-check">音频与图片</a><a href="#data-storage">资料留存</a></nav><div class="guide-content"><section class="prose-section" id="connect"><h2>1. 选择你的模型连接</h2><p>先从<a href="download.html">官网</a>下载安装。使用已购旧时长积分包时，到账后先在账户中心确认首次激活，再用同一账户登录桌面端并同步权益；旧套餐按原入口激活。选择自备模型时，打开「设置」→「连接设置」→「回答模型」，将来源设为 personal，填写自己的服务地址、模型名和密钥，再保存。</p><p>地址、模型名和密钥应来自同一家服务。已有密钥不回显；仅在同一服务地址下留空才保留，更换服务地址时需填对应密钥。不要把产品授权码填进模型密钥框。</p><p id="flurouter">使用川流 API：回答来源选 <code>personal</code>，模型地址填 <code>https://flurouter.net/v1</code>，填写你在川流控制台开通的模型名称。文字模型用于面试，视觉模型用于 Edge 图片识题。已有 TBOX 套餐照常保留，川流用量由川流单独结算。不要把密钥发给客服。</p><p>从 TBOX 0.1.108 起，连接设置支持给川流单独指定本机 HTTP 代理。能直连就留空；需要代理时，用你自己机器上的端口。笔试时保持 Edge 题干、选项可见，点「开始笔试」自动打开提词器，点「停止笔试」结束采集并关闭提词器。首次打开提词器也需要时间。</p><p>返回首页展开「连接与诊断」，点击「测试连接」。测试可能产生所选服务商的调用费用；显示连接成功后，还要核对实际回答。</p></section><section class="prose-section" id="first-test"><h2>2. 选一道题，试试文字练习</h2><div class="sample-question"><strong>面试练习</strong>　选一个你推动过的项目，先讲自己做了什么，再请助手指出哪里还缺一个具体例子。</div><div class="sample-question"><strong>笔试练习</strong>　一项指标从 80 增到 100。先算增长率，再输入自己的算式，问：“为什么分母要用起始值？”</div><p>对照自己的经历或题目条件核实建议，再独立答一遍。遇到报错、空回答或截断，不算连接检查成功。</p></section><section class="prose-section" id="errors"><h2>3. 按原提示处理，不反复点击</h2><dl class="error-list"><dt>未配置或缺少地址、模型、密钥</dt><dd>回到连接设置补齐信息，不使用示例文本或其他服务商的密钥。</dd><dt>401 / 无权限</dt><dd>核对服务地址、账号密钥及模型权限，不公开密钥截图。</dd><dt>402 / 供应商余额不足</dt><dd>核对对应供应商余额，它与TBOX软件试用或套餐权益不是同一账户。</dd><dt>429 / 请求受限</dt><dd>保存提示和时间，按服务限制稍后重试；连续点击不会增加额度。</dd><dt>503、超时或原请求待确认</dt><dd>保留原问题、账号和请求记录，沿原请求恢复，不重复建单或重复付款。</dd><dt>连接成功，但没有答案或内容不符</dt><dd>记录题面、模型名、原始提示和版本，联系支持。不修改安装文件或伪造成功状态。</dd></dl></section><section class="prose-section" id="device-check"><h2>文字通过后，再检查音频与图片</h2><ul><li>在音频设备检查中分别测试麦克风和系统声音，核对设备名称。</li><li>用固定短句检查转写。选择本地转写时，需电脑具备对应模型资源。</li><li>图片识题需要所选服务支持视觉输入。先用无隐私图片测试，文字成功不代表图片或语音也已通过。</li><li>不同声卡与会议工具的表现可能不同，不承诺所有软件和设备自动适配。</li></ul></section><section class="prose-section" id="data-storage"><h2>资料留存：先确认当前数据目录</h2><h3>找到本次启动使用的位置</h3><p>默认目录是 <code>%LOCALAPPDATA%\TishiBox\suite</code>。若快捷方式或启动命令指定 <code>--data-dir</code>，以该目录为准。便携入口可使用独立位置；只清理默认目录不代表清理了所有副本。</p><h3>哪些内容可能留在本机</h3><ul><li>个人档案主文件 <code>profile.dat</code> 使用当前Windows账户加密；<code>profile/resume_parsed.json</code> 与 <code>profile/resume_parsed.prev.json</code> 是明文结构化解析快照。</li><li>草稿、分场景草稿、来源档案及面试历史分别保存；不要仅凭一个文件名判断全部内容已清除。</li><li><code>library.sqlite3</code>、<code>assessment.sqlite3</code> 与作答缓存独立保存；明确导出的JSON/CSV文件应单独保管。</li><li>本地音频处理使用内存，转写文字仍可保存；云转写会上传音频并产生服务端会话、字幕与用量记录。</li></ul><h3>如何整理和清理</h3><p>先保存需要保留的内容，退出软件，再确认数据目录。“移除资料/题面”仅清本次附件引用，不删除原始简历、PDF或图片。删除解析快照不等于删除主档案或服务端数据，再次导入会重新生成。</p><p>同时检查自行选择的导出、下载、备份和云同步目录。本地文件删除不等于安全擦除。没有一个按钮能保证清除本机、平台和供应商的全部副本；不要删除设备密钥、授权、数据库或整个数据目录来试着清空。</p><p>使用模型辅助导入、回答或视觉时，相关材料会发送到所选服务。详情见<a href="faq.html#privacy">数据与隐私</a>。</p></section></div></div><section class="support-panel" id="support"><div><h2>联系支持</h2><p>安装、账号、付款或激活问题，请提供版本、订单号和错误提示。不要公开密码、验证码、授权码或私人材料。</p></div><div class="support-contact"><span>QQ 支持群</span><strong data-qq-group>1127804697</strong><button class="button button-quiet" type="button" data-copy-support>复制群号</button><span role="status" data-copy-status></span></div></section></main><footer class="editorial-footer"><div class="ef-id"><a class="ef-sign" href="index.html"><img src="assets/img/logo.svg" alt="" width="27" height="27">TBOX</a><p>面试与笔试 AI 学习助手</p></div><div class="ef-col"><strong>产品</strong><a href="download.html">下载 Windows 版</a><a href="pricing.html">套餐与试用</a><a href="media.html">产品短片</a></div><div class="ef-col"><strong>使用与支持</strong><a href="setup-key.html">使用指南</a><a href="faq.html#support">帮助与支持</a><a href="partners.html">代理合作</a></div><div class="ef-col"><strong>关于</strong><a href="about.html">关于 TBOX</a><a href="about.html#terms">条款与退款</a><a href="faq.html#privacy">数据与隐私</a></div><small>© 2026 TBOX</small></footer><script src="assets/config.js?v=e6355c674191"></script><script defer src="assets/launch-20261110.js?v=20261116-0184"></script></body></html>
+<html data-account-required lang="zh-CN" data-type="software">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>首次使用指南｜三分钟跑通声卡、浮窗与防拍护盾｜TBOX</title>
+  <meta name="description" content="完成TBOX模型连接和设备自检，先用测试音频核对声音与浮窗显示，并配置简历预分析及防拍快捷藏窗。">
+  <meta name="page-type" content="software">
+  <meta name="site-kind" content="software">
+  <meta name="theme-color" content="#f7f7f2">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TBOX">
+  <meta property="og:title" content="首次使用指南｜TBOX">
+  <meta property="og:description" content="完成TBOX连接与设备核对，上正式场前3分钟跑通全部检测。">
+  <meta property="og:url" content="https://tboxapp.top/setup-key.html">
+  <meta property="og:image" content="https://tboxapp.top/assets/img/tbox-study-share-20261119.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://tboxapp.top/setup-key.html">
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/launch-20261110.css?v=4">
+  <style>html[data-account-required]:not([data-account-state="ready"]):not([data-account-state="error"]) body{visibility:hidden}</style>
+  <script defer src="assets/account-access.js?v=20261121-01111-pending"></script>
+  <link rel="stylesheet" href="assets/editorial-system.css?v=20261119-ed1">
+  <link rel="stylesheet" href="assets/sales-upgrade.css?v=20261126-s1">
+</head>
+<body class="launch editorial-site">
+  <a class="skip" href="#main">跳到正文</a>
+  <header class="launch-header">
+    <a class="launch-brand" href="index.html"><img src="assets/img/logo.svg" alt="" width="30" height="30">TBOX</a>
+    <nav class="launch-nav" aria-label="主导航">
+      <a href="index.html#why-buy">为什么有用</a>
+      <a href="pricing.html">价格套餐</a>
+      <a href="media.html">实战演示</a>
+      <a href="setup-key.html" aria-current="page">使用指南</a>
+      <a href="faq.html">帮助与隐私</a>
+      <a href="changelog.html">更新日志</a>
+      <a href="partners.html">代理合作</a>
+    </nav>
+    <div class="launch-actions">
+      <a class="nav-trial-pill" href="pricing.html#try-pass">¥0.10 试 5 分钟</a>
+      <a class="login-link" data-account-link href="https://api.tboxapp.top/account?return_to=https%3A%2F%2Ftboxapp.top%2Fsetup-key.html">登录</a>
+      <a class="button button-small" href="download.html">下载</a>
+      <details class="launch-menu">
+        <summary aria-label="打开导航">导航</summary>
+        <nav aria-label="移动导航">
+          <a href="index.html#why-buy">为什么有用</a>
+          <a href="pricing.html">价格套餐</a>
+          <a href="media.html">实战演示</a>
+          <a href="setup-key.html" aria-current="page">使用指南</a>
+          <a href="faq.html">帮助与隐私</a>
+          <a href="changelog.html">更新日志</a>
+          <a href="feedback.html">用户反馈</a>
+          <a href="partners.html">代理合作</a>
+          <a data-account-link href="https://api.tboxapp.top/account?return_to=https%3A%2F%2Ftboxapp.top%2Fsetup-key.html">登录</a>
+          <a href="download.html">下载 Windows 版</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="page-intro">
+      <h1>首次使用指南（3 分钟上线清单）</h1>
+      <p>建议在正式面试或笔试前至少半小时走完这几步：选好通道、导好简历、测通声卡和防拍快捷键，正式进场点「开始」直接稳住。</p>
+    </header>
+
+    <div class="guide-layout">
+      <nav class="section-jump" aria-label="指南目录">
+        <a href="#connect">1. 登录或接自备模型</a>
+        <a href="#first-test">2. 导简历与实战自测</a>
+        <a href="#antiscan">3. 防偷拍与扫码隐身</a>
+        <a href="#errors">4. 常见提示怎么处理</a>
+        <a href="#device-check">5. 音频与笔试检查</a>
+        <a href="#data-storage">6. 资料目录与清理</a>
+      </nav>
+
+      <div class="guide-content">
+        <section class="prose-section" id="connect">
+          <h2>1. 登录账户开包，或填写个人 API 服务</h2>
+          <p>如果你购买的是官网 <strong>V9 活跃云时长包（含 ¥0.10 体验包）</strong>，从<a href="download.html">下载页</a>装好软件后，直接用购买账号登录并核对余额即可，不用配置任何密钥（买过老版本积分包先在账户中心点首次激活再同步）。</p>
+          <p>如果你要用自己的模型服务，进入「设置 → 连接设置 → 回答模型」，把来源设为 <code>personal</code>，填同一家服务的 API 根地址、模型名与密钥（不要把 TBOX 账号密码/授权码填进密钥框）。</p>
+          <p id="flurouter">示例（使用川流 API 时）：回答来源选 <code>personal</code>，地址填 <code>https://flurouter.net/v1</code> 并填你在川流开通的模型名；文字模型管面试，视觉模型管笔试看图；川流用量由川流单独算钱。连接设置也支持单填本机 HTTP 代理端口，能直连保持留空。</p>
+          <p>保存后回首页展开「连接与诊断」点「测试连接」，提示成功后再顺道核对一次真实文字返回。</p>
+        </section>
+
+        <section class="prose-section" id="first-test">
+          <h2>2. 拖入你的简历，并用实战题目走一遍</h2>
+          <p>进场之前强烈建议先把你的 <strong>PDF 简历、目标岗位 JD 或面经文件夹</strong>拖进客户端进行预分析——这样现场出词才是你的真实项目数据与第一人称口吻，而且常见问法能实现毫秒直出。</p>
+          <div class="sample-question"><strong>面试热身题</strong>　打开 B 站或播放一段面试视频声，点击「开始面试」，观察右上角透明提词条是不是流畅切句出要点。</div>
+          <div class="sample-question"><strong>笔试热身题</strong>　打开浏览器保持静态题目画面完整露在屏幕里（<strong>注意避开同屏不断跳动的聊天窗口</strong>，减少屏幕稳态校验重算），点击「开始笔试」即可不切窗弹出浮窗与解析。</div>
+        </section>
+
+        <section class="prose-section" id="antiscan">
+          <h2>3. 启用防拍光栅护盾与手机一键藏窗（v0.2.2+）</h2>
+          <ul>
+            <li>点客户端上的 <strong>「防拍 / 扫码隐身」</strong> 按钮可调出防拍光栅参数、4 档场景预设，以及局域网手机快速联动二维码。</li>
+            <li><strong>高频手势快捷键（不抢当前光标，单手随时切换）：</strong><code>Ctrl+Alt+P</code> 开关光栅；<code>Ctrl+Alt+S</code> 一秒轮换「轻度护眼 → 均衡防拍 → 强效抗摄录 → 极隐暗光」；<code>Ctrl+Alt+A</code> 秒切低反差暗字；<code>Ctrl+Shift+H</code> 一键把主窗与浮窗统统藏起来。</li>
+            <li>用微信扫描二维码（同一 Wi-Fi 下即可工作），手机点一下就能瞬间把桌面 TBOX 全隐身，或者遥控调整防拍光栅强弱。</li>
+          </ul>
+        </section>
+
+        <section class="prose-section" id="errors">
+          <h2>4. 按原提示处理，不要连续瞎点或反复下单</h2>
+          <dl class="error-list">
+            <dt>未配置或缺少地址、模型、密钥</dt>
+            <dd>如果用的是官网时长包，确认已登录且账户包余额够；如果切到了 <code>personal</code>，补全服务地址、模型名和对应密钥。</dd>
+            <dt>401 / 权限错误 或 402 / 余额不足</dt>
+            <dd>属于你所填自备 API 服务商返回的认证或余额提示（请核对对应供应商后台余额），不要把密钥截图公开。</dd>
+            <dt>429 / 限流 或 503 / 请求超时</dt>
+            <dd>稍等数秒再发起，或者若弹出“原请求待核对”按界面恢复按钮续上原请求，连续猛点不会变快。</dd>
+            <dt>笔试画面“一直显示正在等待/识别中”</dt>
+            <dd>检查一下同一块屏幕里是不是开着实时滚动的视频框、聊天弹窗或动态网页广告——为防误识别，屏幕像素大面积不断变化会等待稳定帧，尽量只把静态考题留在视野里出题秒快。</dd>
+          </dl>
+        </section>
+
+        <section class="prose-section" id="device-check">
+          <h2>5. 音频设备与系统录屏排除检查</h2>
+          <ul>
+            <li>正式面之前务必点一次音频自检，核对默认播放设备（WASAPI Loopback）是不是你正在戴着的耳机或扬声器，如果混有多个虚拟声卡，直接在设置下拉里锁定目标输出设备 ID。</li>
+            <li>想自己验证防共享效果：在客户端把浮窗显示出来后，随便拉一个系统截图工具或者腾讯会议自己跟自己测试共享桌面，确认共享画面里看不到提词字条与右键菜单。</li>
+          </ul>
+        </section>
+
+        <section class="prose-section" id="data-storage">
+          <h2>6. 资料目录在哪 &amp; 如何干干净净清理</h2>
+          <h3>确认数据根目录</h3>
+          <p>默认保存在 <code>%LOCALAPPDATA%\TishiBox\suite</code>（如快捷方式指定了 <code>--data-dir</code> 则以对应目录为准；便携版也可使用独立数据文件夹）。</p>
+          <h3>本地存放内容说明</h3>
+          <ul>
+            <li>个人档案主文件 <code>profile.dat</code> 受当前 Windows 账户 DPAPI 加密保护；<code>profile/resume_parsed.json</code> 与解析副本是明文结构化文件；</li>
+            <li>本地音频采集与本地 Whisper 转写走内存，但转写文本历史可留存在草稿/数据库（<code>library.sqlite3</code>、<code>assessment.sqlite3</code>）；使用云服务时会发给对应接口方并记录云会话用量。</li>
+          </ul>
+          <h3>清理前注意事项</h3>
+          <p>请先把要留下的内容手动导出备份，再完全退出程序去处理对应数据目录。“移除附件/题面”仅撤销当次引用不删源文档；同样也切勿乱删目录中的授权状态文件以免引发异常。详情见<a href="faq.html#privacy">数据与隐私条款</a>。</p>
+        </section>
+      </div>
+    </div>
+
+    <section class="support-panel" id="support">
+      <div>
+        <h2>设备调试卡住了？进群直接帮着查</h2>
+        <p>附带你的 Windows 版本、软件版本与报错截图，不要贴出账号密码或第三方 API 密钥。</p>
+      </div>
+      <div class="support-contact">
+        <span>官方 QQ 支持群</span>
+        <strong data-qq-group>1127804697</strong>
+        <button class="button button-quiet" type="button" data-copy-support>一键复制群号</button>
+        <span role="status" data-copy-status></span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="editorial-footer">
+    <div class="ef-id"><a class="ef-sign" href="index.html"><img src="assets/img/logo.svg" alt="" width="27" height="27">TBOX</a><p>Windows 面试与笔试桌面 AI 提词助手</p></div>
+    <div class="ef-col"><strong>产品</strong><a href="download.html">下载 Windows 版</a><a href="pricing.html">套餐与试用</a><a href="media.html">产品演示片</a><a href="changelog.html">更新日志</a></div>
+    <div class="ef-col"><strong>使用与支持</strong><a href="setup-key.html">使用指南</a><a href="faq.html#support">帮助与支持</a><a href="feedback.html">用户反馈</a><a href="partners.html">代理合作</a></div>
+    <div class="ef-col"><strong>关于</strong><a href="about.html">关于 TBOX</a><a href="about.html#terms">条款与退款</a><a href="faq.html#privacy">数据与隐私</a></div>
+    <small>© 2026 TBOX</small>
+  </footer>
+  <script src="assets/config.js?v=20261121-01111-pending"></script>
+  <script defer src="assets/launch-20261110.js?v=20261121-01111-pending"></script>
+</body>
+</html>
