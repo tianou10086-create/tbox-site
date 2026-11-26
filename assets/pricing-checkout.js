@@ -784,16 +784,25 @@
   async function beginCheckout(sku, link) {
     if (!sku || link.dataset.checkoutBusy === 'true') return;
     if (link.dataset.skuUnavailable === 'true' || link.getAttribute('aria-disabled') === 'true') {
+      const view = openModal(sku, '「' + titleFor(sku) + '」目前后端服务器（api.tboxapp.top）尚未开启售卖开关或未导入体验卡库存。');
+      const content = view.querySelector('[data-checkout-content]');
       const fallback = document.querySelector('#compare-hours [data-account-checkout]');
       if (fallback) {
-        document.getElementById('compare-hours').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const buy1hBtn = document.createElement('button');
+        buy1hBtn.type = 'button';
+        buy1hBtn.className = 'button checkout-dialog__link';
+        buy1hBtn.textContent = '改买 1 小时（¥20）立即扫码测试';
+        buy1hBtn.addEventListener('click', () => {
+          view.close();
+          void beginCheckout('tbox_day_1h_v9', fallback);
+        });
+        content.append(buy1hBtn);
       } else {
-        const view = openModal(sku, '该体验档目前后台库存或通道正在调整中；你可以直接选用 ¥20 / 1 小时起步（按使用秒数计费、永不过期）。');
-        const btn = document.createElement('a');
-        btn.className = 'button checkout-dialog__link';
-        btn.href = 'pricing.html#compare-hours';
-        btn.textContent = '查看并购买 1 小时（¥20）起步包';
-        view.querySelector('[data-checkout-content]').append(btn);
+        const go = document.createElement('a');
+        go.className = 'button checkout-dialog__link';
+        go.href = 'pricing.html#compare-hours';
+        go.textContent = '查看并购买 1 小时（¥20）起步包';
+        content.append(go);
       }
       return;
     }
