@@ -425,6 +425,41 @@ body.tbox-home-checkout .checkout-dialog__account {
   border-color: #d6dbd2 !important;
 }
 
+.checkout-dialog__timer {
+  margin: 0;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #e9eee4;
+  border: 1px solid #ced9c7;
+  color: #143d33;
+  font: 620 13px/1.35 ui-monospace, Consolas, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.checkout-dialog__abandon {
+  width: 100%;
+  border: 1px solid #c7d1c3;
+  border-radius: 6px;
+  padding: 9px 14px;
+  background: #f7f7f2;
+  color: #143d33;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .15s ease, border-color .15s ease;
+}
+
+.checkout-dialog__abandon:hover:not(:disabled) {
+  background: #e5ede0;
+  border-color: #9cb09b;
+}
+
+.checkout-dialog__abandon:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
 @media (max-width: 820px) {
   .ed-sheet-tabs {
     gap: 10px;
