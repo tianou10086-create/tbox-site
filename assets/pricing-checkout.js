@@ -4,41 +4,67 @@
   const API = 'https://api.tboxapp.top';
   const pendingKey = 'tbox-pending-checkout-sku';
   const LIVE_STATUSES = ['pending', 'paid_awaiting_stock', 'payment_unknown', 'pending_review'];
+  const REQUEST_TIMEOUT_MS = 12000;
   let modal = null;
   let pollTimer = null;
   let countdownTimer = null;
   let activeOrder = null;
   let cachedConfig = null;
+  let serverCancelUnsupported = false;
+  const recentRefreshAt = new Map();
 
   async function api(path, init = {}) {
-    const response = await fetch(API + path, {
-      credentials: 'include',
-      mode: 'cors',
-      cache: 'no-store',
-      ...init,
-      headers: {
-        ...(init.body ? { 'Content-Type': 'application/json' } : {}),
-        ...(init.headers || {})
+    const ctrl = new AbortController();
+    const timer = window.setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
+    try {
+      const response = await fetch(API + path, {
+        credentials: 'include',
+        mode: 'cors',
+        cache: 'no-store',
+        signal: ctrl.signal,
+        ...init,
+        headers: {
+          ...(init.body ? { 'Content-Type': 'application/json' } : {}),
+          ...(init.headers || {})
+        }
+      });
+      let data = null;
+      try { data = await response.json(); } catch (_) {}
+      if (!response.ok) {
+        const error = new Error(typeof data?.detail === 'string' ? data.detail : '请求未成功，请稍后重试。');
+        error.status = response.status;
+        error.data = data;
+        throw error;
       }
-    });
-    let data = null;
-    try { data = await response.json(); } catch (_) {}
-    if (!response.ok) {
-      const error = new Error(typeof data?.detail === 'string' ? data.detail : '请求未成功，请稍后重试。');
-      error.status = response.status;
-      error.data = data;
-      throw error;
+      return data;
+    } catch (err) {
+      if (err?.name === 'AbortError') {
+        const timeoutErr = new Error('连接收银台超时，请检查网络或刷新后再试。');
+        timeoutErr.status = 408;
+        throw timeoutErr;
+      }
+      throw err;
+    } finally {
+      window.clearTimeout(timer);
     }
-    return data;
   }
 
   async function readSession() {
-    const response = await fetch(API + '/account/api/session', {
-      credentials: 'include', mode: 'cors', cache: 'no-store'
-    });
-    if (response.status === 401) return null;
-    if (!response.ok) throw new Error('暂时无法确认登录状态，请稍后重试。');
-    return response.json();
+    const ctrl = new AbortController();
+    const timer = window.setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
+    try {
+      const response = await fetch(API + '/account/api/session', {
+        credentials: 'include', mode: 'cors', cache: 'no-store', signal: ctrl.signal
+      });
+      if (response.status === 401) return null;
+      if (!response.ok) throw new Error('暂时无法确认登录状态，请稍后重试。');
+      return response.json();
+    } catch (err) {
+      if (err?.name === 'AbortError') throw new Error('确认登录状态超时，请刷新后重试。');
+      throw err;
+    } finally {
+      window.clearTimeout(timer);
+    }
   }
 
   async function fetchConfig() {
@@ -168,6 +194,19 @@
     return view;
   }
 
+  function setModalAlert(content, statusEl, message) {
+    if (!message) return;
+    if (statusEl) statusEl.textContent = message;
+    if (!content) return;
+    let alert = content.querySelector('.checkout-dialog__notice');
+    if (!alert) {
+      alert = document.createElement('p');
+      alert.className = 'checkout-dialog__notice';
+      content.prepend(alert);
+    }
+    alert.textContent = message;
+  }
+
   function money(cents) {
     return '¥' + (Number(cents || 0) / 100).toFixed(2);
   }
@@ -205,9 +244,15 @@
     return id;
   }
 
-  async function tryRefreshOrder(orderId) {
+  async function tryRefreshOrder(orderId, respectCooldown = true) {
     if (!orderId) return null;
+    const nowMs = Date.now();
+    const lastMs = recentRefreshAt.get(orderId) || 0;
+    if (respectCooldown && nowMs - lastMs < 5200) {
+      return { _skippedCooldown: true };
+    }
     try {
+      recentRefreshAt.set(orderId, nowMs);
       return await api('/account/api/orders/' + encodeURIComponent(orderId) + '/refresh', {
         method: 'POST',
         body: '{}'
@@ -217,16 +262,21 @@
     }
   }
 
-  async function tryCancelOrder(orderId, reason) {
+  async function tryCancelOrder(orderId, reason, forceProbe = false) {
     if (!orderId) return { cancelled: false, unsupported: true };
+    if (serverCancelUnsupported && !forceProbe) {
+      return { cancelled: false, unsupported: true };
+    }
     try {
       const updated = await api('/account/api/orders/' + encodeURIComponent(orderId) + '/cancel', {
         method: 'POST',
         body: JSON.stringify({ confirmed_unpaid: true, reason: reason || 'customer_recreate' })
       });
+      serverCancelUnsupported = false;
       return { cancelled: updated?.status === 'cancelled', order: updated };
     } catch (err) {
       if (err.status === 404 || err.status === 405) {
+        serverCancelUnsupported = true;
         return { cancelled: false, unsupported: true, error: err };
       }
       return { cancelled: false, unsupported: false, error: err };
@@ -346,51 +396,64 @@
     stopCountdown();
     const initial = remainingSeconds(order);
     if (initial === null) return;
+    let fired = false;
     const update = () => {
       const left = remainingSeconds(order);
       if (left === null) return;
       if (left <= 0) {
-        timerEl.textContent = '付款窗口已到 5 分钟（00:00），正在自动核对结果…';
+        timerEl.textContent = '已满 5 分钟（00:00），正在自动切换新单…';
         stopCountdown();
-        if (typeof onWindowEnd === 'function') void onWindowEnd();
+        if (!fired && typeof onWindowEnd === 'function') {
+          fired = true;
+          void onWindowEnd();
+        }
         return;
       }
-      timerEl.textContent = '5 分钟有效 · 自动关闭倒计时 ' + formatDuration(left);
+      timerEl.textContent = '5 分钟有效 · 到期自动切换还剩 ' + formatDuration(left);
     };
     update();
     countdownTimer = window.setInterval(update, 1000);
   }
 
-  async function abandonAndRecreate(targetSku, accountId, stuckOrder, statusEl, extra = {}) {
-    statusEl.textContent = '正在核实原单是否未付款并准备切换下单…';
-    const refreshed = await tryRefreshOrder(stuckOrder.id);
-    const current = refreshed && !refreshed._refreshError ? refreshed : stuckOrder;
+  async function abandonAndRecreate(targetSku, accountId, stuckOrder, statusEl, contentEl) {
+    setModalAlert(contentEl, statusEl, '正在向支付通道核对原单是否未付款…');
+    const refreshed = await tryRefreshOrder(stuckOrder.id, true);
+    const current = refreshed && !refreshed._refreshError && !refreshed._skippedCooldown ? refreshed : stuckOrder;
     if (current.status === 'paid') {
-      renderOrder(current.sku || targetSku, current, { customNotice: '刚才那笔原订单实际已完成付款，已自动为你加载到账结果：' });
-      return;
+      renderOrder(current.sku || targetSku, current, { customNotice: '刚才那笔原订单实际已完成付款，已为你加载到账详情：' });
+      return true;
     }
+
     if (current.status !== 'cancelled') {
-      const cancelRes = await tryCancelOrder(current.id, targetSku !== current.sku ? 'switch_sku' : 'recreate_expired');
-      if (cancelRes.order && cancelRes.order.status === 'paid') {
+      setModalAlert(contentEl, statusEl, '确认未付款，正在关闭原单并准备新二维码…');
+      const cancelRes = await tryCancelOrder(
+        current.id,
+        targetSku !== current.sku ? 'switch_sku' : 'recreate_expired',
+        true
+      );
+      if (cancelRes.order?.status === 'paid') {
         renderOrder(current.sku || targetSku, cancelRes.order, { customNotice: '检测到原单已付款到账，未重复创建新单：' });
-        return;
+        return true;
       }
       if (!cancelRes.cancelled) {
         if (cancelRes.unsupported) {
           const left = remainingSeconds(current);
-          statusEl.textContent = left !== null && left > 0
-            ? '当前后台暂不支持提前关闭未超时订单，请先等上方 5 分钟倒计时（还剩 ' + formatDuration(left) + '）结束，或直接扫上方二维码完成这单。'
-            : '原单在当前后台版本中尚未释放。若刚付款请点「刷新核对」，或前往账户中心查看原单并等待服务端升级。';
+          const tip = left !== null && left > 0
+            ? '当前后台（api.tboxapp.top）暂未更新主动关单接口（/cancel 返回 404），因此还无法提前作废未付单，需等待这单倒计时结束并在服务端升级后自动出新码。'
+            : '原单已超过 5 分钟，但当前线上后台（api.tboxapp.top）尚未更新自动关单补丁（/cancel 返回 404），后台仍在锁定旧单不让建新单，需先更新服务端。';
+          setModalAlert(contentEl, statusEl, tip);
         } else {
-          statusEl.textContent = cancelRes.error?.message || '原订单关闭前核验暂未成功，请先点击刷新核对账单。';
+          setModalAlert(contentEl, statusEl, cancelRes.error?.message || '原订单关闭前核验暂未成功，请点下方核对到账状态。');
         }
-        return;
+        return false;
       }
     }
+
     clearAccountSessionKeys(accountId);
     const freshOrder = await createFreshOrder(accountId, targetSku, true);
-    renderOrder(targetSku, freshOrder, { accountId, targetSku, customNotice: '已关闭未付款旧单并为你生成全新扫码二维码：' });
+    renderOrder(targetSku, freshOrder, { accountId, targetSku, customNotice: '已自动关闭未付款旧单，并为你切换出全新付款二维码：' });
     startPolling(targetSku, freshOrder, { accountId, targetSku });
+    return true;
   }
 
   function renderOrder(sku, order, options = {}) {
@@ -411,10 +474,7 @@
     titleEl.textContent = '购买 ' + titleFor(resolvedSku);
 
     if (customNotice) {
-      const alert = document.createElement('p');
-      alert.className = 'checkout-dialog__notice';
-      alert.textContent = customNotice;
-      content.append(alert);
+      setModalAlert(content, statusEl, customNotice);
     }
 
     const amount = document.createElement('p');
@@ -438,15 +498,22 @@
         timerBadge.className = 'checkout-dialog__timer';
         content.append(timerBadge);
         startCountdown(order, timerBadge, async () => {
-          const updated = await tryRefreshOrder(order.id);
-          if (updated && !updated._refreshError) {
-            renderOrder(resolvedSku, updated, { ...options, targetSku, accountId });
-            if (updated.status === 'pending' && !isOrderWindowEnded(updated)) {
-              startPolling(resolvedSku, updated, options);
-            }
-          } else {
-            renderOrder(resolvedSku, { ...order, status: 'expired' }, { ...options, targetSku, accountId });
+          const updated = await tryRefreshOrder(order.id, false);
+          const current = updated && !updated._refreshError ? updated : { ...order, status: 'expired' };
+          if (current.status === 'paid') {
+            renderOrder(resolvedSku, current, { ...options, targetSku, accountId });
+            return;
           }
+          if (!isFreeReceipt) {
+            const acct = accountId || (await readSession().catch(() => null))?.account_id;
+            if (acct) {
+              try {
+                const switched = await abandonAndRecreate(targetSku, acct, current, statusEl, content);
+                if (switched) return;
+              } catch (_) {}
+            }
+          }
+          renderOrder(resolvedSku, current.status === 'cancelled' ? current : { ...current, status: 'expired' }, { ...options, targetSku, accountId });
         });
       }
 
@@ -466,21 +533,27 @@
         const switchBtn = document.createElement('button');
         switchBtn.type = 'button';
         switchBtn.className = 'checkout-dialog__abandon';
-        switchBtn.textContent = '放弃这笔未付订单，改买「' + titleFor(targetSku) + '」';
+        const switchLabel = '放弃这笔未付订单，改买「' + titleFor(targetSku) + '」';
+        switchBtn.textContent = switchLabel;
         switchBtn.addEventListener('click', async () => {
           switchBtn.disabled = true;
+          switchBtn.textContent = '正在核对并切换下单…';
           try {
-            await abandonAndRecreate(targetSku, accountId, order, statusEl, options);
+            await abandonAndRecreate(targetSku, accountId, order, statusEl, content);
           } catch (err) {
-            statusEl.textContent = err.message || '切换失败，请稍后重试。';
-            switchBtn.disabled = false;
+            setModalAlert(content, statusEl, err.message || '切换失败，请稍后重试。');
+          } finally {
+            if (switchBtn.isConnected) {
+              switchBtn.disabled = false;
+              switchBtn.textContent = switchLabel;
+            }
           }
         });
         content.append(switchBtn);
       }
 
       statusEl.textContent = hasQr
-        ? '二维码有效，扫完付款后弹窗每 5 秒自动核对到账（超时 5 分钟未付自动关闭）。'
+        ? '二维码有效，扫完付款后每 5 秒自动查账；过 5 分钟未付将尝试自动切换新单。'
         : '订单已创建，收银台地址正在返回中，请点下方「刷新订单状态」。';
     } else if (effectiveStatus === 'expired') {
       stopPolling();
@@ -489,7 +562,7 @@
       warn.className = 'checkout-dialog__hint';
       warn.textContent = isFreeReceipt
         ? '该收款窗口已过 5 分钟有效期。若尚未扫码付款，点下方延长付款窗口；若已付款请填写交易单号核验。'
-        : '这笔原订单已超过 5 分钟有效窗口。若确认尚未扣款，请点下方重新下单生成新二维码；若刚刚已扣款，请务必先点「我已付款 · 立即核对到账」。';
+        : '这笔原订单已超过 5 分钟有效窗口。若确认未扣款，点下方重新关闭旧单并生成新二维码；若刚付过款，先点「我已付款 · 立即核对到账」。';
       content.append(warn);
 
       if (isFreeReceipt) {
@@ -509,8 +582,11 @@
             startPolling(resolvedSku, updated, options);
           } catch (err) {
             statusEl.textContent = err.message;
-            resumeBtn.disabled = false;
-            resumeBtn.textContent = '我尚未付款 · 重新生成二维码';
+          } finally {
+            if (resumeBtn.isConnected) {
+              resumeBtn.disabled = false;
+              resumeBtn.textContent = '我尚未付款 · 重新生成二维码';
+            }
           }
         });
         content.append(resumeBtn);
@@ -519,23 +595,29 @@
         const recreateBtn = document.createElement('button');
         recreateBtn.type = 'button';
         recreateBtn.className = 'button checkout-dialog__link';
-        recreateBtn.textContent = '未付款 · 关闭旧单并开「' + titleFor(targetSku) + '」新二维码';
+        const recreateLabel = '重试：关闭过期旧单并出「' + titleFor(targetSku) + '」新二维码';
+        recreateBtn.textContent = recreateLabel;
         recreateBtn.addEventListener('click', async () => {
           recreateBtn.disabled = true;
-          recreateBtn.textContent = '正在核验旧单并出新码…';
+          recreateBtn.textContent = '正在核验旧单并尝试出新码…';
           try {
             const acct = accountId || (await readSession())?.account_id;
             if (!acct) throw new Error('登录状态已过期，请先重新登录。');
-            await abandonAndRecreate(targetSku, acct, order, statusEl, options);
+            await abandonAndRecreate(targetSku, acct, order, statusEl, content);
           } catch (err) {
-            statusEl.textContent = err.message || '重新建单未成功，请先点击下方核对到账状态。';
-            recreateBtn.disabled = false;
-            recreateBtn.textContent = '未付款 · 关闭旧单并开新二维码';
+            setModalAlert(content, statusEl, err.message || '重新建单未成功，请先点击下方核对到账状态。');
+          } finally {
+            if (recreateBtn.isConnected) {
+              recreateBtn.disabled = false;
+              recreateBtn.textContent = recreateLabel;
+            }
           }
         });
         content.append(recreateBtn);
       }
-      statusEl.textContent = '为了防止重复扣款，重新生成前会先向支付通道自动核对本单未付款。';
+      if (!customNotice) {
+        statusEl.textContent = '重开前会先向支付通道核实这笔单确实没扣款，防止重复下单。';
+      }
     } else if (effectiveStatus === 'payment_unknown') {
       const hint = document.createElement('p');
       hint.className = 'checkout-dialog__hint';
@@ -580,7 +662,8 @@
       const retryBtn = document.createElement('button');
       retryBtn.type = 'button';
       retryBtn.className = 'button checkout-dialog__link';
-      retryBtn.textContent = '重新购买「' + titleFor(targetSku) + '」生成新二维码';
+      const retryLabel = '重新购买「' + titleFor(targetSku) + '」生成新二维码';
+      retryBtn.textContent = retryLabel;
       retryBtn.addEventListener('click', async () => {
         retryBtn.disabled = true;
         retryBtn.textContent = '正在创建新订单…';
@@ -591,9 +674,12 @@
           renderOrder(targetSku, fresh, { accountId: acct, targetSku });
           startPolling(targetSku, fresh, { accountId: acct, targetSku });
         } catch (err) {
-          statusEl.textContent = err.message || '重新建单未成功。';
-          retryBtn.disabled = false;
-          retryBtn.textContent = '重新购买「' + titleFor(targetSku) + '」生成新二维码';
+          setModalAlert(content, statusEl, err.message || '重新建单未成功。');
+        } finally {
+          if (retryBtn.isConnected) {
+            retryBtn.disabled = false;
+            retryBtn.textContent = retryLabel;
+          }
         }
       });
       content.append(retryBtn);
@@ -605,9 +691,7 @@
     if (!['paid', 'cancelled'].includes(effectiveStatus)) {
       const refresh = document.createElement('button');
       refresh.type = 'button';
-      refresh.className = effectiveStatus === 'payment_unknown' || effectiveStatus === 'paid_awaiting_stock' || effectiveStatus === 'expired'
-        ? 'checkout-dialog__refresh'
-        : 'checkout-dialog__refresh';
+      refresh.className = 'checkout-dialog__refresh';
       refresh.textContent = effectiveStatus === 'pending'
         ? '刷新订单状态'
         : '我已付款 · 立即核对到账';
@@ -615,6 +699,7 @@
         refresh.disabled = true;
         try {
           const updated = await api('/account/api/orders/' + encodeURIComponent(order.id) + '/refresh', { method: 'POST', body: '{}' });
+          recentRefreshAt.set(order.id, Date.now());
           renderOrder(resolvedSku, updated, options);
           if (updated.status === 'pending' && !isOrderWindowEnded(updated)) {
             startPolling(resolvedSku, updated, options);
@@ -622,7 +707,7 @@
         } catch (error) {
           statusEl.textContent = error.message;
         } finally {
-          refresh.disabled = false;
+          if (refresh.isConnected) refresh.disabled = false;
         }
       });
       content.append(refresh);
@@ -649,6 +734,7 @@
       attempts += 1;
       try {
         const updated = await api('/account/api/orders/' + encodeURIComponent(order.id) + '/refresh', { method: 'POST', body: '{}' });
+        recentRefreshAt.set(order.id, Date.now());
         if (updated.status !== activeOrder?.status || updated.qrcode_base64 !== activeOrder?.qrcode_base64 || updated.cashier_url !== activeOrder?.cashier_url) {
           renderOrder(sku, updated, options);
           if (!['pending', 'payment_unknown', 'paid_awaiting_stock'].includes(updated.status) || isOrderWindowEnded(updated)) {
@@ -677,25 +763,21 @@
     return list.find(o => isOrderWindowEnded(o) && o.status !== 'cancelled' && o.status !== 'paid') || null;
   }
 
-  async function resolveStaleEndedOrder(accountId, list) {
-    const endedList = (Array.isArray(list) ? list : []).filter(o =>
+  async function resolveLatestEndedOrder(accountId, list) {
+    const latestEnded = (Array.isArray(list) ? list : []).find(o =>
       ['pending', 'payment_unknown', 'expired'].includes(o.status) && isOrderWindowEnded(o)
     );
-    for (const stale of endedList) {
-      const refreshed = await tryRefreshOrder(stale.id);
-      const latest = refreshed && !refreshed._refreshError ? refreshed : stale;
-      if (latest.status === 'paid') {
-        return { paidOrder: latest };
-      }
-      if (latest.status !== 'cancelled' && latest.payment_channel !== 'free_receipt') {
-        const cancelRes = await tryCancelOrder(latest.id, 'auto_close_expired');
-        if (cancelRes.order?.status === 'paid') {
-          return { paidOrder: cancelRes.order };
-        }
-      }
-      clearSkuSessionKey(latest.sku);
+    if (!latestEnded) return { paidOrder: null };
+
+    const refreshed = await tryRefreshOrder(latestEnded.id, true);
+    const current = refreshed && !refreshed._refreshError && !refreshed._skippedCooldown ? refreshed : latestEnded;
+    if (current.status === 'paid') return { paidOrder: current };
+
+    if (current.status !== 'cancelled' && current.payment_channel !== 'free_receipt') {
+      const cancelRes = await tryCancelOrder(current.id, 'auto_close_expired', false);
+      if (cancelRes.order?.status === 'paid') return { paidOrder: cancelRes.order };
     }
-    if (endedList.length) clearAccountSessionKeys(accountId);
+    clearAccountSessionKeys(accountId);
     return { paidOrder: null };
   }
 
@@ -737,7 +819,6 @@
       const ordersData = await api('/account/api/orders');
       const ordersList = Array.isArray(ordersData?.orders) ? ordersData.orders : [];
 
-      // 1. 同套餐下如果已有有效且未过 5 分钟的活单，直接呈现可扫码界面
       const sameLive = findLiveOrder(ordersList, sku);
       if (sameLive) {
         renderOrder(sku, sameLive, { accountId, targetSku: sku });
@@ -745,14 +826,12 @@
         return;
       }
 
-      // 2. 自动按 GitHub 规则查单清理已经过 5 分钟失效但停留在库里的废弃单
-      const { paidOrder } = await resolveStaleEndedOrder(accountId, ordersList);
+      const { paidOrder } = await resolveLatestEndedOrder(accountId, ordersList);
       if (paidOrder && paidOrder.sku === sku) {
         renderOrder(sku, paidOrder, { accountId, targetSku: sku, customNotice: '刚才的订单已完成支付到账：' });
         return;
       }
 
-      // 3. 检查套餐是否在线开放购买
       const config = await fetchConfig() || await api('/account/api/config');
       const spec = (config.catalog?.domestic || []).find(item => item.id === sku);
       if (!spec?.purchasing_open) {
@@ -761,7 +840,6 @@
         return;
       }
 
-      // 4. 若原有幂等键对应的是已终结/过期或另一张单，强制清掉以确保生成全新 out_trade_no
       const key = 'tbox-purchase-' + accountId + '-' + sku;
       const priorId = sessionStorage.getItem(key + ':order');
       if (priorId) {
@@ -771,7 +849,6 @@
         }
       }
 
-      // 5. 创建全新订单并显示二维码 + 5 分钟倒计时
       const order = await createFreshOrder(accountId, sku, false);
       renderOrder(sku, order, { accountId, targetSku: sku });
       startPolling(sku, order, { accountId, targetSku: sku });
@@ -791,13 +868,13 @@
           const freshData = await api('/account/api/orders');
           let stuck = findAnyBlockingOrder(freshData?.orders);
           if (stuck && isOrderWindowEnded(stuck) && stuck.payment_channel !== 'free_receipt') {
-            const refreshed = await tryRefreshOrder(stuck.id);
-            const afterRefresh = refreshed && !refreshed._refreshError ? refreshed : stuck;
+            const refreshed = await tryRefreshOrder(stuck.id, true);
+            const afterRefresh = refreshed && !refreshed._refreshError && !refreshed._skippedCooldown ? refreshed : stuck;
             if (afterRefresh.status === 'paid') {
               renderOrder(afterRefresh.sku || sku, afterRefresh, { accountId, targetSku: sku, customNotice: '刚才的订单已完成支付，已为你打开到账详情：' });
               return;
             }
-            const cancelRes = await tryCancelOrder(afterRefresh.id, 'auto_close_409');
+            const cancelRes = await tryCancelOrder(afterRefresh.id, 'auto_close_409', false);
             if (cancelRes.cancelled && accountId) {
               const newOrder = await createFreshOrder(accountId, sku, true);
               renderOrder(sku, newOrder, { accountId, targetSku: sku, customNotice: '原 5 分钟超时订单已自动关闭，已为你生成全新二维码：' });
@@ -812,11 +889,11 @@
             const sameSku = stuck.sku === sku;
             let notice = '';
             if (ended) {
-              notice = '该账户有一笔已超时（超过 5 分钟）的旧订单（' + titleFor(stuck.sku) + '），当前服务端未将其自动关单，请确认是否已付款或点下方重新下单试关：';
+              notice = '旧订单（' + titleFor(stuck.sku) + '）已超过 5 分钟有效期，但当前服务器（api.tboxapp.top）尚未更新自动关单接口，暂时拦住了新下单：';
             } else if (sameSku) {
               notice = '为你接回正在 5 分钟有效期内的原订单，手机扫下方二维码即可直接付款：';
             } else {
-              notice = '你账户下还有一笔「' + titleFor(stuck.sku) + '」尚在 5 分钟倒计时中。你可以直接扫码完成它，也可以点击下方按钮放弃原单改买「' + titleFor(sku) + '」：';
+              notice = '你账户下还有一笔「' + titleFor(stuck.sku) + '」尚在 5 分钟倒计时中。你可以直接扫码完成，或点下方放弃原单改买「' + titleFor(sku) + '」（超时满 5 分钟将自动切换）：';
             }
             renderOrder(stuck.sku || sku, stuck, { accountId, targetSku: sku, customNotice: notice });
             startPolling(stuck.sku || sku, stuck, { accountId, targetSku: sku });
