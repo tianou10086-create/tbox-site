@@ -477,10 +477,18 @@
       setModalAlert(content, statusEl, customNotice);
     }
 
+    const payCents = Number(order.payable_cents || order.amount_cents || 0);
     const amount = document.createElement('p');
     amount.className = 'checkout-dialog__amount';
-    amount.textContent = money(order.amount_cents);
+    amount.textContent = money(payCents);
     content.append(amount);
+
+    if (order.status === 'pending' && payCents !== Number(order.amount_cents || 0)) {
+      const floatNote = document.createElement('p');
+      floatNote.className = 'checkout-dialog__notice';
+      floatNote.textContent = '防撞单核账提示：本单请严格按上方实付金额 ' + money(payCents) + ' 输入付款（勿多付或少付 1 分钱，以便系统 5 秒内自动识别发卡）。';
+      content.append(floatNote);
+    }
 
     if (order.id) {
       const oid = document.createElement('p');
@@ -489,7 +497,7 @@
       content.append(oid);
     }
 
-    const cashier = safeUrl(order.cashier_url);
+    const cashier = order.native_qr ? null : safeUrl(order.cashier_url);
     const isFreeReceipt = order.payment_channel === 'free_receipt';
 
     if (effectiveStatus === 'pending') {
@@ -521,9 +529,11 @@
       if (hasQr) {
         const hint = document.createElement('p');
         hint.className = 'checkout-dialog__hint';
-        hint.textContent = order.qrcode_base64
-          ? '请用微信扫一扫上方二维码完成支付，金额以本单为准，到账后自动刷新。'
-          : '用手机微信 / 支付宝 / 系统相机扫一扫上方二维码即可支付（若微信拦截，点击右上角用手机浏览器打开）。';
+        hint.textContent = order.native_qr
+          ? '打开手机微信「扫一扫」识别上方原生收款码，输入实付金额 ' + money(payCents) + ' 即可付款（无需跳外部网页，付完约 5 秒自动发卡）。'
+          : order.qrcode_base64
+          ? '请用微信扫一扫上方二维码完成支付，金额以 ' + money(payCents) + ' 为准，到账后自动刷新。'
+          : '用手机微信 / 支付宝 / 系统相机扫一扫上方二维码即可支付。';
         content.append(hint);
       }
       if (cashier) appendCashierExtras(content, cashier);
