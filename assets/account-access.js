@@ -127,12 +127,16 @@
       }
       await domReady;
       if (originalNodes) document.body.replaceChildren(...originalNodes);
-      for (const [selector, kind] of [
-        ['[data-primary-download], [data-account-download="installer"]', 'installer'],
-        ['[data-portable-download], [data-account-download="portable"]', 'portable']
+      const cfg = window.TBOX_CONFIG || {};
+      for (const [selector, kind, cfgKey] of [
+        ['[data-primary-download], [data-account-download="installer"]', 'installer', 'PRIMARY_DOWNLOAD'],
+        ['[data-portable-download], [data-account-download="portable"]', 'portable', 'PORTABLE_URL']
       ]) {
+        const targetHref = (typeof cfg[cfgKey] === 'string' && cfg[cfgKey].startsWith('https://'))
+          ? cfg[cfgKey]
+          : (api + '/account/download?kind=' + kind);
         document.querySelectorAll(selector).forEach(link => {
-          link.href = api + '/account/download?kind=' + kind;
+          link.href = targetHref;
         });
       }
       updateAccount(signedIn);

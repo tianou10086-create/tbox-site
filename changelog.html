@@ -18,7 +18,7 @@
 <link rel="canonical" href="https://tboxapp.top/changelog.html">
 <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/launch-20261110.css?v=20261116-time-v6">
-<script defer src="assets/account-access.js?v=20261121-01111-pending"></script>
+<script defer src="assets/account-access.js?v=20261128-v022"></script>
 <link rel="stylesheet" href="assets/editorial-system.css?v=20261119-ed1">
 <style>
 .cl-meta{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
@@ -81,18 +81,22 @@
       <section class="prose-section" id="v0-2-2">
         <div class="cl-meta">
           <h2>v0.2.2</h2>
-          <time datetime="2026-11-26">2026-11-26</time>
+          <time datetime="2026-11-28">2026-11-28</time>
         </div>
+        <p class="cl-sub">面试 50% 核心意图锁定抢答与零盲猜门控</p>
+        <ul>
+          <li>新增 <code>50%</code> 核心意图门控与半句空壳拦截：对开场寒暄、试麦、翻简历陈述及未吐出核心考点的前置状语保持 <code>100%</code> 静默，杜绝盲目抢答。</li>
+          <li>启用本地 <code>SenseVoice INT8 ONNX</code> 极速流式预判：一旦核心考点与提问维度过半锁定，即刻在面试官话音未落时流式推送提词，句末 <code>0ms</code> 无缝复用；若句尾出现否定反转或新限制条件则自动重算。</li>
+        </ul>
+        <p class="cl-sub">笔试防死循环与窗口切换零卡顿优化</p>
+        <ul>
+          <li>修复自备模型视觉投影校验与倒计时微噪重发，根除笔试「正在思考中 ↔ 正在重新识别」循环，增强金融比例计算与中英混合题干准确率。</li>
+          <li>重构悬浮窗进程间异步单槽通信与 Graphite Studio 原生底图渲染，消除流式出字与切换窗口时的磁盘同步阻塞（切换响应 <code>&lt; 2ms</code>）。</li>
+        </ul>
         <p class="cl-sub">光学防手机斜拍护盾与盲操优化</p>
         <ul>
-          <li>新增 <code>cross</code> 双向十字交叉栅、Bayer 互补亚像素点阵与 <code>rolling_band</code> 卷帘快门动态条纹波。</li>
-          <li>实现非破坏式 <code>adaptive_dim</code> 安全暗字柔化高亮反差，同时保障字幕交付收据校验正常。</li>
+          <li>新增 <code>cross</code> 双向十字交叉栅、Bayer 互补亚像素点阵、<code>rolling_band</code> 卷帘快门条纹波及非破坏式 <code>adaptive_dim</code> 安全暗字保护。</li>
           <li>新增右上角 <code>1.3s</code> 切档轻提示、右键保护菜单以及全局热键（<code>Ctrl+Alt+S</code> 切档位、<code>Ctrl+Alt+A</code> 切暗字、<code>Ctrl+Shift+H</code> 一键隐藏）。</li>
-        </ul>
-        <p class="cl-sub">启动与置顶修复</p>
-        <ul>
-          <li>修正置顶桥接器版本引用，不再拉起本机旧版无防拍层运行时，浮窗就绪时间由超 20 秒降至约 3 秒级别。</li>
-          <li>补齐挂起视图刷新，打包发行版自检、音频回环与浮窗交付链路全数通过。</li>
         </ul>
       </section>
 
@@ -186,7 +190,7 @@
   <small>© 2026 TBOX</small>
 </footer>
 
-<script src="assets/config.js?v=e6355c674191"></script>
+<script src="assets/config.js?v=20261128-v022"></script>
 <script defer src="assets/launch-20261110.js?v=20261126-ed2"></script>
 </body>
 </html>
